@@ -14,7 +14,7 @@ if(MSVC)
   set(CMAKE_DEBUG_POSTFIX "d")
 endif()
 
-find_package(Boost 1.70.0 CONFIG REQUIRED COMPONENTS headers spirit unit_test_framework)
+find_package(Boost 1.70.0 CONFIG REQUIRED COMPONENTS headers unit_test_framework)
 
 add_library(${PROJECT_NAME})
 add_library(${PROJECT_NAME}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
@@ -82,7 +82,6 @@ target_link_libraries(${PROJECT_NAME}
   PRIVATE
     jdme2x::jdme2x
     Boost::headers
-    Boost::spirit
 )
 
 add_subdirectory(tests)

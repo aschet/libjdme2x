@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <exception>
 #include <iomanip>
+#include <iterator>
 #include <sstream>
 
 namespace jdme2x {
