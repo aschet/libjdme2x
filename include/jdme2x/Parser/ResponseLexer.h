@@ -10,6 +10,8 @@
 
 namespace jdme2x {
 
+namespace parser {
+
 class ResponseLexerDefinition;
 
 class JDME2X_API ResponseLexer {
@@ -32,6 +34,8 @@ public:
 private:
   std::unique_ptr<ResponseLexerDefinition> Impl;
 };
+
+} // namespace parser
 
 } // namespace jdme2x
 

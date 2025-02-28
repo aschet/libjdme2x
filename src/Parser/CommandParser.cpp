@@ -11,6 +11,8 @@
 
 namespace jdme2x {
 
+namespace parser {
+
 struct CommandParser::Private {
   CommandLexer Lexer;
 };
@@ -49,5 +51,7 @@ std::pair<bool, Command> CommandParser::parse(const std::string &Text) {
       });
   return std::make_pair(Context.hasCompleteParse(), Context.ParsedCommand);
 }
+
+} // namespace parser
 
 } // namespace jdme2x

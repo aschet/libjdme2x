@@ -10,6 +10,8 @@
 
 namespace jdme2x {
 
+namespace parser {
+
 class CommandLexerDefinition;
 
 class JDME2X_API CommandLexer {
@@ -32,6 +34,8 @@ public:
 private:
   std::unique_ptr<CommandLexerDefinition> Impl;
 };
+
+} // namespace parser
 
 } // namespace jdme2x
 

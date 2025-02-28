@@ -3,6 +3,8 @@
 
 namespace jdme2x {
 
+namespace parser {
+
 enum class CommandTokenID {
   OpenParen = 1,
   CloseParen,
@@ -32,6 +34,8 @@ enum class ResponseTokenID {
   Ampersand,
   PercentSign,
 };
+
+} // namespace parser
 
 } // namespace jdme2x
 

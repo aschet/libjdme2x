@@ -5,7 +5,7 @@
 #include <utility>
 #include <vector>
 
-using namespace jdme2x;
+using namespace jdme2x::parser;
 
 typedef std::vector<std::pair<CommandTokenID, std::string>> CommandTokens;
 

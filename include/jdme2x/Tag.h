@@ -4,8 +4,6 @@
 #include "jdme2x/API.h"
 #include "jdme2x/Serializeable.h"
 
-#include <string>
-
 namespace jdme2x {
 
 enum class TagType { Command, Event };

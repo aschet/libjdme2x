@@ -6,6 +6,8 @@ namespace lex = boost::spirit::lex;
 
 namespace jdme2x {
 
+namespace parser {
+
 CommandLexer::CommandLexer()
     : Impl(std::make_unique<CommandLexerDefinition>()) {}
 
@@ -23,5 +25,7 @@ bool CommandLexer::tokenize(
   const char *Last = &First[Text.length()];
   return lex::tokenize(First, Last, *Impl, FunctorAdapter);
 }
+
+} // namespace parser
 
 } // namespace jdme2x

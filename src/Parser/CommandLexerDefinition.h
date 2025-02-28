@@ -9,6 +9,8 @@
 
 namespace jdme2x {
 
+namespace parser {
+
 class CommandLexerDefinition
     : public boost::spirit::lex::lexer<boost::spirit::lex::lexertl::lexer<>> {
 public:
@@ -25,14 +27,15 @@ template <typename Enum> struct LexerFunctorAdapter {
   LexerFunctorAdapter(std::function<bool(Enum, const std::string &)> Functor)
       : Functor(Functor) {}
 
-  template <typename Token>
-  bool operator()(const Token &CurrentToken) {
+  template <typename Token> bool operator()(const Token &CurrentToken) {
     std::string Text(CurrentToken.value().begin(), CurrentToken.value().end());
     return Functor(static_cast<Enum>(CurrentToken.id()), Text);
   }
 
   std::function<bool(Enum, const std::string &)> Functor;
 };
+
+} // namespace parser
 
 } // namespace jdme2x
 

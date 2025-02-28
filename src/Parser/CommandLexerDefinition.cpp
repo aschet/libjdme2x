@@ -2,6 +2,8 @@
 
 namespace jdme2x {
 
+namespace parser {
+
 CommandLexerDefinition::CommandLexerDefinition() {
   add("\\(", CommandTokenID::OpenParen);
   add("\\)", CommandTokenID::CloseParen);
@@ -15,5 +17,7 @@ CommandLexerDefinition::CommandLexerDefinition() {
   // TODO: XML <[^>]+>([^<]*)<\/[^>]+>
   add("\n\r|\n|\r", CommandTokenID::Terminator);
 }
+
+} // namespace parser
 
 } // namespace jdme2x

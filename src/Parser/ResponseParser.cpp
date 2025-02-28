@@ -10,6 +10,8 @@
 
 namespace jdme2x {
 
+namespace parser {
+
 struct ResponseParser::Private {
   ResponseLexer Lexer;
 };
@@ -27,5 +29,7 @@ bool ResponseParser::parse(const std::string &Text) {
         return true;
       });
 }
+
+} // namespace parser
 
 } // namespace jdme2x

@@ -11,6 +11,8 @@
 
 namespace jdme2x {
 
+namespace parser {
+
 class CommandParserState;
 
 class CommandParserContext {
@@ -162,6 +164,8 @@ class TerminatorState : public CommandParserState {
 public:
   bool hasCompleteParse() const override;
 };
+
+} // namespace parser
 
 } // namespace jdme2x
 

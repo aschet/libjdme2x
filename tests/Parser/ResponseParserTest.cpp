@@ -2,7 +2,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-using namespace jdme2x;
+using namespace jdme2x::parser;
 
 BOOST_AUTO_TEST_SUITE(ResponseParserTest)
 

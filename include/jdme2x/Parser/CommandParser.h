@@ -10,6 +10,8 @@
 
 namespace jdme2x {
 
+namespace parser {
+
 class JDME2X_API CommandParser {
 public:
   CommandParser();
@@ -31,6 +33,8 @@ private:
 
   std::unique_ptr<Private> Impl;
 };
+
+} // namespace parser
 
 } // namespace jdme2x
 

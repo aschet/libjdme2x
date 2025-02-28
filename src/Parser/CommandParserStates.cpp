@@ -2,6 +2,8 @@
 
 namespace jdme2x {
 
+namespace parser {
+
 CommandParserContext::CommandParserContext() {
   TransitionTo(std::make_unique<TagState>());
 }
@@ -210,5 +212,7 @@ bool ArgumentListEndState::endScope() {
 }
 
 bool TerminatorState::hasCompleteParse() const { return true; }
+
+} // namespace parser
 
 } // namespace jdme2x

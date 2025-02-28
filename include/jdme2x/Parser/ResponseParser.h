@@ -3,11 +3,13 @@
 
 #include "jdme2x/API.h"
 
+#include <memory>
 #include <string>
 #include <utility>
-#include <memory>
 
 namespace jdme2x {
+
+namespace parser {
 
 class JDME2X_API ResponseParser {
 public:
@@ -30,6 +32,8 @@ private:
 
   std::unique_ptr<Private> Impl;
 };
+
+} // namespace parser
 
 } // namespace jdme2x
 
