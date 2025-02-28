@@ -6,13 +6,15 @@ project(jdme2x
   LANGUAGES CXX
 )
 
-cmake_policy(SET CMP0167 NEW)
+if(POLICY CMP0167)
+  cmake_policy(SET CMP0167 NEW)
+endif()
 
 if(MSVC)
   set(CMAKE_DEBUG_POSTFIX "d")
 endif()
 
-find_package(Boost 1.80.0 CONFIG REQUIRED COMPONENTS headers spirit unit_test_framework)
+find_package(Boost 1.70.0 CONFIG REQUIRED COMPONENTS headers spirit unit_test_framework)
 
 add_library(${PROJECT_NAME})
 add_library(${PROJECT_NAME}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
