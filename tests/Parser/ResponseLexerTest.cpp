@@ -47,7 +47,7 @@ BOOST_AUTO_TEST_CASE(tokenizeTransactionCompletion) {
 
 BOOST_AUTO_TEST_CASE(tokenizeError) {
   ResponseTokens ExpectedTokens = {
-      {ResponseTokenID::EventTag, "00070"},
+      {ResponseTokenID::Number, "00070"},
       {ResponseTokenID::Space, " "},
       {ResponseTokenID::ExclamationMark, "!"},
       {ResponseTokenID::Space, " "},
@@ -56,6 +56,7 @@ BOOST_AUTO_TEST_CASE(tokenizeError) {
       {ResponseTokenID::Number, "2"},
       {ResponseTokenID::Comma, ","},
       {ResponseTokenID::Number, "0006"},
+      {ResponseTokenID::Comma, ","},
       {ResponseTokenID::String, "\"00070 GoTo(X(20.0),Y(40.0),Z(60.0))\""},
       {ResponseTokenID::Comma, ","},
       {ResponseTokenID::String,
