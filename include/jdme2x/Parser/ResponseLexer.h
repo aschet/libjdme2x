@@ -28,8 +28,9 @@ public:
 
   ResponseLexer &operator=(ResponseLexer &&) = delete;
 
-  bool tokenize(const std::string &Text,
-                std::function<bool(ResponseTokenID, const std::string &)>);
+  bool tokenize(
+      const std::string &Text,
+      std::function<bool(ResponseTokenID, const std::string &)> TokenHandler);
 
 private:
   std::unique_ptr<ResponseLexerDefinition> Impl;

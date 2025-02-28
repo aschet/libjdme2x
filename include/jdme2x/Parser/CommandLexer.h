@@ -28,8 +28,9 @@ public:
 
   CommandLexer &operator=(CommandLexer &&) = delete;
 
-  bool tokenize(const std::string &Text,
-                std::function<bool(CommandTokenID, const std::string &)>);
+  bool tokenize(
+      const std::string &Text,
+      std::function<bool(CommandTokenID, const std::string &)> TokenHandler);
 
 private:
   std::unique_ptr<CommandLexerDefinition> Impl;
