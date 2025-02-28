@@ -16,10 +16,10 @@ namespace parser {
 class ResponseLexerDefinition : public CommandLexerDefinition {
 public:
   ResponseLexerDefinition() {
-    add("#", ResponseTokenID::NumberSign);
-    add("!", ResponseTokenID::ExclamationMark);
-    add("&", ResponseTokenID::Ampersand);
-    add("%", ResponseTokenID::PercentSign);
+    add("#", TokenID::NumberSign);
+    add("!", TokenID::ExclamationMark);
+    add("&", TokenID::Ampersand);
+    add("%", TokenID::PercentSign);
   }
 };
 
@@ -30,15 +30,8 @@ ResponseLexer::~ResponseLexer() = default;
 
 bool ResponseLexer::tokenize(
     std::string_view Text,
-    std::function<bool(ResponseTokenID, std::string_view)> TokenHandler) {
-
-  if (Text.empty())
-    return false;
-
-  LexerFunctorAdapter<ResponseTokenID> FunctorAdapter(TokenHandler);
-  const char *First = Text.data();
-  const char *Last = &First[Text.length()];
-  return lex::tokenize(First, Last, *Impl, FunctorAdapter);
+    std::function<bool(TokenID, std::string_view)> TokenHandler) {
+  return Impl->tokenize(Text, TokenHandler);
 }
 
 } // namespace parser

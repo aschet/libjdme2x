@@ -26,30 +26,31 @@ std::pair<bool, Command> CommandParser::parse(std::string_view Text) {
     return std::make_pair(false, Command());
 
   CommandParserContext Context;
-  Impl->Lexer.tokenize(
-      Text,
-      [&Context](CommandTokenID TokenID, std::string_view TokenText) -> bool {
-        switch (TokenID) {
-        case CommandTokenID::OpenParen:
-          return Context.beginScope();
-        case CommandTokenID::CloseParen:
-          return Context.endScope();
-        case CommandTokenID::Comma:
-          return Context.endSection();
-        case CommandTokenID::EventTag:
-          return Context.parseEventTag(TokenText);
-        case CommandTokenID::Name:
-          return Context.parseName(TokenText);
-        case CommandTokenID::Number:
-          return Context.parseNumber(TokenText);
-        case CommandTokenID::String:
-          return Context.parseString(TokenText);
-        case CommandTokenID::XML:
-          return Context.parseXML(TokenText);
-        default:
-          return true;
-        }
-      });
+  Impl->Lexer.tokenize(Text,
+                       [&Context](TokenID ID, std::string_view Text) -> bool {
+                         switch (ID) {
+                         case TokenID::OpenParen:
+                           return Context.beginScope();
+                         case TokenID::CloseParen:
+                           return Context.endScope();
+                         case TokenID::Comma:
+                           return Context.endSection();
+                         case TokenID::EventTag:
+                           return Context.parseEventTag(Text);
+                         case TokenID::Name:
+                           return Context.parseName(Text);
+                         case TokenID::Number:
+                           return Context.parseNumber(Text);
+                         case TokenID::String:
+                           return Context.parseString(Text);
+                         case TokenID::XML:
+                           return Context.parseXML(Text);
+                         case TokenID::Space:
+                           return true;
+                         default:
+                           return false;
+                         }
+                       });
   return std::make_pair(Context.hasCompleteParse(), Context.ParsedCommand);
 }
 

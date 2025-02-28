@@ -7,47 +7,45 @@
 
 using namespace jdme2x::parser;
 
-typedef std::vector<std::pair<CommandTokenID, std::string>> CommandTokens;
+typedef std::vector<std::pair<TokenID, std::string>> CommandTokens;
 
 static CommandTokens tokenize(const char *Text) {
   CommandLexer Lexer;
   CommandTokens Tokens;
-  Lexer.tokenize(
-      Text,
-      [&Tokens](CommandTokenID TokenID, std::string_view TokenText) -> bool {
-        Tokens.emplace_back(std::make_pair(TokenID, TokenText));
-        return true;
-      });
+  Lexer.tokenize(Text, [&Tokens](TokenID ID, std::string_view Text) -> bool {
+    Tokens.emplace_back(std::make_pair(ID, Text));
+    return true;
+  });
   return Tokens;
 }
 
 BOOST_AUTO_TEST_SUITE(CommandLexerTest)
 
 BOOST_AUTO_TEST_CASE(tokenizeCommand) {
-  CommandTokens ExpectedTokens = {{CommandTokenID::Number, "00001"},
-                                  {CommandTokenID::Space, " "},
-                                  {CommandTokenID::Name, "Test"},
-                                  {CommandTokenID::OpenParen, "("},
-                                  {CommandTokenID::String, "\"Ref Tool\""},
-                                  {CommandTokenID::Comma, ","},
-                                  {CommandTokenID::EventTag, "E0001"},
-                                  {CommandTokenID::Comma, ","},
-                                  {CommandTokenID::Name, "XT.R.A"},
-                                  {CommandTokenID::OpenParen, "("},
-                                  {CommandTokenID::CloseParen, ")"},
-                                  {CommandTokenID::Comma, ","},
-                                  {CommandTokenID::Name, "Roi"},
-                                  {CommandTokenID::OpenParen, "("},
-                                  {CommandTokenID::Number, "-5"},
-                                  {CommandTokenID::Comma, ","},
-                                  {CommandTokenID::Number, ".5"},
-                                  {CommandTokenID::Comma, ","},
-                                  {CommandTokenID::Number, "+5E7"},
-                                  {CommandTokenID::Comma, ","},
-                                  {CommandTokenID::Number, "5e-03"},
-                                  {CommandTokenID::CloseParen, ")"},
-                                  {CommandTokenID::CloseParen, ")"},
-                                  {CommandTokenID::Terminator, "\n\r"}};
+  CommandTokens ExpectedTokens = {{TokenID::Number, "00001"},
+                                  {TokenID::Space, " "},
+                                  {TokenID::Name, "Test"},
+                                  {TokenID::OpenParen, "("},
+                                  {TokenID::String, "\"Ref Tool\""},
+                                  {TokenID::Comma, ","},
+                                  {TokenID::EventTag, "E0001"},
+                                  {TokenID::Comma, ","},
+                                  {TokenID::Name, "XT.R.A"},
+                                  {TokenID::OpenParen, "("},
+                                  {TokenID::CloseParen, ")"},
+                                  {TokenID::Comma, ","},
+                                  {TokenID::Name, "Roi"},
+                                  {TokenID::OpenParen, "("},
+                                  {TokenID::Number, "-5"},
+                                  {TokenID::Comma, ","},
+                                  {TokenID::Number, ".5"},
+                                  {TokenID::Comma, ","},
+                                  {TokenID::Number, "+5E7"},
+                                  {TokenID::Comma, ","},
+                                  {TokenID::Number, "5e-03"},
+                                  {TokenID::CloseParen, ")"},
+                                  {TokenID::CloseParen, ")"},
+                                  {TokenID::Terminator, "\n\r"}};
 
   CommandTokens ActualTokens =
       tokenize("00001 Test(\"Ref "

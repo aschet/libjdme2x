@@ -2,8 +2,6 @@
 
 #include "CommandLexerDefinition.h"
 
-namespace lex = boost::spirit::lex;
-
 namespace jdme2x {
 
 namespace parser {
@@ -15,14 +13,8 @@ CommandLexer::~CommandLexer() = default;
 
 bool CommandLexer::tokenize(
     std::string_view Text,
-    std::function<bool(CommandTokenID, std::string_view)> TokenHandler) {
-  if (Text.empty())
-    return false;
-
-  LexerFunctorAdapter<CommandTokenID> FunctorAdapter(TokenHandler);
-  const char *First = Text.data();
-  const char *Last = First + Text.length();
-  return lex::tokenize(First, Last, *Impl, FunctorAdapter);
+    std::function<bool(TokenID, std::string_view)> TokenHandler) {
+  return Impl->tokenize(Text, TokenHandler);
 }
 
 } // namespace parser

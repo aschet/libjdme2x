@@ -25,9 +25,7 @@ bool ResponseParser::parse(std::string_view Text) {
     return false;
 
   return Impl->Lexer.tokenize(
-      Text, [](ResponseTokenID TokenID, std::string_view TokenText) -> bool {
-        return true;
-      });
+      Text, [](TokenID ID, std::string_view Text) -> bool { return true; });
 }
 
 } // namespace parser

@@ -30,7 +30,7 @@ public:
 
   bool
   tokenize(std::string_view Text,
-           std::function<bool(CommandTokenID, std::string_view)> TokenHandler);
+           std::function<bool(TokenID, std::string_view)> TokenHandler);
 
 private:
   std::unique_ptr<CommandLexerDefinition> Impl;

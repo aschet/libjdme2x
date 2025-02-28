@@ -7,27 +7,25 @@
 
 using namespace jdme2x::parser;
 
-typedef std::vector<std::pair<ResponseTokenID, std::string>> ResponseTokens;
+typedef std::vector<std::pair<TokenID, std::string>> ResponseTokens;
 
 static ResponseTokens tokenize(const char *Text) {
   ResponseLexer Lexer;
   ResponseTokens Tokens;
-  Lexer.tokenize(
-      Text,
-      [&Tokens](ResponseTokenID TokenID, std::string_view TokenText) -> bool {
-        Tokens.emplace_back(std::make_pair(TokenID, TokenText));
-        return true;
-      });
+  Lexer.tokenize(Text, [&Tokens](TokenID ID, std::string_view Text) -> bool {
+    Tokens.emplace_back(std::make_pair(ID, Text));
+    return true;
+  });
   return Tokens;
 }
 
 BOOST_AUTO_TEST_SUITE(ResponseLexerTest)
 
 BOOST_AUTO_TEST_CASE(tokenizeAcknowledgment) {
-  ResponseTokens ExpectedTokens = {{ResponseTokenID::Number, "00005"},
-                                   {ResponseTokenID::Space, " "},
-                                   {ResponseTokenID::Ampersand, "&"},
-                                   {ResponseTokenID::Terminator, "\n\r"}};
+  ResponseTokens ExpectedTokens = {{TokenID::Number, "00005"},
+                                   {TokenID::Space, " "},
+                                   {TokenID::Ampersand, "&"},
+                                   {TokenID::Terminator, "\n\r"}};
 
   ResponseTokens ActualTokens = tokenize("00005 &\n\r");
 
@@ -35,10 +33,10 @@ BOOST_AUTO_TEST_CASE(tokenizeAcknowledgment) {
 }
 
 BOOST_AUTO_TEST_CASE(tokenizeTransactionCompletion) {
-  ResponseTokens ExpectedTokens = {{ResponseTokenID::EventTag, "E0005"},
-                                   {ResponseTokenID::Space, " "},
-                                   {ResponseTokenID::PercentSign, "%"},
-                                   {ResponseTokenID::Terminator, "\n\r"}};
+  ResponseTokens ExpectedTokens = {{TokenID::EventTag, "E0005"},
+                                   {TokenID::Space, " "},
+                                   {TokenID::PercentSign, "%"},
+                                   {TokenID::Terminator, "\n\r"}};
 
   ResponseTokens ActualTokens = tokenize("E0005 %\n\r");
 
@@ -47,22 +45,22 @@ BOOST_AUTO_TEST_CASE(tokenizeTransactionCompletion) {
 
 BOOST_AUTO_TEST_CASE(tokenizeError) {
   ResponseTokens ExpectedTokens = {
-      {ResponseTokenID::Number, "00070"},
-      {ResponseTokenID::Space, " "},
-      {ResponseTokenID::ExclamationMark, "!"},
-      {ResponseTokenID::Space, " "},
-      {ResponseTokenID::Name, "Error"},
-      {ResponseTokenID::OpenParen, "("},
-      {ResponseTokenID::Number, "2"},
-      {ResponseTokenID::Comma, ","},
-      {ResponseTokenID::Number, "0006"},
-      {ResponseTokenID::Comma, ","},
-      {ResponseTokenID::String, "\"00070 GoTo(X(20.0),Y(40.0),Z(60.0))\""},
-      {ResponseTokenID::Comma, ","},
-      {ResponseTokenID::String,
+      {TokenID::Number, "00070"},
+      {TokenID::Space, " "},
+      {TokenID::ExclamationMark, "!"},
+      {TokenID::Space, " "},
+      {TokenID::Name, "Error"},
+      {TokenID::OpenParen, "("},
+      {TokenID::Number, "2"},
+      {TokenID::Comma, ","},
+      {TokenID::Number, "0006"},
+      {TokenID::Comma, ","},
+      {TokenID::String, "\"00070 GoTo(X(20.0),Y(40.0),Z(60.0))\""},
+      {TokenID::Comma, ","},
+      {TokenID::String,
        "\"Transaction aborted (Use ClearAllErrors to Continue)\""},
-      {ResponseTokenID::CloseParen, ")"},
-      {ResponseTokenID::Terminator, "\n\r"}};
+      {TokenID::CloseParen, ")"},
+      {TokenID::Terminator, "\n\r"}};
 
   ResponseTokens ActualTokens =
       tokenize("00070 ! Error(2,0006,\"00070 GoTo(X(20.0),Y(40.0),"
@@ -73,24 +71,16 @@ BOOST_AUTO_TEST_CASE(tokenizeError) {
 }
 
 BOOST_AUTO_TEST_CASE(tokenizeData) {
-  ResponseTokens ExpectedTokens = {{ResponseTokenID::EventTag, "E0060"},
-                                   {ResponseTokenID::Space, " "},
-                                   {ResponseTokenID::NumberSign, "#"},
-                                   {ResponseTokenID::Name, "X"},
-                                   {ResponseTokenID::OpenParen, "("},
-                                   {ResponseTokenID::Number, "0.35145"},
-                                   {ResponseTokenID::CloseParen, ")"},
-                                   {ResponseTokenID::Comma, ","},
-                                   {ResponseTokenID::Name, "Y"},
-                                   {ResponseTokenID::OpenParen, "("},
-                                   {ResponseTokenID::Number, "0.70290"},
-                                   {ResponseTokenID::CloseParen, ")"},
-                                   {ResponseTokenID::Comma, ","},
-                                   {ResponseTokenID::Name, "Z"},
-                                   {ResponseTokenID::OpenParen, "("},
-                                   {ResponseTokenID::Number, "1.05435"},
-                                   {ResponseTokenID::CloseParen, ")"},
-                                   {ResponseTokenID::Terminator, "\n\r"}};
+  ResponseTokens ExpectedTokens = {
+      {TokenID::EventTag, "E0060"}, {TokenID::Space, " "},
+      {TokenID::NumberSign, "#"},   {TokenID::Name, "X"},
+      {TokenID::OpenParen, "("},    {TokenID::Number, "0.35145"},
+      {TokenID::CloseParen, ")"},   {TokenID::Comma, ","},
+      {TokenID::Name, "Y"},         {TokenID::OpenParen, "("},
+      {TokenID::Number, "0.70290"}, {TokenID::CloseParen, ")"},
+      {TokenID::Comma, ","},        {TokenID::Name, "Z"},
+      {TokenID::OpenParen, "("},    {TokenID::Number, "1.05435"},
+      {TokenID::CloseParen, ")"},   {TokenID::Terminator, "\n\r"}};
 
   ResponseTokens ActualTokens =
       tokenize("E0060 #X(0.35145),Y(0.70290),Z(1.05435)\n\r");
