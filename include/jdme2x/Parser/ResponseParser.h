@@ -4,7 +4,7 @@
 #include "jdme2x/API.h"
 
 #include <memory>
-#include <string>
+#include <string_view>
 #include <utility>
 
 namespace jdme2x {
@@ -25,7 +25,7 @@ public:
 
   ResponseParser &operator=(ResponseParser &&) = delete;
 
-  bool parse(const std::string &Text);
+  bool parse(std::string_view Text);
 
 private:
   struct Private;

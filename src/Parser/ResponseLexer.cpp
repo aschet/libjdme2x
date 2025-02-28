@@ -29,14 +29,14 @@ ResponseLexer::ResponseLexer()
 ResponseLexer::~ResponseLexer() = default;
 
 bool ResponseLexer::tokenize(
-    const std::string &Text,
-    std::function<bool(ResponseTokenID, const std::string &)> TokenHandler) {
+    std::string_view Text,
+    std::function<bool(ResponseTokenID, std::string_view)> TokenHandler) {
 
   if (Text.empty())
     return false;
 
   LexerFunctorAdapter<ResponseTokenID> FunctorAdapter(TokenHandler);
-  const char *First = Text.c_str();
+  const char *First = Text.data();
   const char *Last = &First[Text.length()];
   return lex::tokenize(First, Last, *Impl, FunctorAdapter);
 }

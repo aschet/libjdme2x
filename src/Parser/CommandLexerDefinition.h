@@ -24,15 +24,17 @@ public:
 template <typename Enum> struct LexerFunctorAdapter {
   typedef bool result_type;
 
-  LexerFunctorAdapter(std::function<bool(Enum, const std::string &)> Functor)
+  LexerFunctorAdapter(std::function<bool(Enum, std::string_view)> Functor)
       : Functor(Functor) {}
 
   template <typename Token> bool operator()(const Token &CurrentToken) {
-    std::string Text(CurrentToken.value().begin(), CurrentToken.value().end());
+    const char *First = &*CurrentToken.value().begin();
+    const char *Last = &*CurrentToken.value().end();
+    std::string_view Text(First, Last - First);
     return Functor(static_cast<Enum>(CurrentToken.id()), Text);
   }
 
-  std::function<bool(Enum, const std::string &)> Functor;
+  std::function<bool(Enum, std::string_view)> Functor;
 };
 
 } // namespace parser

@@ -6,7 +6,7 @@
 
 #include <functional>
 #include <memory>
-#include <string>
+#include <string_view>
 
 namespace jdme2x {
 
@@ -28,9 +28,9 @@ public:
 
   ResponseLexer &operator=(ResponseLexer &&) = delete;
 
-  bool tokenize(
-      const std::string &Text,
-      std::function<bool(ResponseTokenID, const std::string &)> TokenHandler);
+  bool
+  tokenize(std::string_view Text,
+           std::function<bool(ResponseTokenID, std::string_view)> TokenHandler);
 
 private:
   std::unique_ptr<ResponseLexerDefinition> Impl;

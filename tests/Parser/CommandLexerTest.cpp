@@ -14,7 +14,7 @@ static CommandTokens tokenize(const char *Text) {
   CommandTokens Tokens;
   Lexer.tokenize(
       Text,
-      [&Tokens](CommandTokenID TokenID, const std::string &TokenText) -> bool {
+      [&Tokens](CommandTokenID TokenID, std::string_view TokenText) -> bool {
         Tokens.emplace_back(std::make_pair(TokenID, TokenText));
         return true;
       });

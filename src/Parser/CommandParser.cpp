@@ -21,14 +21,14 @@ CommandParser::CommandParser() : Impl(std::make_unique<Private>()) {}
 
 CommandParser::~CommandParser() = default;
 
-std::pair<bool, Command> CommandParser::parse(const std::string &Text) {
+std::pair<bool, Command> CommandParser::parse(std::string_view Text) {
   if (Text.empty())
     return std::make_pair(false, Command());
 
   CommandParserContext Context;
   Impl->Lexer.tokenize(
       Text,
-      [&Context](CommandTokenID TokenID, const std::string &TokenText) -> bool {
+      [&Context](CommandTokenID TokenID, std::string_view TokenText) -> bool {
         switch (TokenID) {
         case CommandTokenID::OpenParen:
           return Context.beginScope();

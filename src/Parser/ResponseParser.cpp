@@ -20,12 +20,12 @@ ResponseParser::ResponseParser() : Impl(std::make_unique<Private>()) {}
 
 ResponseParser::~ResponseParser() = default;
 
-bool ResponseParser::parse(const std::string &Text) {
+bool ResponseParser::parse(std::string_view Text) {
   if (Text.empty())
     return false;
 
   return Impl->Lexer.tokenize(
-      Text, [](ResponseTokenID TokenID, const std::string &TokenText) -> bool {
+      Text, [](ResponseTokenID TokenID, std::string_view TokenText) -> bool {
         return true;
       });
 }

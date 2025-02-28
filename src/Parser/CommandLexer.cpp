@@ -14,15 +14,14 @@ CommandLexer::CommandLexer()
 CommandLexer::~CommandLexer() = default;
 
 bool CommandLexer::tokenize(
-    const std::string &Text,
-    std::function<bool(CommandTokenID, const std::string &)> TokenHandler) {
-
+    std::string_view Text,
+    std::function<bool(CommandTokenID, std::string_view)> TokenHandler) {
   if (Text.empty())
     return false;
 
   LexerFunctorAdapter<CommandTokenID> FunctorAdapter(TokenHandler);
-  const char *First = Text.c_str();
-  const char *Last = &First[Text.length()];
+  const char *First = Text.data();
+  const char *Last = First + Text.length();
   return lex::tokenize(First, Last, *Impl, FunctorAdapter);
 }
 

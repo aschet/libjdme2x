@@ -5,7 +5,7 @@
 #include "jdme2x/Command.h"
 
 #include <memory>
-#include <string>
+#include <string_view>
 #include <utility>
 
 namespace jdme2x {
@@ -26,7 +26,7 @@ public:
 
   CommandParser &operator=(CommandParser &&) = delete;
 
-  std::pair<bool, Command> parse(const std::string &Text);
+  std::pair<bool, Command> parse(std::string_view Text);
 
 private:
   struct Private;

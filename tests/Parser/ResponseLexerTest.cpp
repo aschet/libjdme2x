@@ -14,7 +14,7 @@ static ResponseTokens tokenize(const char *Text) {
   ResponseTokens Tokens;
   Lexer.tokenize(
       Text,
-      [&Tokens](ResponseTokenID TokenID, const std::string &TokenText) -> bool {
+      [&Tokens](ResponseTokenID TokenID, std::string_view TokenText) -> bool {
         Tokens.emplace_back(std::make_pair(TokenID, TokenText));
         return true;
       });
