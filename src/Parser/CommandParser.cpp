@@ -46,8 +46,9 @@ std::pair<bool, Command> CommandParser::parse(const std::string &Text) {
           return Context.parseString(TokenText);
         case CommandTokenID::XML:
           return Context.parseXML(TokenText);
+        default:
+          return true;
         }
-        return true;
       });
   return std::make_pair(Context.hasCompleteParse(), Context.ParsedCommand);
 }
