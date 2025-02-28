@@ -92,3 +92,4 @@ target_link_libraries(${PROJECT_NAME}
 
 include(CTest)
 add_subdirectory(tests)
+add_subdirectory(examples)
