@@ -54,15 +54,15 @@ bool CommandParserState::endScope() { return false; }
 
 bool CommandParserState::endSection() { return false; }
 
-bool CommandParserState::parseEventTag(std::string_view Value) { return false; }
+bool CommandParserState::parseEventTag(std::string_view) { return false; }
 
-bool CommandParserState::parseName(std::string_view Value) { return false; }
+bool CommandParserState::parseName(std::string_view) { return false; }
 
-bool CommandParserState::parseNumber(std::string_view Value) { return false; }
+bool CommandParserState::parseNumber(std::string_view) { return false; }
 
-bool CommandParserState::parseString(std::string_view Value) { return false; }
+bool CommandParserState::parseString(std::string_view) { return false; }
 
-bool CommandParserState::parseXML(std::string_view Value) { return false; }
+bool CommandParserState::parseXML(std::string_view) { return false; }
 
 bool CommandParserState::hasCompleteParse() const { return false; }
 

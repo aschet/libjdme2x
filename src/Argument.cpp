@@ -8,8 +8,6 @@
 
 namespace jdme2x {
 
-Argument::~Argument() = default;
-
 IntArgument::IntArgument(int Value) : Value(Value) {}
 
 int IntArgument::getValue() const { return Value; }

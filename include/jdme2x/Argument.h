@@ -13,8 +13,6 @@
 namespace jdme2x {
 
 class JDME2X_API Argument : public Serializeable {
-public:
-  virtual ~Argument();
 };
 
 class JDME2X_API IntArgument : public Argument {
