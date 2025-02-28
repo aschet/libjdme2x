@@ -87,7 +87,6 @@ source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${FILES_INCLUDE} ${FILES_SRC
 
 target_link_libraries(${PROJECT_NAME}
   PRIVATE
-    jdme2x::jdme2x
     Boost::headers
 )
 
