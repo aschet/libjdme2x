@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- VDMA 8722:2024-04 Annex F XML Schema for Tool.AdvDataStruct() -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+  attributeFormDefault="unqualified">
+  <xs:element name="Tool">
+    <xs:annotation>
+      <xs:documentation>Root elelment</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="AdvDataStruct">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ReturnTechnology">
+                <xs:complexType>
+                  <xs:choice minOccurs="1" maxOccurs="unbounded">
+                    <xs:element name="SocBin" />
+                    <xs:element name="ShaMem" />
+                    <xs:element name="File" />
+                  </xs:choice>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="Format">
+                <xs:complexType>
+                  <xs:choice>
+                    <xs:element name="Gen">
+                      <xs:complexType>
+                        <xs:all>
+                          <xs:element name="PosInformation">
+                            <xs:complexType>
+                              <xs:all>
+                                <xs:element name="TCP" type="Vector" />
+                                <xs:element name="IJK" type="Vector" minOccurs="0" />
+                                <xs:element name="LMN" type="Vector" minOccurs="0" />
+                              </xs:all>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="PixelStructure">
+                            <xs:complexType>
+                              <xs:all>
+                                <xs:element name="BitsPerColCha" type="xs:int" />
+                                <xs:element name="NoColCha" type="xs:int" />
+                              </xs:all>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="SampleStructure">
+                            <xs:complexType>
+                              <xs:sequence maxOccurs="unbounded">
+                                <xs:element name="SpanWP" type="xs:double" />
+                                <xs:element name="NoPixelOfDim" type="xs:int" />
+                              </xs:sequence>
+                              <xs:attribute name="NoOfDims" type="xs:int" />
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:all>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="BitMap" />
+                    <xs:element name="Jpeg" />
+                    <xs:element name="SBF" />
+                    <xs:element name="ESBF" />
+                    <xs:element name="XML" />
+                  </xs:choice>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="Vector">
+    <xs:all>
+      <xs:element name="X">
+        <xs:simpleType>
+          <xs:restriction base="xs:double">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Y">
+        <xs:simpleType>
+          <xs:restriction base="xs:double">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Z">
+        <xs:simpleType>
+          <xs:restriction base="xs:double">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+</xs:schema>

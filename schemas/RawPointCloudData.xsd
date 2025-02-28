@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- VDMA 8722:2024-04 Annex E XML Schema for raw point cloud data -->
+<xs:schema
+  xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Mx">
+    <xs:simpleType>
+      <xs:restriction base="xs:decimal"></xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="My">
+    <xs:simpleType>
+      <xs:restriction base="xs:decimal"></xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Mz">
+    <xs:simpleType>
+      <xs:restriction base="xs:decimal"></xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="I">
+    <xs:simpleType>
+      <xs:restriction base="xs:decimal"></xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="J">
+    <xs:simpleType>
+      <xs:restriction base="xs:decimal"></xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="K">
+    <xs:simpleType>
+      <xs:restriction base="xs:decimal"></xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="X">
+    <xs:simpleType>
+      <xs:restriction base="xs:decimal"></xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Y">
+    <xs:simpleType>
+      <xs:restriction base="xs:decimal"></xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Z">
+    <xs:simpleType>
+      <xs:restriction base="xs:decimal"></xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Q">
+    <xs:simpleType>
+      <xs:restriction base="xs:byte"></xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="PointCloudSet">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="PointCloud" maxOccurs="unbounded" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PointCloud">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="PointSet" maxOccurs="unbounded" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PointSet">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Mx" />
+        <xs:element ref="My" />
+        <xs:element ref="Mz" />
+        <xs:element ref="I" />
+        <xs:element ref="J" />
+        <xs:element ref="K" />
+        <xs:element ref="MeasPoint" maxOccurs="unbounded" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MeasPoint">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="X" />
+        <xs:element ref="Y" />
+        <xs:element ref="Z" />
+        <xs:element ref="Q" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

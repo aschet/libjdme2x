@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<!-- VDMA 8722:2024-04 Annex G XML-Schema for Tool.Id() -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+  attributeFormDefault="unqualified">
+  <xsd:annotation>
+    <xsd:documentation>ToolID defined by I++ DME</xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexType name="tool" abstract="true">
+    <xsd:sequence>
+      <xsd:element name="id" type="xsd:string" />
+      <xsd:element name="basicfunctions">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="basicfunction" default="GoTo" nillable="false" maxOccurs="unbounded">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="GoTo" />
+                  <xsd:enumeration value="PtMeas" />
+                  <xsd:enumeration value="ScanOnPlane" />
+                  <xsd:enumeration value="ScanOnLine" />
+                  <xsd:enumeration value="ScanOnCircle" />
+                  <xsd:enumeration value="ScanOnHelix" />
+                  <xsd:enumeration value="ScanOnCurve" />
+                  <xsd:enumeration value="PTMeasSelfCenter" />
+                  <xsd:enumeration value="PTMeasSelfCenterLocked" />
+                  <xsd:enumeration value="DataAcquire" />
+                  <xsd:enumeration value="DeleteAcquisition" />
+                  <xsd:enumeration value="DeleteAllAcquisition" />
+                  <xsd:enumeration value="FeatureExtract" />
+                  <xsd:enumeration value="GetRawDataBin" />
+                  <xsd:enumeration value="GetRawDataShaMem" />
+                  <xsd:enumeration value="ReleaseShaMem" />
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="cnc_axes">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="cnc_axis" minOccurs="0" maxOccurs="unbounded">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="X" />
+                  <xsd:enumeration value="Y" />
+                  <xsd:enumeration value="Z" />
+                  <xsd:enumeration value="A" />
+                  <xsd:enumeration value="B" />
+                  <xsd:enumeration value="C" />
+                  <xsd:enumeration value="R" />
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="supports_optimization_mode" type="xsd:boolean" />
+      <xsd:choice>
+        <xsd:element name="alignmode_fixed" />
+        <xsd:element name="alignmode_indexed">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="aligncaa" type="xsd:boolean" />
+              <xsd:element name="step" type="xsd:double" />
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element name="alignmode_continuous">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="aligncaa" type="xsd:boolean" />
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:choice>
+      <xsd:element name="moveOnAcquisition" type="xsd:boolean" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="toolTactile" abstract="true">
+    <xsd:complexContent>
+      <xsd:extension base="tool" />
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="toolTactileTouchTrigger">
+    <xsd:complexContent>
+      <xsd:extension base="toolTactile" />
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="toolTactileMeasuring">
+    <xsd:complexContent>
+      <xsd:extension base="toolTactileTouchTrigger" />
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="toolOptical" abstract="true">
+    <xsd:complexContent>
+      <xsd:extension base="tool">
+        <xsd:sequence>
+          <xsd:element name="supports_livestream" type="xsd:boolean" />
+          <xsd:element name="supports_binary_socket" type="xsd:boolean" />
+          <xsd:element name="dataAcquisitionFunctions">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="daqfunctionSingleShot" type="dataAcquisitionSingleShot"
+                  minOccurs="0" />
+                <xsd:element name="daqfunctionMultiShot" type="dataAcquisitionMultiShot"
+                  minOccurs="0" />
+                <xsd:element name="daqfunctionSweep" type="dataAcquisitionSweep" minOccurs="0" />
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="toolOptical1D">
+    <xsd:complexContent>
+      <xsd:extension base="toolOptical">
+        <xsd:sequence>
+          <xsd:element name="roi">
+            <xsd:complexType>
+              <xsd:choice>
+                <xsd:element name="line" type="Line" minOccurs="0" maxOccurs="1" />
+              </xsd:choice>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="toolOptical2D" abstract="true">
+    <xsd:complexContent>
+      <xsd:extension base="toolOptical">
+        <xsd:sequence>
+          <xsd:element name="roi">
+            <xsd:complexType>
+              <xsd:choice>
+                <xsd:element name="line" type="Line" minOccurs="0" maxOccurs="1" />
+                <xsd:element name="polygon2D" type="Polygon2D" minOccurs="0" maxOccurs="1" />
+                <xsd:element name="circle" type="Circle" minOccurs="0" maxOccurs="1" />
+                <xsd:element name="circleRel" type="CircleRel" minOccurs="0" maxOccurs="1" />
+              </xsd:choice>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="toolOptical2D-rs">
+    <xsd:complexContent>
+      <xsd:extension base="toolOptical2D" />
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="toolOptical2D-rt">
+    <xsd:complexContent>
+      <xsd:extension base="toolOptical2D" />
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="toolOptical3D">
+    <xsd:complexContent>
+      <xsd:extension base="toolOptical">
+        <xsd:sequence>
+          <xsd:element name="roi">
+            <xsd:complexType>
+              <xsd:choice>
+                <xsd:element name="line" type="Line" minOccurs="0" maxOccurs="1" />
+                <xsd:element name="polygon2D" type="Polygon2D" minOccurs="0" maxOccurs="1" />
+                <xsd:element name="circle" type="Circle" minOccurs="0" maxOccurs="1" />
+                <xsd:element name="circleRel" type="CircleRel" minOccurs="0" maxOccurs="1" />
+                <xsd:element name="polygon3D" type="Polygon3D" minOccurs="0" maxOccurs="1" />
+                <xsd:element name="sphere" type="Sphere" minOccurs="0" maxOccurs="1" />
+                <xsd:element name="sphereRel" type="SphereRel" minOccurs="0" maxOccurs="1" />
+                <xsd:element name="cylinder" type="Cylinder" minOccurs="0" maxOccurs="1" />
+                <xsd:element name="cylinderRel" type="CylinderRel" minOccurs="0" maxOccurs="1" />
+              </xsd:choice>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="ROI" abstract="true">
+    <xsd:sequence>
+      <xsd:element name="name" type="xsd:string" />
+      <xsd:element name="roiType" type="xsd:string" />
+      <xsd:element name="include" type="xsd:boolean" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ROI_1D" abstract="true">
+    <xsd:complexContent>
+      <xsd:extension base="ROI" />
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="ROI_2D" abstract="true">
+    <xsd:complexContent>
+      <xsd:extension base="ROI" />
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="ROI_3D" abstract="true">
+    <xsd:complexContent>
+      <xsd:extension base="ROI" />
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="Line">
+    <xsd:complexContent>
+      <xsd:extension base="ROI_1D" />
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="Polygon2D">
+    <xsd:complexContent>
+      <xsd:extension base="ROI_2D" />
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="Circle">
+    <xsd:complexContent>
+      <xsd:extension base="ROI_2D" />
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="CircleRel">
+    <xsd:complexContent>
+      <xsd:extension base="ROI_2D" />
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="Polygon3D">
+    <xsd:complexContent>
+      <xsd:extension base="ROI_3D" />
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="Sphere">
+    <xsd:complexContent>
+      <xsd:extension base="ROI_3D" />
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="SphereRel">
+    <xsd:complexContent>
+      <xsd:extension base="ROI_3D" />
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="Cylinder">
+    <xsd:complexContent>
+      <xsd:extension base="ROI_3D" />
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="CylinderRel">
+    <xsd:complexContent>
+      <xsd:extension base="ROI_3D" />
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="dataAcquisition" abstract="true">
+    <xsd:sequence>
+      <xsd:element name="SizeX" type="xsd:double" minOccurs="0" maxOccurs="1" />
+      <xsd:element name="SizeY" type="xsd:double" minOccurs="0" maxOccurs="1" />
+      <xsd:element name="SizeZ" type="xsd:double" minOccurs="0" maxOccurs="1" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="dataAcquisitionSingleShot">
+    <xsd:complexContent>
+      <xsd:extension base="dataAcquisition" />
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="dataAcquisitionMultiShot">
+    <xsd:complexContent>
+      <xsd:extension base="dataAcquisition" />
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="dataAcquisitionSweep">
+    <xsd:complexContent>
+      <xsd:extension base="dataAcquisition" />
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="toolID">
+    <xsd:complexType>
+      <xsd:choice>
+        <xsd:element type="toolTactileTouchTrigger" name="toolTactileTouchTrigger" />
+        <xsd:element type="toolTactileMeasuring" name="toolTactileMeasuring" />
+        <xsd:element type="toolOptical1D" name="toolOptical1D" />
+        <xsd:element type="toolOptical2D-rs" name="toolOptical2D-rs" />
+        <xsd:element type="toolOptical2D-rt" name="toolOptical2D-rt" />
+        <xsd:element type="toolOptical3D" name="toolOptical3D" />
+      </xsd:choice>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>
