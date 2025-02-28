@@ -11,11 +11,6 @@
 namespace jdme2x {
 
 class JDME2X_API Command : public Serializeable {
-private:
-  Tag CommandTag;
-
-  Method CommandMethod;
-
 public:
   Command();
 
@@ -32,6 +27,11 @@ public:
   Method &getMethod();
 
   std::string toString() const override;
+
+private:
+  Tag CommandTag;
+
+  Method CommandMethod;
 };
 
 } // namespace jdme2x

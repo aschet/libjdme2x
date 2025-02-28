@@ -10,11 +10,6 @@
 namespace jdme2x {
 
 class JDME2X_API Property : public Argument {
-private:
-  std::string Name;
-
-  Arguments PropertyArguments;
-
 public:
   Property();
 
@@ -33,6 +28,11 @@ public:
   Property &addValue(float Value);
 
   std::string toString() const override;
+
+private:
+  std::string Name;
+
+  Arguments PropertyArguments;
 };
 
 } // namespace jdme2x

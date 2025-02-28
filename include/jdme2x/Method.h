@@ -13,13 +13,6 @@
 namespace jdme2x {
 
 class JDME2X_API Method : public Serializeable {
-private:
-  std::string Name;
-
-  Arguments MethodArguments;
-
-  std::string XML;
-
 public:
   Method();
 
@@ -50,6 +43,13 @@ public:
   const std::string &getXML() const;
 
   std::string toString() const override;
+
+private:
+  std::string Name;
+
+  Arguments MethodArguments;
+
+  std::string XML;
 };
 
 } // namespace jdme2x

@@ -9,11 +9,6 @@ namespace jdme2x {
 enum class TagType { Command, Event };
 
 class JDME2X_API Tag : public Serializeable {
-private:
-  unsigned int Number;
-
-  TagType Type;
-
 public:
   Tag();
   
@@ -28,6 +23,11 @@ public:
   TagType getType() const;
 
   std::string toString() const override;
+
+private:
+  unsigned int Number;
+
+  TagType Type;
 };
 
 } // namespace jdme2x
