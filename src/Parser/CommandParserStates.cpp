@@ -1,5 +1,7 @@
 #include "CommandParserStates.h"
 
+#include <charconv>
+
 namespace jdme2x {
 
 namespace parser {
@@ -67,17 +69,25 @@ bool CommandParserState::parseXML(std::string_view) { return false; }
 bool CommandParserState::hasCompleteParse() const { return false; }
 
 Tag CommandParserState::makeEventTag(std::string_view Value) {
-  std::string ValueWithoutE = std::string(Value.substr(1, Value.length() - 1));
-  return Tag(std::stoul(ValueWithoutE), TagType::Event);
+  std::string_view ValueWithoutE = Value.substr(1, Value.length() - 1);
+  unsigned int Number = 0;
+  std::from_chars(ValueWithoutE.data(),
+                  ValueWithoutE.data() + ValueWithoutE.size(), Number);
+  return Tag(Number, TagType::Event);
 }
 
 std::shared_ptr<Argument>
 CommandParserState::makeNumberArgument(std::string_view Value) {
-  std::string ValueCopy(Value);
-  if (ValueCopy.find_first_of(".eE") != std::string::npos)
-    return std::make_shared<FloatArgument>(std::stof(ValueCopy));
-  else
-    return std::make_shared<IntArgument>(std::stoi(ValueCopy));
+  if (Value.find_first_of(".eE") != std::string::npos) {
+    float Number = 0.0f;
+    std::from_chars(Value.data(), Value.data() + Value.size(), Number);
+    return std::make_shared<FloatArgument>(Number);
+  }
+  else {
+    int Number = 0;
+    std::from_chars(Value.data(), Value.data() + Value.size(), Number);
+    return std::make_shared<IntArgument>(Number);
+  }
 }
 
 bool TagState::parseEventTag(std::string_view Value) {
