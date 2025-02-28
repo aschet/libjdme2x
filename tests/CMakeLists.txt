@@ -26,3 +26,5 @@ target_link_libraries(${PROJECT_NAME}
     jdme2x::jdme2x
     Boost::unit_test_framework
 )
+
+add_test(NAME jdme2x_tests COMMAND ${PROJECT_NAME})

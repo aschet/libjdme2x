@@ -84,4 +84,5 @@ target_link_libraries(${PROJECT_NAME}
     Boost::headers
 )
 
+enable_testing()
 add_subdirectory(tests)

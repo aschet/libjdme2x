@@ -10,7 +10,7 @@ BOOST_AUTO_TEST_SUITE(MethodTest)
 BOOST_AUTO_TEST_CASE(serialzeMethod) {
   Method GetDMEVersionMethod("GetDMEVersion");
   std::string Result = GetDMEVersionMethod.toString();
-  BOOST_REQUIRE_EQUAL("GetDMEVersion()", Result);
+  BOOST_TEST("GetDMEVersion()" == Result);
 
   Method AlignPartMethod("AlignPart");
   Result = AlignPartMethod.addValue(0)
@@ -21,7 +21,7 @@ BOOST_AUTO_TEST_CASE(serialzeMethod) {
                .addValue(0.8f)
                .addValue(1.0f)
                .toString();
-  BOOST_REQUIRE_EQUAL("AlignPart(0, -1, 0, 0.6, 0, 0.8, 1)", Result);
+  BOOST_TEST("AlignPart(0, -1, 0, 0.6, 0, 0.8, 1)" == Result);
 
   Method OnMoveReportEMethod("OnMoveReportE");
   Result = OnMoveReportEMethod.addProperty(Property("Time").addValue(5))
@@ -30,16 +30,15 @@ BOOST_AUTO_TEST_CASE(serialzeMethod) {
                .addProperty(Property("Y"))
                .addProperty(Property("Z"))
                .toString();
-  BOOST_REQUIRE_EQUAL("OnMoveReportE(Time(5), Dis(0.34), X(), Y(), Z())",
-                      Result);
+  BOOST_TEST("OnMoveReportE(Time(5), Dis(0.34), X(), Y(), Z())" == Result);
 
   Method ChangeToolMethod("ChangeTool");
   Result = ChangeToolMethod.addString("RefTool").toString();
-  BOOST_REQUIRE_EQUAL("ChangeTool(\"RefTool\")", Result);
+  BOOST_TEST("ChangeTool(\"RefTool\")" == Result);
 
   Method SetCoordSystemMethod("SetCoordSystem");
   Result = SetCoordSystemMethod.addName("PartCsy").toString();
-  BOOST_REQUIRE_EQUAL("SetCoordSystem(PartCsy)", Result);
+  BOOST_TEST("SetCoordSystem(PartCsy)" == Result);
 }
 
 BOOST_AUTO_TEST_SUITE_END()
