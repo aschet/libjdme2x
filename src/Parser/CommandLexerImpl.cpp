@@ -1,4 +1,4 @@
-#include "CommandLexerDefinition.h"
+#include "CommandLexerImpl.h"
 
 namespace lex = boost::spirit::lex;
 
@@ -9,9 +9,11 @@ namespace parser {
 struct LexerFunctorAdapter {
   typedef bool result_type;
 
-  LexerFunctorAdapter(std::function<bool(TokenID, std::string_view)> Functor);
+  LexerFunctorAdapter::LexerFunctorAdapter(
+      std::function<bool(TokenID, std::string_view)> Functor)
+      : Functor(Functor) {}
 
-  template <typename Token> bool operator()(const Token &CurrentToken) {
+  template <typename Token> bool operator()(const Token &CurrentToken) const {
     const char *First = &*CurrentToken.value().begin();
     const char *Last = &*CurrentToken.value().end();
     std::string_view Text(First, Last - First);
@@ -21,7 +23,7 @@ struct LexerFunctorAdapter {
   std::function<bool(TokenID, std::string_view)> Functor;
 };
 
-CommandLexerDefinition::CommandLexerDefinition() {
+CommandLexerImpl::CommandLexerImpl() {
   add("\\(", TokenID::OpenParen);
   add("\\)", TokenID::CloseParen);
   add(",", TokenID::Comma);
@@ -35,23 +37,18 @@ CommandLexerDefinition::CommandLexerDefinition() {
   add("\n\r|\n|\r", TokenID::Terminator);
 }
 
-inline void CommandLexerDefinition::add(const char *Pattern, TokenID ID) {
+void CommandLexerImpl::add(const char *Pattern, TokenID ID) {
   this->self.add(Pattern, static_cast<size_t>(ID));
 }
 
-bool CommandLexerDefinition::tokenize(
+bool CommandLexerImpl::tokenize(
     std::string_view Text,
-    std::function<bool(TokenID, std::string_view)> TokenHandler) {
+    std::function<bool(TokenID, std::string_view)> TokenHandler) const {
   LexerFunctorAdapter FunctorAdapter(TokenHandler);
   const char *First = Text.data();
   const char *Last = First + Text.length();
   return lex::tokenize(First, Last, *this, FunctorAdapter);
-  return false;
 }
-
-inline LexerFunctorAdapter::LexerFunctorAdapter(
-    std::function<bool(TokenID, std::string_view)> Functor)
-    : Functor(Functor) {}
 
 } // namespace parser
 

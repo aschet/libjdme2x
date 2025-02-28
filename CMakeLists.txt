@@ -63,8 +63,8 @@ set(FILES_INCLUDE
 
 set(FILES_SRC
   "src/Parser/CommandLexer.cpp"
-  "src/Parser/CommandLexerDefinition.cpp"
-  "src/Parser/CommandLexerDefinition.h"
+  "src/Parser/CommandLexerImpl.cpp"
+  "src/Parser/CommandLexerImpl.h"
   "src/Parser/CommandParser.cpp"
   "src/Parser/CommandParserStates.cpp"
   "src/Parser/CommandParserStates.h"

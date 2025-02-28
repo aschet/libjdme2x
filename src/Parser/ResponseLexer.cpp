@@ -5,7 +5,7 @@
 // file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 #include "jdme2x/Parser/ResponseLexer.h"
 
-#include "CommandLexerDefinition.h"
+#include "CommandLexerImpl.h"
 
 namespace lex = boost::spirit::lex;
 
@@ -13,9 +13,9 @@ namespace jdme2x {
 
 namespace parser {
 
-class ResponseLexerDefinition : public CommandLexerDefinition {
+class ResponseLexerImpl : public CommandLexerImpl {
 public:
-  ResponseLexerDefinition() {
+  ResponseLexerImpl() {
     add("#", TokenID::NumberSign);
     add("!", TokenID::ExclamationMark);
     add("&", TokenID::Ampersand);
@@ -23,14 +23,13 @@ public:
   }
 };
 
-ResponseLexer::ResponseLexer()
-    : Impl(std::make_unique<ResponseLexerDefinition>()) {}
+ResponseLexer::ResponseLexer() : Impl(std::make_unique<ResponseLexerImpl>()) {}
 
 ResponseLexer::~ResponseLexer() = default;
 
 bool ResponseLexer::tokenize(
     std::string_view Text,
-    std::function<bool(TokenID, std::string_view)> TokenHandler) {
+    std::function<bool(TokenID, std::string_view)> TokenHandler) const {
   return Impl->tokenize(Text, TokenHandler);
 }
 

@@ -12,7 +12,7 @@ namespace jdme2x {
 
 namespace parser {
 
-class CommandLexerDefinition;
+class CommandLexerImpl;
 
 class JDME2X_API CommandLexer {
 public:
@@ -30,10 +30,10 @@ public:
 
   bool
   tokenize(std::string_view Text,
-           std::function<bool(TokenID, std::string_view)> TokenHandler);
+           std::function<bool(TokenID, std::string_view)> TokenHandler) const;
 
 private:
-  std::unique_ptr<CommandLexerDefinition> Impl;
+  std::unique_ptr<CommandLexerImpl> Impl;
 };
 
 } // namespace parser

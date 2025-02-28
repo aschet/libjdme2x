@@ -12,7 +12,7 @@ namespace jdme2x {
 
 namespace parser {
 
-class ResponseLexerDefinition;
+class ResponseLexerImpl;
 
 class JDME2X_API ResponseLexer {
 public:
@@ -28,11 +28,12 @@ public:
 
   ResponseLexer &operator=(ResponseLexer &&) = delete;
 
-  bool tokenize(std::string_view Text,
-                std::function<bool(TokenID, std::string_view)> TokenHandler);
+  bool
+  tokenize(std::string_view Text,
+           std::function<bool(TokenID, std::string_view)> TokenHandler) const;
 
 private:
-  std::unique_ptr<ResponseLexerDefinition> Impl;
+  std::unique_ptr<ResponseLexerImpl> Impl;
 };
 
 } // namespace parser
