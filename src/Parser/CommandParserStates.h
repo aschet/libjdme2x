@@ -1,5 +1,5 @@
-#ifndef JDME2X_COMMANDPARSERSTATES_H
-#define JDME2X_COMMANDPARSERSTATES_H
+#ifndef PARSER_COMMANDPARSERSTATES_H
+#define PARSER_COMMANDPARSERSTATES_H
 
 #include "jdme2x/Argument.h"
 #include "jdme2x/Command.h"

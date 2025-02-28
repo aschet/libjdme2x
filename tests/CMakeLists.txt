@@ -3,8 +3,9 @@ project(jdme2x_tests)
 add_executable(${PROJECT_NAME})
 
 set(FILES_SRC
+  "Parser/CommandParserTest.cpp"
+  "Parser/ResponseParserTest.cpp"
   "ArgumentTest.cpp"
-  "CommandParserTest.cpp"
   "CommandTest.cpp"
   "Main.cpp"
   "MethodTest.cpp"

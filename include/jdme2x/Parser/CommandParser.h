@@ -1,12 +1,12 @@
-#ifndef JDME2X_COMMANDPARSER_H
-#define JDME2X_COMMANDPARSER_H
+#ifndef JDME2X_PARSER_COMMANDPARSER_H
+#define JDME2X_PARSER_COMMANDPARSER_H
 
 #include "jdme2x/API.h"
 #include "jdme2x/Command.h"
 
+#include <memory>
 #include <string>
 #include <utility>
-#include <memory>
 
 namespace jdme2x {
 

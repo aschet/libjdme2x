@@ -1,4 +1,4 @@
-#include "jdme2x/CommandParser.h"
+#include "jdme2x/Parser/CommandParser.h"
 
 #include <boost/test/unit_test.hpp>
 

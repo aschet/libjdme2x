@@ -31,17 +31,21 @@ target_include_directories(${PROJECT_NAME}
 if(BUILD_SHARED_LIBS)
   target_compile_definitions(${PROJECT_NAME}
     PUBLIC
-      jDME2X_DLL
+      JDME2X_DLL
     PRIVATE
-      jDME2X_EXPORT
+      JDME2X_EXPORT
   )
 endif()
 
 set(FILES_INCLUDE
+  "include/jdme2x/Parser/CommandLexer.h"
+  "include/jdme2x/Parser/CommandParser.h"
+  "include/jdme2x/Parser/ResponseLexer.h"
+  "include/jdme2x/Parser/ResponseParser.h"
+  "include/jdme2x/Parser/TokenID.h"
   "include/jdme2x/API.h"
   "include/jdme2x/Argument.h"
   "include/jdme2x/Command.h"
-  "include/jdme2x/CommandParser.h"
   "include/jdme2x/Method.h"
   "include/jdme2x/Property.h"
   "include/jdme2x/Serializeable.h"
@@ -49,11 +53,16 @@ set(FILES_INCLUDE
 )
 
 set(FILES_SRC
+  "src/Parser/CommandLexer.cpp"
+  "src/Parser/CommandLexerDefinition.cpp"
+  "src/Parser/CommandLexerDefinition.h"
+  "src/Parser/CommandParser.cpp"
+  "src/Parser/CommandParserStates.cpp"
+  "src/Parser/CommandParserStates.h"
+  "src/Parser/ResponseLexer.cpp"
+  "src/Parser/ResponseParser.cpp"
   "src/Argument.cpp"
   "src/Command.cpp"
-  "src/CommandParser.cpp"
-  "src/CommandParserStates.cpp"
-  "src/CommandParserStates.h"
   "src/Method.cpp"
   "src/Property.cpp"
   "src/Serializeable.cpp"
