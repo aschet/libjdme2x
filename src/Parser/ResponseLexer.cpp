@@ -14,11 +14,10 @@ namespace jdme2x {
 class ResponseLexerDefinition : public CommandLexerDefinition {
 public:
   ResponseLexerDefinition() {
-
-    add("#", static_cast<size_t>(ResponseTokenID::NumberSign));
-    add("!", static_cast<size_t>(ResponseTokenID::ExclamationMark));
-    add("&", static_cast<size_t>(ResponseTokenID::Ampersand));
-    add("%", static_cast<size_t>(ResponseTokenID::PercentSign));
+    add("#", ResponseTokenID::NumberSign);
+    add("!", ResponseTokenID::ExclamationMark);
+    add("&", ResponseTokenID::Ampersand);
+    add("%", ResponseTokenID::PercentSign);
   }
 };
 

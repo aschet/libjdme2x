@@ -25,7 +25,8 @@ std::pair<bool, Command> CommandParser::parse(const std::string &Text) {
 
   CommandParserContext Context;
   Impl->Lexer.tokenize(
-      Text, [&Context](CommandTokenID TokenID, const std::string &TokenText) {
+      Text,
+      [&Context](CommandTokenID TokenID, const std::string &TokenText) -> bool {
         switch (TokenID) {
         case CommandTokenID::OpenParen:
           return Context.beginScope();

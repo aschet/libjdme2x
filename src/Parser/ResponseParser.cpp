@@ -23,7 +23,7 @@ bool ResponseParser::parse(const std::string &Text) {
     return false;
 
   return Impl->Lexer.tokenize(
-      Text, [](ResponseTokenID TokenID, const std::string &TokenText) {
+      Text, [](ResponseTokenID TokenID, const std::string &TokenText) -> bool {
         return true;
       });
 }
