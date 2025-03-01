@@ -40,6 +40,9 @@ BOOST_AUTO_TEST_CASE(parseCommand) {
 
   std::string SetCoordSystem = "00004 SetCoordSystem(23, PartCsy)\r\n";
   BOOST_TEST(SetCoordSystem == Parser.parse(SetCoordSystem).second.toString());
+
+  std::string CommandWithXML = "E0001 TestE(<x><y a=\"b\">z</y></x>)\r\n";
+  BOOST_TEST(CommandWithXML == Parser.parse(CommandWithXML).second.toString());
 }
 
 BOOST_AUTO_TEST_SUITE_END()
