@@ -42,7 +42,7 @@ CommandLexerImpl::CommandLexerImpl() {
   add("[+\\-]?(\\d+(\\.\\d*)?|(\\.\\d+))([eE][+\\-]?\\d{1,3})?",
       TokenID::Number);
   add("\\\"[ -!#-~]+\\\"", TokenID::String);
-  // TODO: XML <[^>]+>([^<]*)<\/[^>]+>
+  add("<[^>]+>.*<\\/[^>]+>", TokenID::XML);
   add("\r\n|\n|\r", TokenID::Terminator);
 }
 

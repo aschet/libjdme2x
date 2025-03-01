@@ -64,4 +64,19 @@ BOOST_AUTO_TEST_CASE(tokenizeCommand) {
   BOOST_TEST(ExpectedTokens == ActualTokens);
 }
 
+BOOST_AUTO_TEST_CASE(tokenizeXMLCommand) {
+  CommandTokens ExpectedTokens = {{TokenID::EventTag, "E0001"},
+                                  {TokenID::Space, " "},
+                                  {TokenID::Name, "TestE"},
+                                  {TokenID::OpenParen, "("},
+                                  {TokenID::XML, "<x><y a=\"b\">z</y></x>"},
+                                  {TokenID::CloseParen, ")"},
+                                  {TokenID::Terminator, "\r\n"}};
+
+  CommandTokens ActualTokens =
+      tokenize("E0001 TestE(<x><y a=\"b\">z</y></x>)\r\n");
+
+  BOOST_TEST(ExpectedTokens == ActualTokens);
+}
+
 BOOST_AUTO_TEST_SUITE_END()
