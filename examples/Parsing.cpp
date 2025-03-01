@@ -5,7 +5,7 @@
 
 using namespace jdme2x::parser;
 
-void tokenizeCommand() {
+static void tokenizeCommand() {
   const char *CommandText = "00002 AlignPart(0, -1, 0, 0.6, 0, 0.8, 1)\n\r";
   CommandLexer Lexer;
   std::cout << "Tokens of " << CommandText;
@@ -17,7 +17,7 @@ void tokenizeCommand() {
   std::cout << "\n";
 }
 
-void tokenizeResponse() {
+static void tokenizeResponse() {
   const char *ResponseText = "E0005 %\n\r";
   ResponseLexer Lexer;
   std::cout << "Tokens of " << ResponseText;

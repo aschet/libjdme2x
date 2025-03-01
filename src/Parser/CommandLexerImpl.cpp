@@ -9,8 +9,7 @@ namespace parser {
 struct LexerFunctorAdapter {
   typedef bool result_type;
 
-  LexerFunctorAdapter::LexerFunctorAdapter(
-      std::function<bool(TokenID, std::string_view)> Functor)
+  LexerFunctorAdapter(std::function<bool(TokenID, std::string_view)> Functor)
       : Functor(Functor) {}
 
   template <typename Token> bool operator()(const Token &CurrentToken) const {
