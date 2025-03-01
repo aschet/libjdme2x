@@ -32,7 +32,6 @@ Method &Command::getMethod() { return CommandMethod; }
 
 std::string Command::toString() const {
   std::ostringstream Stream;
-  Stream << std::noskipws;
   Stream << CommandTag.toString();
   Stream << ' ';
   Stream << CommandMethod.toString();
