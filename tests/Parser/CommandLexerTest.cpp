@@ -55,11 +55,11 @@ BOOST_AUTO_TEST_CASE(tokenizeCommand) {
                                   {TokenID::Number, "5e-03"},
                                   {TokenID::CloseParen, ")"},
                                   {TokenID::CloseParen, ")"},
-                                  {TokenID::Terminator, "\n\r"}};
+                                  {TokenID::Terminator, "\r\n"}};
 
   CommandTokens ActualTokens =
       tokenize("00001 Test(\"Ref "
-               "Tool\",E0001,XT.R.A(),Roi(-5,.5,+5E7,5e-03))\n\r");
+               "Tool\",E0001,XT.R.A(),Roi(-5,.5,+5E7,5e-03))\r\n");
 
   BOOST_TEST(ExpectedTokens == ActualTokens);
 }

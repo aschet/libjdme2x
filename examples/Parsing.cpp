@@ -6,7 +6,7 @@
 using namespace jdme2x::parser;
 
 static void tokenizeCommand() {
-  const char *CommandText = "00002 AlignPart(0, -1, 0, 0.6, 0, 0.8, 1)\n\r";
+  const char *CommandText = "00002 AlignPart(0, -1, 0, 0.6, 0, 0.8, 1)\r\n";
   CommandLexer Lexer;
   std::cout << "Tokens of " << CommandText;
   Lexer.tokenize(CommandText, [](TokenID ID, std::string_view Text) -> bool {
@@ -18,7 +18,7 @@ static void tokenizeCommand() {
 }
 
 static void tokenizeResponse() {
-  const char *ResponseText = "E0005 %\n\r";
+  const char *ResponseText = "E0005 %\r\n";
   ResponseLexer Lexer;
   std::cout << "Tokens of " << ResponseText;
   Lexer.tokenize(ResponseText, [](TokenID ID, std::string_view Text) -> bool {

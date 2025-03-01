@@ -55,4 +55,4 @@ DIGIT: [0-9];
 COMMA: (' ')* ',' (' ')*;
 LEFT_PAR: (' ')* '(' (' ')*;
 RIGHT_PAR: (' ')* ')';
-TERMINATOR: '\n\r';
+TERMINATOR: '\r\n';

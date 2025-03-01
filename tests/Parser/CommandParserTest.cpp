@@ -20,25 +20,25 @@ BOOST_AUTO_TEST_CASE(parseCommand) {
   CommandParser Parser;
   BOOST_TEST(Parser
                  .parse("00001 Test ( \"Ref Tool\"  , E0001, Time(5), XT.R.A( "
-                        ") ,Roi(-5, .5,+5E7,5e-03) )\n\r")
+                        ") ,Roi(-5, .5,+5E7,5e-03) )\r\n")
                  .first);
 
-  std::string GetDMEVersionText = "00001 GetDMEVersion()\n\r";
+  std::string GetDMEVersionText = "00001 GetDMEVersion()\r\n";
   BOOST_TEST(GetDMEVersionText ==
              Parser.parse(GetDMEVersionText).second.toString());
 
-  std::string AlignPartText = "00002 AlignPart(0, -1, 0, 0.6, 0, 0.8, 1)\n\r";
+  std::string AlignPartText = "00002 AlignPart(0, -1, 0, 0.6, 0, 0.8, 1)\r\n";
   BOOST_TEST(AlignPartText == Parser.parse(AlignPartText).second.toString());
 
   std::string OnMoveReportEText =
-      "E0001 OnMoveReportE(Time(5), Dis(0.34), X(), Y(), Z())\n\r";
+      "E0001 OnMoveReportE(Time(5), Dis(0.34), X(), Y(), Z())\r\n";
   BOOST_TEST(OnMoveReportEText ==
              Parser.parse(OnMoveReportEText).second.toString());
 
-  std::string ChangeToolText = "00003 ChangeTool(\"RefTool\")\n\r";
+  std::string ChangeToolText = "00003 ChangeTool(\"RefTool\")\r\n";
   BOOST_TEST(ChangeToolText == Parser.parse(ChangeToolText).second.toString());
 
-  std::string SetCoordSystem = "00004 SetCoordSystem(23, PartCsy)\n\r";
+  std::string SetCoordSystem = "00004 SetCoordSystem(23, PartCsy)\r\n";
   BOOST_TEST(SetCoordSystem == Parser.parse(SetCoordSystem).second.toString());
 }
 

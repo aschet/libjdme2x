@@ -35,9 +35,9 @@ BOOST_AUTO_TEST_CASE(tokenizeAcknowledgment) {
   ResponseTokens ExpectedTokens = {{TokenID::Number, "00005"},
                                    {TokenID::Space, " "},
                                    {TokenID::Ampersand, "&"},
-                                   {TokenID::Terminator, "\n\r"}};
+                                   {TokenID::Terminator, "\r\n"}};
 
-  ResponseTokens ActualTokens = tokenize("00005 &\n\r");
+  ResponseTokens ActualTokens = tokenize("00005 &\r\n");
 
   BOOST_TEST(ExpectedTokens == ActualTokens);
 }
@@ -46,9 +46,9 @@ BOOST_AUTO_TEST_CASE(tokenizeTransactionCompletion) {
   ResponseTokens ExpectedTokens = {{TokenID::EventTag, "E0005"},
                                    {TokenID::Space, " "},
                                    {TokenID::PercentSign, "%"},
-                                   {TokenID::Terminator, "\n\r"}};
+                                   {TokenID::Terminator, "\r\n"}};
 
-  ResponseTokens ActualTokens = tokenize("E0005 %\n\r");
+  ResponseTokens ActualTokens = tokenize("E0005 %\r\n");
 
   BOOST_TEST(ExpectedTokens == ActualTokens);
 }
@@ -70,12 +70,12 @@ BOOST_AUTO_TEST_CASE(tokenizeError) {
       {TokenID::String,
        "\"Transaction aborted (Use ClearAllErrors to Continue)\""},
       {TokenID::CloseParen, ")"},
-      {TokenID::Terminator, "\n\r"}};
+      {TokenID::Terminator, "\r\n"}};
 
   ResponseTokens ActualTokens =
       tokenize("00070 ! Error(2,0006,\"00070 GoTo(X(20.0),Y(40.0),"
                "Z(60.0))\",\"Transaction aborted (Use ClearAllErrors to "
-               "Continue)\")\n\r");
+               "Continue)\")\r\n");
 
   BOOST_TEST(ExpectedTokens == ActualTokens);
 }
@@ -90,10 +90,10 @@ BOOST_AUTO_TEST_CASE(tokenizeData) {
       {TokenID::Number, "0.70290"}, {TokenID::CloseParen, ")"},
       {TokenID::Comma, ","},        {TokenID::Name, "Z"},
       {TokenID::OpenParen, "("},    {TokenID::Number, "1.05435"},
-      {TokenID::CloseParen, ")"},   {TokenID::Terminator, "\n\r"}};
+      {TokenID::CloseParen, ")"},   {TokenID::Terminator, "\r\n"}};
 
   ResponseTokens ActualTokens =
-      tokenize("E0060 #X(0.35145),Y(0.70290),Z(1.05435)\n\r");
+      tokenize("E0060 #X(0.35145),Y(0.70290),Z(1.05435)\r\n");
 
   BOOST_TEST(ExpectedTokens == ActualTokens);
 }

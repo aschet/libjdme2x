@@ -36,7 +36,7 @@ std::string Command::toString() const {
   Stream << CommandTag.toString();
   Stream << ' ';
   Stream << CommandMethod.toString();
-  Stream << "\n\r";
+  Stream << "\r\n";
   return Stream.str();
 }
 

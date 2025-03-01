@@ -43,7 +43,7 @@ CommandLexerImpl::CommandLexerImpl() {
       TokenID::Number);
   add("\\\"[ -!#-~]+\\\"", TokenID::String);
   // TODO: XML <[^>]+>([^<]*)<\/[^>]+>
-  add("\n\r|\n|\r", TokenID::Terminator);
+  add("\r\n|\n|\r", TokenID::Terminator);
 }
 
 void CommandLexerImpl::add(const char *Pattern, TokenID ID) {

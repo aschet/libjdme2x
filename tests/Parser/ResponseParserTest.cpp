@@ -19,16 +19,16 @@ BOOST_AUTO_TEST_SUITE(ResponseParserTest)
 BOOST_AUTO_TEST_CASE(parseReponse) {
   ResponseParser Parser;
 
-  BOOST_TEST(Parser.parse("00005 &\n\r"));
-  BOOST_TEST(Parser.parse("00005 %\n\r"));
-  BOOST_TEST(Parser.parse("E0060 #X(0.35145), Y(0.70290), Z(1.05435)\n\r"));
+  BOOST_TEST(Parser.parse("00005 &\r\n"));
+  BOOST_TEST(Parser.parse("00005 %\r\n"));
+  BOOST_TEST(Parser.parse("E0060 #X(0.35145), Y(0.70290), Z(1.05435)\r\n"));
   BOOST_TEST(Parser.parse(
       "00070 ! Error(2, 0006, \"00070 GoTo(X(20.00000), Y(40.00000), "
       "Z(60.00000))\", \"Transaction aborted (Use ClearAllErrors to "
-      "Continue)\")\n\r"));
-  BOOST_TEST(Parser.parse("00010 #0.6, 0., 0.8\n\r"));
+      "Continue)\")\r\n"));
+  BOOST_TEST(Parser.parse("00010 #0.6, 0., 0.8\r\n"));
   BOOST_TEST(Parser.parse("00200 #ChangeToolAction(Switch, X(0.00000), "
-                             "Y(0.00000), Z(-8.00000))\n\r"));
+                             "Y(0.00000), Z(-8.00000))\r\n"));
 }
 
 BOOST_AUTO_TEST_SUITE_END()
