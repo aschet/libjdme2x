@@ -10,6 +10,7 @@ if(POLICY CMP0167)
   cmake_policy(SET CMP0167 NEW)
 endif()
 
+set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
@@ -93,3 +94,5 @@ target_link_libraries(${PROJECT_NAME}
 include(CTest)
 add_subdirectory(tests)
 add_subdirectory(examples)
+
+
