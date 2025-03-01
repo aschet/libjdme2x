@@ -1,4 +1,4 @@
-project(jdme2x_examples)
+project(examples)
 
 macro(add_example target_name source_name)
   add_executable(${target_name} "${source_name}")
