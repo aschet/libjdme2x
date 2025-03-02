@@ -24,13 +24,25 @@ class JDME2X_API String {
   friend std::ostream &operator<<(std::ostream &, const String &);
 
 public:
-  String();
+  String() = default;
 
-  String(std::string_view Value);
+  String(const String &) = default;
 
-  String &operator=(std::string_view Other);
+  String(String &&) = default;
+
+  String(const char *Text);
+
+  String(std::string_view Text);
 
   static std::string_view unquoted(std::string_view Value);
+
+  String &operator=(const String &) = default;
+
+  String &operator=(String &&) = default;
+
+  String &operator=(const char *Other);
+
+  String &operator=(std::string_view Other);
 
   operator const std::string &() const;
 

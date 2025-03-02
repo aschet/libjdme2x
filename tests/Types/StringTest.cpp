@@ -15,13 +15,12 @@
 
 #include <iostream>
 
-using namespace jdme2x;
 using namespace jdme2x::types;
 
 BOOST_AUTO_TEST_SUITE(StringTest)
 
 BOOST_AUTO_TEST_CASE(serialzeString) {
-  BOOST_TEST("\"1.4\"" == toString(String("1.4")));
+  BOOST_TEST("\"1.4\"" == test::toString(String("1.4")));
 }
 
 BOOST_AUTO_TEST_CASE(constructString) {

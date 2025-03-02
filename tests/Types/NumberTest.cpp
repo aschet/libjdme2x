@@ -13,16 +13,15 @@
 
 #include <boost/test/unit_test.hpp>
 
-using namespace jdme2x;
 using namespace jdme2x::types;
 
 BOOST_AUTO_TEST_SUITE(NumberTest)
 
 BOOST_AUTO_TEST_CASE(serialzeNumber) {
-  BOOST_TEST("-1" == toString(Number(-1)));
-  BOOST_TEST("1" == toString(Number(1)));
-  BOOST_TEST("1.5" == toString(Number(1.5f)));
-  BOOST_TEST("-1.5" == toString(Number(-1.5f)));
+  BOOST_TEST("-1" == test::toString(Number(-1)));
+  BOOST_TEST("1" == test::toString(Number(1)));
+  BOOST_TEST("1.5" == test::toString(Number(1.5f)));
+  BOOST_TEST("-1.5" == test::toString(Number(-1.5f)));
 }
 
 BOOST_AUTO_TEST_CASE(queryNumberType) {

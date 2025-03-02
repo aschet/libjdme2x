@@ -14,13 +14,14 @@
 #include <sstream>
 #include <string>
 
-namespace jdme2x {
+namespace test {
 
-template <typename T> std::string toString(const T &value) {
-  std::ostringstream oss;
-  oss << value;
-  return oss.str();
+template <typename T> std::string toString(const T &Value) {
+  std::ostringstream Stream;
+  Stream << Value;
+  return Stream.str();
 }
 
-} // namespace jdme2x
+} // namespace test
+
 #endif

@@ -42,10 +42,6 @@ JDME2X_API bool toBool(const Number &Value) {
   return static_cast<bool>(toInt(Value));
 }
 
-} // namespace types
-
-} // namespace jdme2x
-
 JDME2X_API std::ostream &operator<<(std::ostream &Stream,
                                     const jdme2x::types::Number &Instance) {
   if (jdme2x::types::isInt(Instance)) {
@@ -55,3 +51,8 @@ JDME2X_API std::ostream &operator<<(std::ostream &Stream,
   }
   return Stream;
 }
+
+} // namespace types
+
+} // namespace jdme2x
+

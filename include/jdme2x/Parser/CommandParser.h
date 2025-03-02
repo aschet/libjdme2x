@@ -12,7 +12,7 @@
 #define JDME2X_PARSER_COMMANDPARSER_H
 
 #include "jdme2x/API.h"
-#include "jdme2x/Command.h"
+#include "jdme2x/Types/Command.h"
 
 #include <memory>
 #include <string_view>
@@ -36,7 +36,7 @@ public:
 
   CommandParser &operator=(CommandParser &&) = delete;
 
-  std::pair<bool, Command> parse(std::string_view Text);
+  std::pair<bool, types::Command> parse(std::string_view Text);
 
 private:
   struct Private;

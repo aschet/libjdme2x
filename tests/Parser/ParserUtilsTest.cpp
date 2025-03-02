@@ -11,15 +11,14 @@
 #include "jdme2x/Parser/ParserUtils.h"
 
 #include <boost/test/unit_test.hpp>
-#include <string>
-#include <variant>
+#include <string_view>
 
 using namespace jdme2x;
 using namespace jdme2x::types;
 using namespace jdme2x::parser;
 
 static void testInt(int ExpectedValue, std::string_view Text) {
-  std::optional<Number> Value = parseNumber(Text);
+  auto Value = parseNumber(Text);
   BOOST_TEST(Value.has_value());
   BOOST_TEST(!isFloat(*Value));
   BOOST_TEST(isInt(*Value));
@@ -27,7 +26,7 @@ static void testInt(int ExpectedValue, std::string_view Text) {
 }
 
 static void testFloat(float ExpectedValue, std::string_view Text) {
-  std::optional<Number> Value = parseNumber(Text);
+  auto Value = parseNumber(Text);
   BOOST_TEST(Value.has_value());
   BOOST_TEST(!isInt(*Value));
   BOOST_TEST(isFloat(*Value));

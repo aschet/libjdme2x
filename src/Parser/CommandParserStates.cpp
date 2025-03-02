@@ -13,6 +13,7 @@
 #include "jdme2x/Parser/ParserUtils.h"
 
 #include <charconv>
+#include <utility>
 
 namespace jdme2x {
 
@@ -88,13 +89,6 @@ types::Tag CommandParserState::makeEventTag(std::string_view Value) {
   return types::Tag(Number, types::TagType::Event);
 }
 
-std::shared_ptr<Argument>
-CommandParserState::makeNumberArgument(std::string_view Value) {
-  if (auto ParsedNumber = parser::parseNumber(Value))
-    return std::make_shared<NumberArgument>(*ParsedNumber);
-  return nullptr;
-}
-
 bool TagState::parseEventTag(std::string_view Value) {
   Context->ParsedCommand.setTag(makeEventTag(Value));
   Context->TransitionTo(std::make_unique<MethodNameState>());
@@ -128,7 +122,7 @@ bool ArgumentState::endScope() {
 }
 
 bool ArgumentState::parseEventTag(std::string_view Value) {
-  Context->ParsedCommand.getMethod().addEventTag(makeEventTag(Value));
+  Context->ParsedCommand.getMethod().addArgument(makeEventTag(Value));
   Context->TransitionTo(std::make_unique<ArgumentListSectionEndState>());
   return true;
 }
@@ -139,8 +133,8 @@ bool ArgumentState::parseName(std::string_view Value) {
 }
 
 bool ArgumentState::parseNumber(std::string_view Value) {
-  if (auto Argument = makeNumberArgument(Value)) {
-    Context->ParsedCommand.getMethod().addArgument(Argument);
+  if (auto ParsedNumber = parser::parseNumber(Value)) {
+    Context->ParsedCommand.getMethod().addArgument(std::move(*ParsedNumber));
     Context->TransitionTo(std::make_unique<ArgumentListSectionEndState>());
     return true;
   } else {
@@ -149,8 +143,7 @@ bool ArgumentState::parseNumber(std::string_view Value) {
 }
 
 bool ArgumentState::parseString(std::string_view Value) {
-  std::string_view UnquotedValue = Value.substr(1, Value.length() - 2);
-  Context->ParsedCommand.getMethod().addString(UnquotedValue);
+  Context->ParsedCommand.getMethod().addArgument(types::String(Value));
   Context->TransitionTo(std::make_unique<ArgumentListSectionEndState>());
   return true;
 }
@@ -172,7 +165,7 @@ bool ArgumentListSectionEndState::endSection() {
 }
 
 PropertyListBeginState::PropertyListBeginState(std::string_view Name)
-    : CurrentProperty(std::make_shared<Property>(Name)) {}
+    : CurrentProperty(std::make_shared<types::Property>(Name)) {}
 
 bool PropertyListBeginState::beginScope() {
   Context->TransitionTo(
@@ -181,40 +174,44 @@ bool PropertyListBeginState::beginScope() {
 }
 
 bool PropertyListBeginState::endScope() {
-  Context->ParsedCommand.getMethod().addName(CurrentProperty->getName());
+  Context->ParsedCommand.getMethod().addArgument(CurrentProperty->getName());
   Context->TransitionTo(std::make_unique<TerminatorState>());
   return true;
 }
 
 bool PropertyListBeginState::endSection() {
-  Context->ParsedCommand.getMethod().addName(CurrentProperty->getName());
+  Context->ParsedCommand.getMethod().addArgument(CurrentProperty->getName());
   Context->TransitionTo(std::make_unique<ArgumentState>());
   return true;
 }
 
 PropertyArgumentState::PropertyArgumentState(
-    std::shared_ptr<Property> CurrentProperty)
+    std::shared_ptr<types::Property> CurrentProperty)
     : CurrentProperty(CurrentProperty) {}
 
 bool PropertyArgumentState::endScope() {
-  Context->ParsedCommand.getMethod().addProperty(*CurrentProperty);
+  Context->ParsedCommand.getMethod().addArgument(std::move(*CurrentProperty));
   Context->TransitionTo(std::make_unique<ArgumentListSectionEndState>());
   return true;
 }
 
 bool PropertyArgumentState::parseNumber(std::string_view Value) {
-  CurrentProperty->addArgument(makeNumberArgument(Value));
-  Context->TransitionTo(
-      std::make_unique<PropertyArgumentListSectionEndState>(CurrentProperty));
-  return true;
+  if (auto ParsedNumber = parser::parseNumber(Value)) {
+    CurrentProperty->addArgument(std::move(*ParsedNumber));
+    Context->TransitionTo(
+        std::make_unique<PropertyArgumentListSectionEndState>(CurrentProperty));
+    return true;
+  } else {
+    return false;
+  }
 }
 
 PropertyArgumentListSectionEndState::PropertyArgumentListSectionEndState(
-    std::shared_ptr<Property> CurrentProperty)
+    std::shared_ptr<types::Property> CurrentProperty)
     : CurrentProperty(CurrentProperty) {}
 
 bool PropertyArgumentListSectionEndState::endScope() {
-  Context->ParsedCommand.getMethod().addArgument(CurrentProperty);
+  Context->ParsedCommand.getMethod().addArgument(std::move(*CurrentProperty));
   Context->TransitionTo(std::make_unique<ArgumentListSectionEndState>());
   return true;
 }

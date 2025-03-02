@@ -14,14 +14,11 @@ namespace jdme2x {
 
 namespace types {
 
-String::String() = default;
+String::String(const char *Text) : Value(unquoted(Text)) {
+}
 
-String::String(std::string_view Value) : Value(unquoted(Value)) {}
-
-String &String::operator=(std::string_view Other) {
-  Value = unquoted(Other);
-  return *this;
-};
+String::String(std::string_view Text) : Value(unquoted(Text)) {
+}
 
 std::string_view String::unquoted(std::string_view Value) {
   if (Value.length() < 2)
@@ -36,7 +33,19 @@ std::string_view String::unquoted(std::string_view Value) {
   return Value;
 }
 
-String::operator const std::string &() const { return Value; }
+String& String::operator=(const char* Other) {
+  Value = unquoted(Other);
+  return *this;
+}
+
+String &String::operator=(std::string_view Other) {
+  Value = unquoted(Other);
+  return *this;
+};
+
+String::operator const std::string &() const {
+  return Value;
+}
 
 bool String::operator==(std::string_view Other) const { return Value == Other; }
 

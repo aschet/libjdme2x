@@ -14,6 +14,8 @@
 #include "jdme2x/Parser/CommandLexer.h"
 #include "jdme2x/Parser/TokenID.h"
 
+#include <utility>
+
 namespace jdme2x {
 
 namespace parser {
@@ -26,9 +28,9 @@ CommandParser::CommandParser() : Impl(std::make_unique<Private>()) {}
 
 CommandParser::~CommandParser() = default;
 
-std::pair<bool, Command> CommandParser::parse(std::string_view Text) {
+std::pair<bool, types::Command> CommandParser::parse(std::string_view Text) {
   if (Text.empty())
-    return std::make_pair(false, Command());
+    return std::make_pair(false, types::Command());
 
   CommandParserContext Context;
   Impl->Lexer.tokenize(Text,
@@ -56,7 +58,8 @@ std::pair<bool, Command> CommandParser::parse(std::string_view Text) {
                            return false;
                          }
                        });
-  return std::make_pair(Context.hasCompleteParse(), Context.ParsedCommand);
+  return std::make_pair(Context.hasCompleteParse(),
+                        std::move(Context.ParsedCommand));
 }
 
 } // namespace parser

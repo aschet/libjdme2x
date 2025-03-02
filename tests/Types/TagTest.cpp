@@ -14,18 +14,17 @@
 #include <boost/test/unit_test.hpp>
 #include <string>
 
-using namespace jdme2x;
 using namespace jdme2x::types;
 
 BOOST_AUTO_TEST_SUITE(TagTest)
 
 BOOST_AUTO_TEST_CASE(serialzeTag) {
   Tag CommandTag(1, TagType::Command);
-  std::string Result = toString(CommandTag);
+  std::string Result = test::toString(CommandTag);
   BOOST_TEST("00001" == Result);
 
   Tag EventTag(1, TagType::Event);
-  Result = toString(EventTag);
+  Result = test::toString(EventTag);
   BOOST_TEST("E0001" == Result);
 }
 

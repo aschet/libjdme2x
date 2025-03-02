@@ -8,23 +8,29 @@
 //
 //===----------------------------------------------------------------------===//
 
-#include "jdme2x/Property.h"
+#include "jdme2x/Types/Property.h"
+#include "TestUtils.h"
 
 #include <boost/test/unit_test.hpp>
 #include <string>
 
-using namespace jdme2x;
+using namespace jdme2x::types;
 
 BOOST_AUTO_TEST_SUITE(PropertyTest)
 
 BOOST_AUTO_TEST_CASE(serialzeProperty) {
   Property XProperty("X");
-  std::string Result = XProperty.toString();
+  std::string Result = test::toString(XProperty);
   BOOST_TEST("X()" == Result);
 
   Property YValueProperty("Y");
-  Result = YValueProperty.addNumber(-100).toString();
+  Result = test::toString(YValueProperty.addArgument(-100));
   BOOST_TEST("Y(-100)" == Result);
+
+  Property TestProperty("Test");
+  Result = test::toString(
+      TestProperty.addArgument(-100).addArgument(0).addArgument(100));
+  BOOST_TEST("Test(-100, 0, 100)" == Result);
 }
 
 BOOST_AUTO_TEST_SUITE_END()

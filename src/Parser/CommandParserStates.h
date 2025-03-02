@@ -11,8 +11,7 @@
 #ifndef PARSER_COMMANDPARSERSTATES_H
 #define PARSER_COMMANDPARSERSTATES_H
 
-#include "jdme2x/Argument.h"
-#include "jdme2x/Command.h"
+#include "jdme2x/Types/Command.h"
 #include "jdme2x/Types/Tag.h"
 
 #include <memory>
@@ -49,7 +48,7 @@ public:
 
   void TransitionTo(std::unique_ptr<CommandParserState> NewState);
 
-  Command ParsedCommand;
+  types::Command ParsedCommand;
 
 private:
   std::unique_ptr<CommandParserState> State;
@@ -81,8 +80,6 @@ public:
 
 protected:
   types::Tag makeEventTag(std::string_view Value);
-
-  std::shared_ptr<Argument> makeNumberArgument(std::string_view Value);
 
   CommandParserContext *Context = nullptr;
 };
@@ -137,32 +134,32 @@ public:
   bool endSection() override;
 
 private:
-  std::shared_ptr<Property> CurrentProperty;
+  std::shared_ptr<types::Property> CurrentProperty;
 };
 
 class PropertyArgumentState : public CommandParserState {
 public:
-  PropertyArgumentState(std::shared_ptr<Property> CurrentProperty);
+  PropertyArgumentState(std::shared_ptr<types::Property> CurrentProperty);
 
   bool endScope() override;
 
   bool parseNumber(std::string_view Value) override;
 
 private:
-  std::shared_ptr<Property> CurrentProperty;
+  std::shared_ptr<types::Property> CurrentProperty;
 };
 
 class PropertyArgumentListSectionEndState : public CommandParserState {
 public:
   PropertyArgumentListSectionEndState(
-      std::shared_ptr<Property> CurrentProperty);
+      std::shared_ptr<types::Property> CurrentProperty);
 
   bool endScope() override;
 
   bool endSection() override;
 
 private:
-  std::shared_ptr<Property> CurrentProperty;
+  std::shared_ptr<types::Property> CurrentProperty;
 };
 
 class ArgumentListEndState : public CommandParserState {

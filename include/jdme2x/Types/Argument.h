@@ -8,10 +8,15 @@
 //
 //===----------------------------------------------------------------------===//
 
-#ifndef JDME2X_TYPES_NUMBER_H
-#define JDME2X_TYPES_NUMBER_H
+#ifndef JDME2X_TYPES_ARGUMENT_H
+#define JDME2X_TYPES_ARGUMENT_H
 
 #include "jdme2x/API.h"
+#include "jdme2x/Types/Name.h"
+#include "jdme2x/Types/Number.h"
+#include "jdme2x/Types/Property.h"
+#include "jdme2x/Types/String.h"
+#include "jdme2x/Types/Tag.h"
 
 #include <ostream>
 #include <variant>
@@ -20,20 +25,10 @@ namespace jdme2x {
 
 namespace types {
 
-typedef std::variant<int, float> Number;
-
-JDME2X_API bool isInt(const Number &Value);
-
-JDME2X_API bool isFloat(const Number &Value);
-
-JDME2X_API int toInt(const Number &Value);
-
-JDME2X_API float toFloat(const Number &Value);
-
-JDME2X_API bool toBool(const Number &Value);
+typedef std::variant<Number, Property, Name, String, Tag> Argument;
 
 JDME2X_API std::ostream &operator<<(std::ostream &Stream,
-                                    const jdme2x::types::Number &Instance);
+                                    const Argument &Instance);
 
 } // namespace types
 

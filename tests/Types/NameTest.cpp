@@ -15,16 +15,15 @@
 
 #include <iostream>
 
-using namespace jdme2x;
 using namespace jdme2x::types;
 
 BOOST_AUTO_TEST_SUITE(NameTest)
 
 BOOST_AUTO_TEST_CASE(serialzeName) {
-  BOOST_TEST("AbortE" == toString(Name("AbortE")));
+  BOOST_TEST(test::toString(Name("AbortE")) == "AbortE");
 }
 
-BOOST_AUTO_TEST_CASE(checkNameBasicness) {
+BOOST_AUTO_TEST_CASE(checkBasicName) {
   BOOST_TEST(Name("AbortE").isBasic());
   BOOST_TEST(!Name("GoToPar.Speed").isBasic());
 }

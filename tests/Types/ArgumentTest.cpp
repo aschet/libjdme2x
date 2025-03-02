@@ -8,17 +8,22 @@
 //
 //===----------------------------------------------------------------------===//
 
-#include "jdme2x/Argument.h"
+#include "jdme2x/Types/Argument.h"
+#include "TestUtils.h"
 
 #include <boost/test/unit_test.hpp>
 
-using namespace jdme2x;
+using namespace jdme2x::types;
 
 BOOST_AUTO_TEST_SUITE(ArgumentTest)
 
-BOOST_AUTO_TEST_CASE(serializeBasicArgument) {
-  BOOST_TEST("\"RefTool\"" == StringArgument("RefTool").toString());
-  BOOST_TEST("PartCsy" == NameArgument("PartCsy").toString());
+BOOST_AUTO_TEST_CASE(serializArgument) {
+  BOOST_TEST(test::toString(Argument(String("RefTool"))) == "\"RefTool\"");
+  BOOST_TEST(test::toString(Argument(Name("PartCsy"))) == "PartCsy");
+  BOOST_TEST(test::toString(Argument(Number(1))) == "1");
+  BOOST_TEST(test::toString(Argument(Tag::createUnsolicitedEvent())) ==
+             "E0000");
+  BOOST_TEST(test::toString(Property("X")) == "X()");
 }
 
 BOOST_AUTO_TEST_SUITE_END()

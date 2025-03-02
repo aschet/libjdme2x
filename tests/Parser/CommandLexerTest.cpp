@@ -11,7 +11,6 @@
 #include "jdme2x/Parser/CommandLexer.h"
 
 #include <boost/test/unit_test.hpp>
-#include <iostream>
 #include <utility>
 #include <vector>
 

@@ -14,16 +14,21 @@ namespace jdme2x {
 
 namespace types {
 
-Name::Name() = default;
+Name::Name(const char *Text) : Value(Text) {}
 
-Name::Name(std::string_view Value) : Value(Value) {}
+Name::Name(std::string_view Text) : Value(Text) {}
+
+bool Name::isBasic() const { return Value.find('.') == std::string::npos; }
+
+Name &Name::operator=(const char *Other) {
+  Value = Other;
+  return *this;
+};
 
 Name &Name::operator=(std::string_view Other) {
   Value = Other;
   return *this;
 };
-
-bool Name::isBasic() const { return Value.find('.') == std::string::npos; }
 
 Name::operator const std::string &() const { return Value; }
 

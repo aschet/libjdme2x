@@ -54,16 +54,15 @@ set(FILES_INCLUDE
   "include/jdme2x/Parser/ResponseLexer.h"
   "include/jdme2x/Parser/ResponseParser.h"
   "include/jdme2x/Parser/TokenID.h"
+  "include/jdme2x/Types/Argument.h"
+  "include/jdme2x/Types/Command.h"
+  "include/jdme2x/Types/Method.h"
   "include/jdme2x/Types/Name.h"
   "include/jdme2x/Types/Number.h"
   "include/jdme2x/Types/String.h"
+  "include/jdme2x/Types/Property.h"
   "include/jdme2x/Types/Tag.h"
   "include/jdme2x/API.h"
-  "include/jdme2x/Argument.h"
-  "include/jdme2x/Command.h"
-  "include/jdme2x/Method.h"
-  "include/jdme2x/Property.h"
-  "include/jdme2x/Serializeable.h"
 )
 
 set(FILES_SRC
@@ -76,15 +75,14 @@ set(FILES_SRC
   "src/Parser/ParserUtils.cpp"
   "src/Parser/ResponseLexer.cpp"
   "src/Parser/ResponseParser.cpp"
+  "src/Types/Argument.cpp"
+  "src/Types/Command.cpp"
+  "src/Types/Method.cpp"
   "src/Types/Name.cpp"
   "src/Types/Number.cpp"
+  "src/Types/Property.cpp"
   "src/Types/String.cpp"
   "src/Types/Tag.cpp"
-  "src/Argument.cpp"
-  "src/Command.cpp"
-  "src/Method.cpp"
-  "src/Property.cpp"
-  "src/Serializeable.cpp"
 )
 
 target_sources(${PROJECT_NAME}
@@ -102,5 +100,3 @@ target_link_libraries(${PROJECT_NAME}
 include(CTest)
 add_subdirectory(tests)
 add_subdirectory(examples)
-
-
