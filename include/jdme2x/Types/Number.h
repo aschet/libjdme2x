@@ -33,7 +33,7 @@ JDME2X_API float toFloat(const Number &Value);
 JDME2X_API bool toBool(const Number &Value);
 
 JDME2X_API std::ostream &operator<<(std::ostream &Stream,
-                                    const jdme2x::types::Number &Instance);
+                                    const Number &Instance);
 
 } // namespace types
 

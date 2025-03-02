@@ -15,6 +15,7 @@ set(FILES_SRC
   "Parser/ResponseParserTest.cpp"
   "Types/ArgumentTest.cpp"
   "Types/CommandTest.cpp"
+  "Types/DataTest.cpp"
   "Types/MethodTest.cpp"
   "Types/NameTest.cpp"
   "Types/NumberTest.cpp"

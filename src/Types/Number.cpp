@@ -10,8 +10,6 @@
 
 #include "jdme2x/Types/Number.h"
 
-#include <string>
-
 namespace jdme2x {
 
 namespace types {
@@ -43,7 +41,7 @@ JDME2X_API bool toBool(const Number &Value) {
 }
 
 JDME2X_API std::ostream &operator<<(std::ostream &Stream,
-                                    const jdme2x::types::Number &Instance) {
+                                    const Number &Instance) {
   if (jdme2x::types::isInt(Instance)) {
     Stream << std::get<int>(Instance);
   } else {
@@ -55,4 +53,3 @@ JDME2X_API std::ostream &operator<<(std::ostream &Stream,
 } // namespace types
 
 } // namespace jdme2x
-
