@@ -29,7 +29,7 @@ constexpr int MinEventNumber = 0;
 constexpr int MaxEventNumber = 9999;
 
 class JDME2X_API Tag {
-  friend std::ostream &operator<<(std::ostream &os, const Tag &tag);
+  friend std::ostream &operator<<(std::ostream &, const Tag &);
 
 public:
   Tag();
