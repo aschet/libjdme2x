@@ -14,6 +14,10 @@ All code will be licensed under the Boost Software License 1.0. Format code cont
 clang-format and the provided configuration file and also provide unit/functional tests. Try to
 avoid adding dependencies beyond the Boost library.
 
+## Resources
+
+- [ANTLR v4 grammar for the formal syntax of I++ DME](schemas/IPPDME.g4)
+
 ## References
 
 - [I++ DME OpenSource Project](https://sourceforge.net/projects/iplusplusdme)
