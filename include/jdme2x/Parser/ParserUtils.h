@@ -12,8 +12,8 @@
 #define JDME2X_PARSER_PARSERUTILS_H
 
 #include "jdme2x/API.h"
-#include "jdme2x/types/Number.h"
-#include "jdme2x/types/Tag.h"
+#include "jdme2x/Types/Number.h"
+#include "jdme2x/Types/Tag.h"
 
 #include <optional>
 #include <string_view>

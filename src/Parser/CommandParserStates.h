@@ -13,7 +13,7 @@
 
 #include "jdme2x/Argument.h"
 #include "jdme2x/Command.h"
-#include "jdme2x/types/Tag.h"
+#include "jdme2x/Types/Tag.h"
 
 #include <memory>
 #include <string>

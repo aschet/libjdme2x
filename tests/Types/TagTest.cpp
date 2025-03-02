@@ -8,7 +8,7 @@
 //
 //===----------------------------------------------------------------------===//
 
-#include "jdme2x/types/Tag.h"
+#include "jdme2x/Types/Tag.h"
 #include "TestUtils.h"
 
 #include <boost/test/unit_test.hpp>

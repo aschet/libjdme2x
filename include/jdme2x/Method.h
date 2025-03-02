@@ -15,7 +15,7 @@
 #include "jdme2x/Argument.h"
 #include "jdme2x/Property.h"
 #include "jdme2x/Serializeable.h"
-#include "jdme2x/types/Tag.h"
+#include "jdme2x/Types/Tag.h"
 
 #include <string>
 #include <string_view>

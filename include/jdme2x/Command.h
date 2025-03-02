@@ -14,7 +14,7 @@
 #include "jdme2x/API.h"
 #include "jdme2x/Method.h"
 #include "jdme2x/Serializeable.h"
-#include "jdme2x/types/Tag.h"
+#include "jdme2x/Types/Tag.h"
 
 #include <string>
 

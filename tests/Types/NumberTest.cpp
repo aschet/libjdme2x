@@ -8,7 +8,7 @@
 //
 //===----------------------------------------------------------------------===//
 
-#include "jdme2x/types/Number.h"
+#include "jdme2x/Types/Number.h"
 #include "TestUtils.h"
 
 #include <boost/test/unit_test.hpp>
