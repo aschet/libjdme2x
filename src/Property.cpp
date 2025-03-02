@@ -29,13 +29,9 @@ Property &Property::addArgument(std::shared_ptr<Argument> Value) {
   return *this;
 }
 
-Property &Property::addValue(int Value) {
-  PropertyArguments.emplace_back(std::make_shared<IntArgument>(Value));
-  return *this;
-}
-
-Property &Property::addValue(float Value) {
-  PropertyArguments.emplace_back(std::make_shared<FloatArgument>(Value));
+Property &Property::addNumber(const types::Number &Value) {
+  PropertyArguments.emplace_back(
+      std::make_shared<NumberArgument>(Value));
   return *this;
 }
 

@@ -12,8 +12,8 @@
 #define JDME2X_PARSER_PARSERUTILS_H
 
 #include "jdme2x/API.h"
-#include "jdme2x/Number.h"
-#include "jdme2x/Tag.h"
+#include "jdme2x/types/Number.h"
+#include "jdme2x/types/Tag.h"
 
 #include <optional>
 #include <string_view>
@@ -22,7 +22,7 @@ namespace jdme2x {
 
 namespace parser {
 
-JDME2X_API std::optional<Number> parseNumber(std::string_view Text);
+JDME2X_API std::optional<types::Number> parseNumber(std::string_view Text);
 
 } // namespace parser
 

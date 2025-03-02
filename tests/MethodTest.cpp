@@ -23,19 +23,19 @@ BOOST_AUTO_TEST_CASE(serialzeMethod) {
   BOOST_TEST("GetDMEVersion()" == Result);
 
   Method AlignPartMethod("AlignPart");
-  Result = AlignPartMethod.addValue(0)
-               .addValue(-1)
-               .addValue(0)
-               .addValue(0.6f)
-               .addValue(0.0f)
-               .addValue(0.8f)
-               .addValue(1.0f)
+  Result = AlignPartMethod.addNumber(0)
+               .addNumber(-1)
+               .addNumber(0)
+               .addNumber(0.6f)
+               .addNumber(0.0f)
+               .addNumber(0.8f)
+               .addNumber(1.0f)
                .toString();
   BOOST_TEST("AlignPart(0, -1, 0, 0.6, 0, 0.8, 1)" == Result);
 
   Method OnMoveReportEMethod("OnMoveReportE");
-  Result = OnMoveReportEMethod.addProperty(Property("Time").addValue(5))
-               .addProperty(Property("Dis").addValue(0.34f))
+  Result = OnMoveReportEMethod.addProperty(Property("Time").addNumber(5))
+               .addProperty(Property("Dis").addNumber(0.34f))
                .addProperty(Property("X"))
                .addProperty(Property("Y"))
                .addProperty(Property("Z"))

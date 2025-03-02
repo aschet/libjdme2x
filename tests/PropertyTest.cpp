@@ -23,7 +23,7 @@ BOOST_AUTO_TEST_CASE(serialzeProperty) {
   BOOST_TEST("X()" == Result);
 
   Property YValueProperty("Y");
-  Result = YValueProperty.addValue(-100).toString();
+  Result = YValueProperty.addNumber(-100).toString();
   BOOST_TEST("Y(-100)" == Result);
 }
 

@@ -30,12 +30,8 @@ Method &Method::addArgument(std::shared_ptr<Argument> Value) {
   return *this;
 }
 
-Method &Method::addValue(int Value) {
-  return addArgument(std::make_shared<IntArgument>(Value));
-}
-
-Method &Method::addValue(float Value) {
-  return addArgument(std::make_shared<FloatArgument>(Value));
+Method &Method::addNumber(const types::Number &Value) {
+  return addArgument(std::make_shared<NumberArgument>(Value));
 }
 
 Method &Method::addString(std::string_view Value) {
@@ -46,7 +42,7 @@ Method &Method::addName(std::string_view Value) {
   return addArgument(std::make_shared<NameArgument>(Value));
 }
 
-Method &Method::addEventTag(const Tag &Value) {
+Method &Method::addEventTag(const types::Tag &Value) {
   return addArgument(std::make_shared<EventTagArgument>(Value));
 }
 

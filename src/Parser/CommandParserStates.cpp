@@ -80,22 +80,18 @@ bool CommandParserState::parseXML(std::string_view) { return false; }
 
 bool CommandParserState::hasCompleteParse() const { return false; }
 
-Tag CommandParserState::makeEventTag(std::string_view Value) {
+types::Tag CommandParserState::makeEventTag(std::string_view Value) {
   std::string_view ValueWithoutE = Value.substr(1, Value.length() - 1);
   unsigned int Number = 0;
   std::from_chars(ValueWithoutE.data(),
                   ValueWithoutE.data() + ValueWithoutE.size(), Number);
-  return Tag(Number, TagType::Event);
+  return types::Tag(Number, types::TagType::Event);
 }
 
 std::shared_ptr<Argument>
 CommandParserState::makeNumberArgument(std::string_view Value) {
-  if (auto ParsedNumber = parser::parseNumber(Value)) {
-    if (isFloat(*ParsedNumber))
-      return std::make_shared<FloatArgument>(toFloat(*ParsedNumber));
-    else
-      return std::make_shared<IntArgument>(toInt(*ParsedNumber));
-  }
+  if (auto ParsedNumber = parser::parseNumber(Value))
+    return std::make_shared<NumberArgument>(*ParsedNumber);
   return nullptr;
 }
 
@@ -110,7 +106,7 @@ bool TagState::parseNumber(std::string_view Value) {
   if (Value.length() != CommandTagDigits)
     return false;
   Context->ParsedCommand.setTag(
-      Tag(std::stoul(std::string(Value)), TagType::Command));
+      types::Tag(std::stoul(std::string(Value)), types::TagType::Command));
   Context->TransitionTo(std::make_unique<MethodNameState>());
   return true;
 }

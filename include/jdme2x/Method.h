@@ -15,7 +15,7 @@
 #include "jdme2x/Argument.h"
 #include "jdme2x/Property.h"
 #include "jdme2x/Serializeable.h"
-#include "jdme2x/Tag.h"
+#include "jdme2x/types/Tag.h"
 
 #include <string>
 #include <string_view>
@@ -36,15 +36,13 @@ public:
 
   Method &addArgument(std::shared_ptr<Argument> Value);
 
-  Method &addValue(int Value);
-
-  Method &addValue(float Value);
+  Method &addNumber(const types::Number& Value);
 
   Method &addString(std::string_view Value);
 
   Method &addName(std::string_view Value);
 
-  Method &addEventTag(const Tag& Value);
+  Method &addEventTag(const types::Tag& Value);
 
   Method &addProperty(const Property &Value);
 

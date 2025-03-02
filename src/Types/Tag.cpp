@@ -8,12 +8,14 @@
 //
 //===----------------------------------------------------------------------===//
 
-#include "jdme2x/Tag.h"
+#include "jdme2x/Types/Tag.h"
 
 #include <iomanip>
 #include <sstream>
 
 namespace jdme2x {
+
+namespace types {
 
 Tag::Tag() : Number(0), Type(TagType::Command) {};
 
@@ -27,13 +29,20 @@ void Tag::setType(TagType Value) { Type = Value; }
 
 TagType Tag::getType() const { return Type; }
 
-std::string Tag::toString() const {
-  std::ostringstream Steam;
-  if (Type == TagType::Command)
-    Steam << std::setw(5) << std::setfill('0') << Number;
-  else
-    Steam << 'E' << std::setw(4) << std::setfill('0') << Number;
-  return Steam.str();
+bool Tag::isUnsolicitedEvent() const {
+  return Type == TagType::Event && Number == 0;
 }
+
+Tag Tag::createUnsolicitedEvent() { return Tag(0, TagType::Event); }
+
+JDME2X_API std::ostream &operator<<(std::ostream &Stream, const Tag &Instance) {
+  if (Instance.Type == TagType::Command)
+    Stream << std::setw(5) << std::setfill('0') << Instance.Number;
+  else
+    Stream << 'E' << std::setw(4) << std::setfill('0') << Instance.Number;
+  return Stream;
+}
+
+} // namespace types
 
 } // namespace jdme2x

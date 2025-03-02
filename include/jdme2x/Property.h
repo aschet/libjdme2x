@@ -33,9 +33,7 @@ public:
 
   Property &addArgument(std::shared_ptr<Argument> Value);
 
-  Property &addValue(int Value);
-
-  Property &addValue(float Value);
+  Property &addNumber(const types::Number& Value);
 
   std::string toString() const override;
 

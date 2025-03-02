@@ -15,6 +15,7 @@
 #include <variant>
 
 using namespace jdme2x;
+using namespace jdme2x::types;
 using namespace jdme2x::parser;
 
 static void testInt(int ExpectedValue, std::string_view Text) {

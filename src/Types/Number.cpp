@@ -8,11 +8,13 @@
 //
 //===----------------------------------------------------------------------===//
 
-#include "jdme2x/Number.h"
+#include "jdme2x/Types/Number.h"
 
-#include <any>
+#include <string>
 
 namespace jdme2x {
+
+namespace types {
 
 JDME2X_API bool isInt(const Number &Value) {
   return std::holds_alternative<int>(Value);
@@ -36,4 +38,20 @@ JDME2X_API float toFloat(const Number &Value) {
     return std::get<float>(Value);
 }
 
+JDME2X_API bool toBool(const Number &Value) {
+  return static_cast<bool>(toInt(Value));
+}
+
+} // namespace types
+
 } // namespace jdme2x
+
+JDME2X_API std::ostream &operator<<(std::ostream &Stream,
+                                    const jdme2x::types::Number &Instance) {
+  if (jdme2x::types::isInt(Instance)) {
+    Stream << std::get<int>(Instance);
+  } else {
+    Stream << std::get<float>(Instance);
+  }
+  return Stream;
+}

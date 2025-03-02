@@ -17,12 +17,12 @@ namespace jdme2x {
 
 Command::Command() = default;
 
-Command::Command(const Tag &CommandTag, const Method &CommandMethod)
+Command::Command(const types::Tag &CommandTag, const Method &CommandMethod)
     : CommandTag(CommandTag), CommandMethod(CommandMethod) {}
 
-void Command::setTag(const Tag &Value) { CommandTag = Value; }
+void Command::setTag(const types::Tag &Value) { CommandTag = Value; }
 
-const Tag &Command::getTag() const { return CommandTag; }
+const types::Tag &Command::getTag() const { return CommandTag; }
 
 void Command::setMethod(const Method &Value) { CommandMethod = Value; }
 
@@ -32,7 +32,7 @@ Method &Command::getMethod() { return CommandMethod; }
 
 std::string Command::toString() const {
   std::ostringstream Stream;
-  Stream << CommandTag.toString();
+  Stream << CommandTag;
   Stream << ' ';
   Stream << CommandMethod.toString();
   Stream << "\r\n";

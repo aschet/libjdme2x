@@ -8,20 +8,32 @@
 //
 //===----------------------------------------------------------------------===//
 
-#ifndef JDME2X_TAG_H
-#define JDME2X_TAG_H
+#ifndef JDME2X_TYPES_TAG_H
+#define JDME2X_TYPES_TAG_H
 
 #include "jdme2x/API.h"
-#include "jdme2x/Serializeable.h"
+
+#include <ostream>
 
 namespace jdme2x {
+namespace types {
 
 enum class TagType { Command, Event };
 
-class JDME2X_API Tag : public Serializeable {
+constexpr int MinCommandNumber = 1;
+
+constexpr int MaxCommandNumber = 99999;
+
+constexpr int MinEventNumber = 0;
+
+constexpr int MaxEventNumber = 9999;
+
+class JDME2X_API Tag {
+  friend std::ostream &operator<<(std::ostream &os, const Tag &tag);
+
 public:
   Tag();
-  
+
   Tag(unsigned int Number, TagType Type);
 
   void setNumber(unsigned int Value);
@@ -32,13 +44,19 @@ public:
 
   TagType getType() const;
 
-  std::string toString() const override;
+  bool isUnsolicitedEvent() const;
+
+  static Tag createUnsolicitedEvent();
 
 private:
   unsigned int Number;
 
   TagType Type;
 };
+
+JDME2X_API std::ostream &operator<<(std::ostream &Stream, const Tag &Instance);
+
+} // namespace types
 
 } // namespace jdme2x
 

@@ -18,18 +18,14 @@
 
 namespace jdme2x {
 
-IntArgument::IntArgument(int Value) : Value(Value) {}
+NumberArgument::NumberArgument(const types::Number &Value) : Value(Value) {}
 
-int IntArgument::getValue() const { return Value; }
+types::Number NumberArgument::getValue() const {
+  return Value;
+}
 
-std::string IntArgument::toString() const { return std::to_string(Value); }
-
-FloatArgument::FloatArgument(float Value) : Value(Value) {}
-
-float FloatArgument::getValue() const { return Value; }
-
-std::string FloatArgument::toString() const {
-  std::stringstream Stream;
+std::string NumberArgument::toString() const {
+  std::ostringstream Stream;
   Stream << Value;
   return Stream.str();
 }
@@ -52,14 +48,18 @@ const std::string &NameArgument::getValue() const { return Value; }
 
 std::string NameArgument::toString() const { return Value; }
 
-EventTagArgument::EventTagArgument(const Tag &Value) : Value(Value) {
-  if (Value.getType() != TagType::Event)
+EventTagArgument::EventTagArgument(const types::Tag &Value) : Value(Value) {
+  if (Value.getType() != types::TagType::Event)
     throw std::invalid_argument("Type of Tag Value must be Event");
 }
 
-const Tag &EventTagArgument::getValue() const { return Value; }
+const types::Tag &EventTagArgument::getValue() const { return Value; }
 
-std::string EventTagArgument::toString() const { return Value.toString(); }
+std::string EventTagArgument::toString() const {
+  std::ostringstream Stream;
+  Stream << Value;
+  return Stream.str();
+}
 
 JDME2X_API std::string toString(const Arguments &Args) {
   if (Args.empty())

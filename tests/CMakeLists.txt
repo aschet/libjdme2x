@@ -2,18 +2,25 @@ project(jdme2x_tests)
 
 add_executable(${PROJECT_NAME})
 
+target_include_directories(${PROJECT_NAME}
+  PRIVATE
+    "${CMAKE_CURRENT_SOURCE_DIR}"
+)
+
 set(FILES_SRC
   "Parser/CommandLexerTest.cpp"
   "Parser/CommandParserTest.cpp"
   "Parser/ParserUtilsTest.cpp"
   "Parser/ResponseLexerTest.cpp"
   "Parser/ResponseParserTest.cpp"
+  "Types/NumberTest.cpp"
+  "Types/TagTest.cpp"
   "ArgumentTest.cpp"
   "CommandTest.cpp"
   "Main.cpp"
   "MethodTest.cpp"
   "PropertyTest.cpp"
-  "TagTest.cpp"
+  "TestUtils.h"
 )
 
 target_sources(${PROJECT_NAME}

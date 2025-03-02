@@ -8,25 +8,19 @@
 //
 //===----------------------------------------------------------------------===//
 
-#ifndef JDME2X_NUMBER_H
-#define JDME2X_NUMBER_H
+#ifndef TESTUTILS_H
+#define TESTUTILS_H
 
-#include "jdme2x/API.h"
-
-#include <variant>
+#include <sstream>
+#include <string>
 
 namespace jdme2x {
 
-typedef std::variant<int, float> Number;
-
-JDME2X_API bool isInt(const Number& Value);
-
-JDME2X_API bool isFloat(const Number &Value);
-
-JDME2X_API int toInt(const Number &Value);
-
-JDME2X_API float toFloat(const Number &Value);
+template <typename T> std::string toString(const T &value) {
+  std::ostringstream oss;
+  oss << value;
+  return oss.str();
+}
 
 } // namespace jdme2x
-
 #endif

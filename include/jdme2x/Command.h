@@ -14,7 +14,7 @@
 #include "jdme2x/API.h"
 #include "jdme2x/Method.h"
 #include "jdme2x/Serializeable.h"
-#include "jdme2x/Tag.h"
+#include "jdme2x/types/Tag.h"
 
 #include <string>
 
@@ -24,11 +24,11 @@ class JDME2X_API Command : public Serializeable {
 public:
   Command();
 
-  Command(const Tag &CommandTag, const Method &CommandMethod);
+  Command(const types::Tag &CommandTag, const Method &CommandMethod);
 
-  void setTag(const Tag &Value);
+  void setTag(const types::Tag &Value);
 
-  const Tag &getTag() const;
+  const types::Tag &getTag() const;
 
   void setMethod(const Method &Value);
 
@@ -39,7 +39,7 @@ public:
   std::string toString() const override;
 
 private:
-  Tag CommandTag;
+  types::Tag CommandTag;
 
   Method CommandMethod;
 };

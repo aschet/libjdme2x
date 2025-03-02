@@ -13,7 +13,7 @@
 
 #include "jdme2x/Argument.h"
 #include "jdme2x/Command.h"
-#include "jdme2x/Tag.h"
+#include "jdme2x/types/Tag.h"
 
 #include <memory>
 #include <string>
@@ -80,7 +80,7 @@ public:
   virtual bool hasCompleteParse() const;
 
 protected:
-  Tag makeEventTag(std::string_view Value);
+  types::Tag makeEventTag(std::string_view Value);
 
   std::shared_ptr<Argument> makeNumberArgument(std::string_view Value);
 

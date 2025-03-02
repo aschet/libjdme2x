@@ -8,23 +8,31 @@
 //
 //===----------------------------------------------------------------------===//
 
-#include "jdme2x/Tag.h"
+#include "jdme2x/types/Tag.h"
+#include "TestUtils.h"
 
 #include <boost/test/unit_test.hpp>
 #include <string>
 
 using namespace jdme2x;
+using namespace jdme2x::types;
 
 BOOST_AUTO_TEST_SUITE(TagTest)
 
 BOOST_AUTO_TEST_CASE(serialzeTag) {
   Tag CommandTag(1, TagType::Command);
-  std::string Result = CommandTag.toString();
+  std::string Result = toString(CommandTag);
   BOOST_TEST("00001" == Result);
 
   Tag EventTag(1, TagType::Event);
-  Result = EventTag.toString();
+  Result = toString(EventTag);
   BOOST_TEST("E0001" == Result);
+}
+
+BOOST_AUTO_TEST_CASE(checkForUnsolicitedEvent) {
+  BOOST_TEST(!Tag(1, TagType::Command).isUnsolicitedEvent());
+  BOOST_TEST(!Tag(1, TagType::Event).isUnsolicitedEvent());
+  BOOST_TEST(Tag::createUnsolicitedEvent().isUnsolicitedEvent());
 }
 
 BOOST_AUTO_TEST_SUITE_END()

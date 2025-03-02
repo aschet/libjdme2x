@@ -16,8 +16,7 @@ namespace jdme2x {
 
 namespace parser {
 
-JDME2X_API std::optional<std::variant<int, float>>
-parseNumber(std::string_view Text) {
+JDME2X_API std::optional<types::Number> parseNumber(std::string_view Text) {
   if (Text.empty())
     return std::nullopt;
 
@@ -34,14 +33,14 @@ parseNumber(std::string_view Text) {
         std::from_chars(Text.data(), Text.data() + Text.size(), ParsedNumber);
     if (Error != std::errc())
       return std::nullopt;
-    return Number(ParsedNumber);
+    return types::Number(ParsedNumber);
   } else {
     int ParsedNumber = 0;
     auto [Ptr, Error] =
         std::from_chars(Text.data(), Text.data() + Text.size(), ParsedNumber);
     if (Error != std::errc())
       return std::nullopt;
-    return Number(ParsedNumber);
+    return types::Number(ParsedNumber);
   }
 }
 

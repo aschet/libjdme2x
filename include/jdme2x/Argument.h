@@ -13,7 +13,8 @@
 
 #include "jdme2x/API.h"
 #include "jdme2x/Serializeable.h"
-#include "jdme2x/Tag.h"
+#include "jdme2x/Types/Number.h"
+#include "jdme2x/Types/Tag.h"
 
 #include <memory>
 #include <string>
@@ -22,31 +23,18 @@
 
 namespace jdme2x {
 
-class JDME2X_API Argument : public Serializeable {
-};
+class JDME2X_API Argument : public Serializeable {};
 
-class JDME2X_API IntArgument : public Argument {
+class JDME2X_API NumberArgument : public Argument {
 public:
-  explicit IntArgument(int Value);
+  explicit NumberArgument(const types::Number &Value);
 
-  int getValue() const;
+  types::Number getValue() const;
 
   std::string toString() const override;
 
 private:
-  int Value;
-};
-
-class JDME2X_API FloatArgument : public Argument {
-public:
-  explicit FloatArgument(float Value);
-
-  float getValue() const;
-
-  std::string toString() const override;
-
-private:
-  float Value;
+  types::Number Value;
 };
 
 class JDME2X_API StringArgument : public Argument {
@@ -75,14 +63,14 @@ private:
 
 class JDME2X_API EventTagArgument : public Argument {
 public:
-  explicit EventTagArgument(const Tag &Value);
+  explicit EventTagArgument(const types::Tag &Value);
 
-  const Tag &getValue() const;
+  const types::Tag &getValue() const;
 
   std::string toString() const override;
 
 private:
-  Tag Value;
+  types::Tag Value;
 };
 
 typedef std::vector<std::shared_ptr<Argument>> Arguments;

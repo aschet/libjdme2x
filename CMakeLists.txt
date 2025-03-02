@@ -54,14 +54,14 @@ set(FILES_INCLUDE
   "include/jdme2x/Parser/ResponseLexer.h"
   "include/jdme2x/Parser/ResponseParser.h"
   "include/jdme2x/Parser/TokenID.h"
+  "include/jdme2x/Types/Number.h"
+  "include/jdme2x/Types/Tag.h"
   "include/jdme2x/API.h"
   "include/jdme2x/Argument.h"
   "include/jdme2x/Command.h"
   "include/jdme2x/Method.h"
-  "include/jdme2x/Number.h"
   "include/jdme2x/Property.h"
   "include/jdme2x/Serializeable.h"
-  "include/jdme2x/Tag.h"
 )
 
 set(FILES_SRC
@@ -74,13 +74,13 @@ set(FILES_SRC
   "src/Parser/ParserUtils.cpp"
   "src/Parser/ResponseLexer.cpp"
   "src/Parser/ResponseParser.cpp"
+  "src/Types/Number.cpp"
+  "src/Types/Tag.cpp"
   "src/Argument.cpp"
   "src/Command.cpp"
   "src/Method.cpp"
-  "src/Number.cpp"
   "src/Property.cpp"
   "src/Serializeable.cpp"
-  "src/Tag.cpp"
 )
 
 target_sources(${PROJECT_NAME}
