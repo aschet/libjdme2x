@@ -5,6 +5,7 @@ add_executable(${PROJECT_NAME})
 set(FILES_SRC
   "Parser/CommandLexerTest.cpp"
   "Parser/CommandParserTest.cpp"
+  "Parser/ParserUtilsTest.cpp"
   "Parser/ResponseLexerTest.cpp"
   "Parser/ResponseParserTest.cpp"
   "ArgumentTest.cpp"

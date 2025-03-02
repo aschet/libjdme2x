@@ -10,6 +10,8 @@
 
 #include "CommandParserStates.h"
 
+#include "jdme2x/Parser/ParserUtils.h"
+
 #include <charconv>
 
 namespace jdme2x {
@@ -88,16 +90,13 @@ Tag CommandParserState::makeEventTag(std::string_view Value) {
 
 std::shared_ptr<Argument>
 CommandParserState::makeNumberArgument(std::string_view Value) {
-  if (Value.find_first_of(".eE") != std::string::npos) {
-    float Number = 0.0f;
-    std::from_chars(Value.data(), Value.data() + Value.size(), Number);
-    return std::make_shared<FloatArgument>(Number);
+  if (auto ParsedNumber = parser::parseNumber(Value)) {
+    if (isFloat(*ParsedNumber))
+      return std::make_shared<FloatArgument>(toFloat(*ParsedNumber));
+    else
+      return std::make_shared<IntArgument>(toInt(*ParsedNumber));
   }
-  else {
-    int Number = 0;
-    std::from_chars(Value.data(), Value.data() + Value.size(), Number);
-    return std::make_shared<IntArgument>(Number);
-  }
+  return nullptr;
 }
 
 bool TagState::parseEventTag(std::string_view Value) {
@@ -144,9 +143,13 @@ bool ArgumentState::parseName(std::string_view Value) {
 }
 
 bool ArgumentState::parseNumber(std::string_view Value) {
-  Context->ParsedCommand.getMethod().addArgument(makeNumberArgument(Value));
-  Context->TransitionTo(std::make_unique<ArgumentListSectionEndState>());
-  return true;
+  if (auto Argument = makeNumberArgument(Value)) {
+    Context->ParsedCommand.getMethod().addArgument(Argument);
+    Context->TransitionTo(std::make_unique<ArgumentListSectionEndState>());
+    return true;
+  } else {
+    return false;
+  }
 }
 
 bool ArgumentState::parseString(std::string_view Value) {
