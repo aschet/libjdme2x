@@ -46,6 +46,8 @@ BOOST_AUTO_TEST_CASE(parseFloat) {
   testFloat(-5.05f, "-5.05");
   testFloat(-5.05f, "-5.05");
   testFloat(0.05f, ".05");
+  testFloat(-0.05f, "-.05");
+  testFloat(0.05f, "+.05");
   testFloat(5e3f, "5e3");
   testFloat(5e3f, "5E3");
   testFloat(5e3f, "5E+3");
