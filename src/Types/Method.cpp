@@ -9,6 +9,7 @@
 //===----------------------------------------------------------------------===//
 
 #include "jdme2x/Types/Method.h"
+#include "StreamUtils.h"
 
 #include <utility>
 
@@ -46,14 +47,7 @@ const std::string &Method::getXML() const { return XML; }
 
 JDME2X_API std::ostream &operator<<(std::ostream &Stream,
                                     const MethodArgumentList &Instance) {
-  if (!Instance.empty()) {
-    auto End = Instance.end() - 1;
-    for (auto It = Instance.begin(); It != End; ++It) {
-      Stream << *It << ", ";
-    }
-    Stream << Instance.back();
-  }
-  return Stream;
+  return writeList(Stream, Instance);
 }
 
 JDME2X_API std::ostream &operator<<(std::ostream &Stream,

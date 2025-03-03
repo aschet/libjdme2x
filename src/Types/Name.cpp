@@ -18,6 +18,10 @@ Name::Name(const char *Text) : Value(Text) {}
 
 Name::Name(std::string_view Text) : Value(Text) {}
 
+Name::Name(const std::string &Text) : Value(Text) {}
+
+Name::Name(std::string &&Text) : Value(Text) {}
+
 bool Name::isBasic() const { return Value.find('.') == std::string::npos; }
 
 Name &Name::operator=(const char *Other) {

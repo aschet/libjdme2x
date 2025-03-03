@@ -34,6 +34,10 @@ public:
 
   Name(std::string_view Text);
 
+  Name(const std::string &Text);
+
+  Name(std::string &&Text);
+
   bool isBasic() const;
 
   Name &operator=(const Name &) = default;

@@ -83,6 +83,7 @@ set(FILES_SRC
   "src/Types/Name.cpp"
   "src/Types/Number.cpp"
   "src/Types/Property.cpp"
+  "src/Types/StreamUtils.h"
   "src/Types/String.cpp"
   "src/Types/Tag.cpp"
 )

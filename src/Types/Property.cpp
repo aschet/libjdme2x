@@ -9,6 +9,7 @@
 //===----------------------------------------------------------------------===//
 
 #include "jdme2x/Types/Property.h"
+#include "StreamUtils.h"
 
 #include <algorithm>
 #include <iterator>
@@ -48,14 +49,7 @@ JDME2X_API std::ostream &operator<<(std::ostream &Stream,
 
 JDME2X_API std::ostream &operator<<(std::ostream &Stream,
                                     const PropertyArgumentList &Instance) {
-  if (!Instance.empty()) {
-    auto End = Instance.end() - 1;
-    for (auto It = Instance.begin(); It != End; ++It) {
-      Stream << *It << ", ";
-    }
-    Stream << Instance.back();
-  }
-  return Stream;
+  return writeList(Stream, Instance);
 }
 
 } // namespace types
