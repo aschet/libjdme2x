@@ -16,6 +16,26 @@ namespace jdme2x {
 
 namespace parser {
 
+JDME2X_API std::optional<types::Tag> parseTag(std::string_view Text) {
+  constexpr size_t TagLength = 5;
+  if (Text.length() != TagLength)
+    return std::nullopt;
+
+  types::TagType Type = types::TagType::Command;
+  if (Text.front() == 'E') {
+    Text.remove_prefix(1);
+    Type = types::TagType::Event;
+  }
+
+  unsigned int ParsedNumber = 0;
+  auto [Ptr, Error] =
+      std::from_chars(Text.data(), Text.data() + Text.size(), ParsedNumber);
+
+  if (Error != std::errc())
+    return std::nullopt;
+  return types::Tag(ParsedNumber, Type);
+}
+
 JDME2X_API std::optional<types::Number> parseNumber(std::string_view Text) {
   if (Text.empty())
     return std::nullopt;

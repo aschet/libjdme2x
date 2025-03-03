@@ -54,7 +54,7 @@ public:
   Property &operator=(Property &&) = default;
 
 private:
-  types::Name PropertyName;
+  Name PropertyName;
 
   PropertyArgumentList PropertyArguments;
 };

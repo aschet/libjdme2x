@@ -12,10 +12,8 @@
 #define PARSER_COMMANDPARSERSTATES_H
 
 #include "jdme2x/Types/Command.h"
-#include "jdme2x/Types/Tag.h"
 
 #include <memory>
-#include <string>
 #include <string_view>
 
 namespace jdme2x {
@@ -79,8 +77,6 @@ public:
   virtual bool hasCompleteParse() const;
 
 protected:
-  types::Tag makeEventTag(std::string_view Value);
-
   CommandParserContext *Context = nullptr;
 };
 

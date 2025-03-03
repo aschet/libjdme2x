@@ -35,6 +35,12 @@ bool Tag::isUnsolicitedEvent() const {
 
 Tag Tag::createUnsolicitedEvent() { return Tag(0, TagType::Event); }
 
+bool Tag::operator==(const Tag &Other) const {
+  return Type == Other.Type && Number == Other.Number;
+}
+
+bool Tag::operator!=(const Tag &Other) const { return !operator==(Other); }
+
 JDME2X_API std::ostream &operator<<(std::ostream &Stream, const Tag &Instance) {
   if (Instance.Type == TagType::Command)
     Stream << std::setw(5) << std::setfill('0') << Instance.Number;

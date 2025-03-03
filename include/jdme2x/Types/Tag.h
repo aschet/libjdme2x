@@ -48,6 +48,10 @@ public:
 
   static Tag createUnsolicitedEvent();
 
+  bool operator==(const Tag &Other) const;
+
+  bool operator!=(const Tag &Other) const;
+
 private:
   unsigned int Number;
 

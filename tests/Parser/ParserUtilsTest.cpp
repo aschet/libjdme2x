@@ -13,7 +13,6 @@
 #include <boost/test/unit_test.hpp>
 #include <string_view>
 
-using namespace jdme2x;
 using namespace jdme2x::types;
 using namespace jdme2x::parser;
 
@@ -34,6 +33,11 @@ static void testFloat(float ExpectedValue, std::string_view Text) {
 }
 
 BOOST_AUTO_TEST_SUITE(ParserUtilsTest)
+
+BOOST_AUTO_TEST_CASE(parseTags){
+  BOOST_TEST(Tag(123, TagType::Event) == *parseTag("E0123"));
+  BOOST_TEST(Tag(5, TagType::Command) == *parseTag("00005"));
+}
 
 BOOST_AUTO_TEST_CASE(parseInt) {
   testInt(5, "5");

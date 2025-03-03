@@ -22,6 +22,8 @@ namespace jdme2x {
 
 namespace parser {
 
+JDME2X_API std::optional<types::Tag> parseTag(std::string_view Text);
+
 JDME2X_API std::optional<types::Number> parseNumber(std::string_view Text);
 
 } // namespace parser

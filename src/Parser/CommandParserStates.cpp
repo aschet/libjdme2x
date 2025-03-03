@@ -81,28 +81,22 @@ bool CommandParserState::parseXML(std::string_view) { return false; }
 
 bool CommandParserState::hasCompleteParse() const { return false; }
 
-types::Tag CommandParserState::makeEventTag(std::string_view Value) {
-  std::string_view ValueWithoutE = Value.substr(1, Value.length() - 1);
-  unsigned int Number = 0;
-  std::from_chars(ValueWithoutE.data(),
-                  ValueWithoutE.data() + ValueWithoutE.size(), Number);
-  return types::Tag(Number, types::TagType::Event);
-}
-
 bool TagState::parseEventTag(std::string_view Value) {
-  Context->ParsedCommand.setTag(makeEventTag(Value));
-  Context->TransitionTo(std::make_unique<MethodNameState>());
-  return true;
+  if (auto EventTag = parseTag(Value)) {
+    Context->ParsedCommand.setTag(*EventTag);
+    Context->TransitionTo(std::make_unique<MethodNameState>());
+    return true;
+  }
+  return false;
 }
 
 bool TagState::parseNumber(std::string_view Value) {
-  constexpr size_t CommandTagDigits = 5;
-  if (Value.length() != CommandTagDigits)
-    return false;
-  Context->ParsedCommand.setTag(
-      types::Tag(std::stoul(std::string(Value)), types::TagType::Command));
-  Context->TransitionTo(std::make_unique<MethodNameState>());
-  return true;
+  if (auto CommandTag = parseTag(Value)) {
+    Context->ParsedCommand.setTag(*CommandTag);
+    Context->TransitionTo(std::make_unique<MethodNameState>());
+    return true;
+  }
+  return false;
 }
 
 bool MethodNameState::parseName(std::string_view Value) {
@@ -122,9 +116,12 @@ bool ArgumentState::endScope() {
 }
 
 bool ArgumentState::parseEventTag(std::string_view Value) {
-  Context->ParsedCommand.getMethod().addArgument(makeEventTag(Value));
-  Context->TransitionTo(std::make_unique<ArgumentListSectionEndState>());
-  return true;
+  if (auto EventTag = parseTag(Value)) {
+    Context->ParsedCommand.getMethod().addArgument(*EventTag);
+    Context->TransitionTo(std::make_unique<ArgumentListSectionEndState>());
+    return true;
+  }
+  return false;
 }
 
 bool ArgumentState::parseName(std::string_view Value) {
@@ -137,9 +134,8 @@ bool ArgumentState::parseNumber(std::string_view Value) {
     Context->ParsedCommand.getMethod().addArgument(std::move(*ParsedNumber));
     Context->TransitionTo(std::make_unique<ArgumentListSectionEndState>());
     return true;
-  } else {
-    return false;
   }
+  return false;
 }
 
 bool ArgumentState::parseString(std::string_view Value) {
@@ -201,9 +197,8 @@ bool PropertyArgumentState::parseNumber(std::string_view Value) {
     Context->TransitionTo(
         std::make_unique<PropertyArgumentListSectionEndState>(CurrentProperty));
     return true;
-  } else {
-    return false;
   }
+  return false;
 }
 
 PropertyArgumentListSectionEndState::PropertyArgumentListSectionEndState(
