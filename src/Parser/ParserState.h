@@ -108,7 +108,7 @@ public:
   void transitionTo(StateFacade<T> *newState) { state = newState; }
 
   void reset() {
-    data = T();
+    data = T{};
     state = initialState;
   }
 
