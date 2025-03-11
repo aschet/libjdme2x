@@ -21,8 +21,7 @@
 namespace jdme2x {
 namespace types {
 
-class JDME2X_API Command {
-public:
+struct JDME2X_API Command {
   Command() = default;
 
   Command(const Tag &tag, const Method &method);

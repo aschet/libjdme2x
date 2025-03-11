@@ -20,8 +20,7 @@ namespace types {
 
 constexpr char DoneID = '%';
 
-class JDME2X_API Done {
-public:
+struct JDME2X_API Done {
   Done() = default;
 
   Done(const Done &) = default;

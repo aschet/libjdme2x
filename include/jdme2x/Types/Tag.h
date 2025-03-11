@@ -28,8 +28,7 @@ constexpr int MinEventNumber = 0;
 
 constexpr int MaxEventNumber = 9999;
 
-class JDME2X_API Tag {
-public:
+struct JDME2X_API Tag {
   Tag();
 
   Tag(unsigned int number, TagType type);

@@ -20,8 +20,7 @@ namespace types {
 
 constexpr char AcknowledgeID = '&';
 
-class JDME2X_API Acknowledge {
-public:
+struct JDME2X_API Acknowledge {
   Acknowledge() = default;
 
   Acknowledge(const Acknowledge &) = default;

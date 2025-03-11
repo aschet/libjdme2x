@@ -21,8 +21,7 @@ namespace types {
 
 using ArgumentList = std::vector<Argument>;
 
-class JDME2X_API Method {
-public:
+struct JDME2X_API Method {
   Method() = default;
 
   Method(const Method &) = default;

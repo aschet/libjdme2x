@@ -20,8 +20,7 @@
 namespace jdme2x {
 namespace types {
 
-class JDME2X_API String {
-public:
+struct JDME2X_API String {
   String() = default;
 
   String(const String &) = default;

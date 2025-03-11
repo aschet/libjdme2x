@@ -118,8 +118,7 @@ constexpr int MinError = 0;
 
 constexpr int MaxError = 9999;
 
-class JDME2X_API Error {
-public:
+struct JDME2X_API Error {
   Error();
 
   Error(const ErrorDefinition &definition, const String &cause);

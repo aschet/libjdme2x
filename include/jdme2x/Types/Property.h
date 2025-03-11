@@ -24,8 +24,7 @@ namespace types {
 
 using NumericalData = std::vector<Number>;
 
-class JDME2X_API Property {
-public:
+struct JDME2X_API Property {
   Property() = default;
 
   Property(const Property &) = default;

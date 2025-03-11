@@ -26,8 +26,7 @@ namespace types {
 using ResponseValue =
     std::variant<std::monostate, Acknowledge, Done, Data, Error>;
 
-class JDME2X_API Response {
-public:
+struct JDME2X_API Response {
   Response() = default;
 
   Response(const Tag &tag, const ResponseValue &value);
