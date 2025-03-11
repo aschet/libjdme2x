@@ -31,8 +31,7 @@ struct ResponseParserData {
 
 using ResponseParserContext = Context<ResponseParserData>;
 
-class ResponseStartState : public State<ResponseParserData> {
-public:
+struct ResponseStartState : public State<ResponseParserData> {
   bool parseEventTag(ResponseParserContext &context,
                      std::string_view text) override;
 
@@ -40,22 +39,19 @@ public:
                    std::string_view text) override;
 };
 
-class ResponseTypeState : public State<ResponseParserData> {
-public:
+struct ResponseTypeState : public State<ResponseParserData> {
   bool parseResponseType(ResponseParserContext &context,
                          std::string_view text) override;
 };
 
-class ResponseErrorState : public StateFacade<ResponseParserData> {
-public:
+struct ResponseErrorState : public StateFacade<ResponseParserData> {
   bool parse(ResponseParserContext &context, TokenID id,
              std::string_view text) override;
 
   bool hasCompleteParse(ResponseParserContext &context) override;
 };
 
-class ResponseDataState : public State<ResponseParserData> {
-public:
+struct ResponseDataState : public State<ResponseParserData> {
   bool parseNumber(ResponseParserContext &context,
                    std::string_view text) override;
 
@@ -66,55 +62,47 @@ public:
                  std::string_view text) override;
 };
 
-class NumericDataState : public State<ResponseParserData> {
-public:
+struct NumericDataState : public State<ResponseParserData> {
   bool parseNumber(ResponseParserContext &context,
                    std::string_view text) override;
 };
 
-class NextNumericDataState : public State<ResponseParserData> {
-public:
+struct NextNumericDataState : public State<ResponseParserData> {
   bool endSection(ResponseParserContext &context) override;
 
   bool hasCompleteParse(ResponseParserContext &context) override;
 };
 
-class PropertyDataSeparatorState : public State<ResponseParserData> {
-public:
+struct PropertyDataSeparatorState : public State<ResponseParserData> {
   bool endSection(ResponseParserContext &context) override;
 };
 
-class PropertyDataValueState : public State<ResponseParserData> {
-public:
+struct PropertyDataValueState : public State<ResponseParserData> {
   bool parseString(ResponseParserContext &context,
                    std::string_view text) override;
 };
 
-class MethodDataState : public StateFacade<ResponseParserData> {
-public:
+struct MethodDataState : public StateFacade<ResponseParserData> {
   bool parse(ResponseParserContext &context, TokenID id,
              std::string_view text) override;
 
   bool hasCompleteParse(ResponseParserContext &context) override;
 };
 
-class NextPropertyListValueState : public State<ResponseParserData> {
-public:
+struct NextPropertyListValueState : public State<ResponseParserData> {
   bool endSection(ResponseParserContext &context) override;
 
   bool hasCompleteParse(ResponseParserContext &context) override;
 };
 
-class PropertyListValueState : public StateFacade<ResponseParserData> {
-public:
+struct PropertyListValueState : public StateFacade<ResponseParserData> {
   bool parse(ResponseParserContext &context, TokenID id,
              std::string_view text) override;
 
   bool hasCompleteParse(ResponseParserContext &context) override;
 };
 
-class ResponseEndState : public State<ResponseParserData> {
-public:
+struct ResponseEndState : public State<ResponseParserData> {
   bool hasCompleteParse(ResponseParserContext &) override;
 };
 

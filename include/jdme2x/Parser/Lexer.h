@@ -34,7 +34,7 @@ enum class TokenID {
   ResponseType
 };
 
-class LexerImpl;
+struct LexerImpl;
 
 class JDME2X_API Lexer {
 public:

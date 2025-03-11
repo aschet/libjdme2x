@@ -21,8 +21,7 @@ namespace parser {
 
 template <typename T> class Context;
 
-template <typename T> class StateFacade {
-public:
+template <typename T> struct StateFacade {
   virtual ~StateFacade() = default;
 
   virtual bool parse(Context<T> &context, TokenID id,
@@ -31,8 +30,7 @@ public:
   virtual bool hasCompleteParse(Context<T> &context) = 0;
 };
 
-template <typename T> class State : public StateFacade<T> {
-public:
+template <typename T> struct State : public StateFacade<T> {
   bool parse(Context<T> &context, TokenID id, std::string_view text) {
     switch (id) {
     case TokenID::OpenParen:
@@ -86,8 +84,7 @@ public:
   virtual bool endLine(Context<T> &) { return false; }
 };
 
-template <typename T> class Singleton {
-public:
+template <typename T> struct Singleton {
   static T *instance() {
     static T staticInstance;
     return &staticInstance;

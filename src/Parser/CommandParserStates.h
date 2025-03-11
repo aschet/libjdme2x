@@ -31,8 +31,7 @@ struct CommandParserData {
 
 using CommandParserContext = Context<CommandParserData>;
 
-class CommandStartState : public State<CommandParserData> {
-public:
+struct CommandStartState : public State<CommandParserData> {
   bool parseEventTag(CommandParserContext &context,
                      std::string_view text) override;
 
@@ -40,16 +39,14 @@ public:
                    std::string_view text) override;
 };
 
-class CommandMethodState : public StateFacade<CommandParserData> {
-public:
+struct CommandMethodState : public StateFacade<CommandParserData> {
   bool parse(CommandParserContext &context, TokenID id,
              std::string_view text) override;
 
   bool hasCompleteParse(CommandParserContext &context) override;
 };
 
-class CommandEndState : public State<CommandParserData> {
-public:
+struct CommandEndState : public State<CommandParserData> {
   bool hasCompleteParse(CommandParserContext &context) override;
 };
 

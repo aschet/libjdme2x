@@ -33,8 +33,7 @@ struct LexerFunctorAdapter {
   std::function<bool(TokenID, std::string_view)> functor;
 };
 
-class LexerImpl : public lex::lexer<lex::lexertl::lexer<>> {
-public:
+struct LexerImpl : public lex::lexer<lex::lexertl::lexer<>> {
   LexerImpl() {
     add("\\(", TokenID::OpenParen);
     add("\\)", TokenID::CloseParen);

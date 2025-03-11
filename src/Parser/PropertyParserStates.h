@@ -26,33 +26,29 @@ using PropertyParserState = State<types::Property>;
 
 using PropertyParserContext = Context<types::Property>;
 
-class PropertyStartState : public PropertyParserState {
-public:
-  bool parseName(PropertyParserContext &context, std::string_view text) override;
+struct PropertyStartState : public PropertyParserState {
+  bool parseName(PropertyParserContext &context,
+                 std::string_view text) override;
 };
 
-class PropertyValueStartState : public PropertyParserState {
-public:
+struct PropertyValueStartState : public PropertyParserState {
   bool beginScope(PropertyParserContext &context) override;
 };
 
-class PropertyValueState : public PropertyParserState {
-public:
+struct PropertyValueState : public PropertyParserState {
   bool endScope(PropertyParserContext &context) override;
 
   bool parseNumber(PropertyParserContext &context,
                    std::string_view text) override;
 };
 
-class NextPropertyValueState : public PropertyParserState {
-public:
+struct NextPropertyValueState : public PropertyParserState {
   bool endScope(PropertyParserContext &context) override;
 
   bool endSection(PropertyParserContext &context) override;
 };
 
-class PropertyEndState : public PropertyParserState {
-public:
+struct PropertyEndState : public PropertyParserState {
   bool hasCompleteParse(PropertyParserContext &context) override;
 };
 

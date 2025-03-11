@@ -34,18 +34,15 @@ using MethodParserState = State<MethodParserData>;
 
 using MethodParserContext = Context<MethodParserData>;
 
-class MethodStartState : public MethodParserState {
-public:
+struct MethodStartState : public MethodParserState {
   bool parseName(MethodParserContext &context, std::string_view text) override;
 };
 
-class ArgumentListStartState : public MethodParserState {
-public:
+struct ArgumentListStartState : public MethodParserState {
   bool beginScope(MethodParserContext &context) override;
 };
 
-class ArgumentState : public MethodParserState {
-public:
+struct ArgumentState : public MethodParserState {
   bool endScope(MethodParserContext &context) override;
 
   bool parseEventTag(MethodParserContext &context,
@@ -62,15 +59,13 @@ public:
   bool parseXML(MethodParserContext &context, std::string_view text) override;
 };
 
-class NextArgumentState : public MethodParserState {
-public:
+struct NextArgumentState : public MethodParserState {
   bool endScope(MethodParserContext &context) override;
 
   bool endSection(MethodParserContext &context) override;
 };
 
-class PropertyOrNameArgumentState : public MethodParserState {
-public:
+struct PropertyOrNameArgumentState : public MethodParserState {
   bool beginScope(MethodParserContext &context) override;
 
   bool endScope(MethodParserContext &context) override;
@@ -78,21 +73,18 @@ public:
   bool endSection(MethodParserContext &context) override;
 };
 
-class PropertyArgumentState : public StateFacade<MethodParserData> {
-public:
+struct PropertyArgumentState : public StateFacade<MethodParserData> {
   bool parse(MethodParserContext &context, TokenID id,
              std::string_view text) override;
 
   bool hasCompleteParse(MethodParserContext &context) override;
 };
 
-class ArgumentListEndState : public MethodParserState {
-public:
+struct ArgumentListEndState : public MethodParserState {
   bool endScope(MethodParserContext &context) override;
 };
 
-class MethodEndState : public MethodParserState {
-public:
+struct MethodEndState : public MethodParserState {
   bool hasCompleteParse(MethodParserContext &context) override;
 };
 
