@@ -26,8 +26,8 @@ constexpr bool holdsInt(const Number &value) {
 }
 
 constexpr bool holdsBool(const Number &value) {
-  if (auto intValue = std::get_if<int>(&value)) {
-    if (*intValue == 0 || *intValue == 1)
+  if (const int *specificValue = std::get_if<int>(&value)) {
+    if (*specificValue == 0 || *specificValue == 1)
       return true;
   }
   return false;
@@ -38,8 +38,8 @@ constexpr bool holdsDouble(const Number &value) {
 }
 
 constexpr int getInt(const Number &value) {
-  if (const int *intValue = std::get_if<int>(&value))
-    return *intValue;
+  if (const int *specificValue = std::get_if<int>(&value))
+    return *specificValue;
   return static_cast<int>(std::get<double>(value));
 }
 
@@ -48,8 +48,8 @@ constexpr bool getBool(const Number &value) {
 }
 
 constexpr double getDouble(const Number &value) {
-  if (const double *doubleValue = std::get_if<double>(&value))
-    return *doubleValue;
+  if (const double *specificValue = std::get_if<double>(&value))
+    return *specificValue;
   return static_cast<double>(std::get<int>(value));
 }
 

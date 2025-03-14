@@ -15,8 +15,8 @@ namespace types {
 
 JDME2X_API std::ostream &operator<<(std::ostream &stream,
                                     const Number &instance) {
-  if (const int *intValue = std::get_if<int>(&instance))
-    stream << *intValue;
+  if (const int *specificValue = std::get_if<int>(&instance))
+    stream << *specificValue;
   else
     stream << std::get<double>(instance);
   return stream;
