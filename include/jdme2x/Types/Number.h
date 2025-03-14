@@ -21,11 +21,11 @@ namespace types {
 
 using Number = std::variant<int, float>;
 
-inline bool holdsInt(const Number &value) {
+bool holdsInt(const Number &value) {
   return std::holds_alternative<int>(value);
 }
 
-inline bool holdsBool(const Number &value) {
+bool holdsBool(const Number &value) {
   if (auto intValue = std::get_if<int>(&value)) {
     if (*intValue == 0 || *intValue == 1)
       return true;
@@ -33,7 +33,7 @@ inline bool holdsBool(const Number &value) {
   return false;
 }
 
-inline bool holdsFloat(const Number &value) {
+bool holdsFloat(const Number &value) {
   return std::holds_alternative<float>(value);
 }
 
