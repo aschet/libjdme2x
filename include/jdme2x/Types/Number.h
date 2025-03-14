@@ -37,7 +37,7 @@ constexpr bool holdsDouble(const Number &value) {
   return std::holds_alternative<double>(value);
 }
 
-constexpr int getInt(const Number& value) {
+constexpr int getInt(const Number &value) {
   if (const int *intValue = std::get_if<int>(&value))
     return *intValue;
   return static_cast<int>(std::get<double>(value));
