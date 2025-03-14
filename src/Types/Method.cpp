@@ -10,8 +10,6 @@
 
 #include "jdme2x/Types/Method.h"
 
-#include "StreamUtils.h"
-
 namespace jdme2x {
 namespace types {
 
@@ -53,11 +51,6 @@ Method &Method::withXML(std::string &&arg) {
   args.clear();
   xml = arg;
   return *this;
-}
-
-JDME2X_API std::ostream &operator<<(std::ostream &stream,
-                                    const ArgumentList &instance) {
-  return writeList(stream, instance);
 }
 
 JDME2X_API std::ostream &operator<<(std::ostream &stream,

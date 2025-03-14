@@ -15,6 +15,7 @@
 #include "jdme2x/Types/Method.h"
 #include "jdme2x/Types/Number.h"
 #include "jdme2x/Types/Property.h"
+#include "jdme2x/Types/String.h"
 
 #include <ostream>
 #include <utility>

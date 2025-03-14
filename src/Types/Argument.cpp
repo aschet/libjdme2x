@@ -10,13 +10,13 @@
 
 #include "jdme2x/Types/Argument.h"
 
-#include <variant>
+#include "StreamUtils.h"
 
 namespace jdme2x {
 namespace types {
 
-struct ArgumentVisitor {
-  ArgumentVisitor(std::ostream &stream) : stream(stream) {}
+struct ArgumentStreamVisitor {
+  ArgumentStreamVisitor(std::ostream &stream) : stream(stream) {}
 
   void operator()(const std::monostate &) const {}
 
@@ -35,8 +35,13 @@ struct ArgumentVisitor {
 
 JDME2X_API std::ostream &operator<<(std::ostream &stream,
                                     const Argument &instance) {
-  std::visit(ArgumentVisitor(stream), instance);
+  std::visit(ArgumentStreamVisitor(stream), instance);
   return stream;
+}
+
+JDME2X_API std::ostream &operator<<(std::ostream &stream,
+                                    const ArgumentList &instance) {
+  return writeList(stream, instance);
 }
 
 } // namespace types

@@ -26,10 +26,8 @@ JDME2X_API std::ostream &operator<<(std::ostream &stream,
   return writeList(stream, instance);
 }
 
-struct DataVisitor {
-  std::ostream &stream;
-
-  DataVisitor(std::ostream &stream) : stream(stream) {}
+struct DataStreamVisitor {
+  DataStreamVisitor(std::ostream &stream) : stream(stream) {}
 
   void operator()(const std::monostate &) const {}
 
@@ -40,11 +38,13 @@ struct DataVisitor {
   void operator()(const PropertyList &value) const { stream << value; }
 
   void operator()(const Method &value) const { stream << value; }
+
+  std::ostream &stream;
 };
 
 std::ostream &operator<<(std::ostream &stream, const Data &instance) {
   stream << DataID << ' ';
-  std::visit(DataVisitor(stream), instance);
+  std::visit(DataStreamVisitor(stream), instance);
   return stream;
 }
 

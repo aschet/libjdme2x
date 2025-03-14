@@ -19,8 +19,6 @@
 namespace jdme2x {
 namespace types {
 
-using ArgumentList = std::vector<Argument>;
-
 struct JDME2X_API Method {
   Method() = default;
 
@@ -56,9 +54,6 @@ struct JDME2X_API Method {
 
   std::string xml;
 };
-
-JDME2X_API std::ostream &operator<<(std::ostream &stream,
-                                    const ArgumentList &instance);
 
 JDME2X_API std::ostream &operator<<(std::ostream &stream,
                                     const Method &instance);
