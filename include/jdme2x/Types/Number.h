@@ -19,13 +19,13 @@
 namespace jdme2x {
 namespace types {
 
-using Number = std::variant<int, float>;
+using Number = std::variant<int, double>;
 
-bool holdsInt(const Number &value) {
+constexpr bool holdsInt(const Number &value) {
   return std::holds_alternative<int>(value);
 }
 
-bool holdsBool(const Number &value) {
+constexpr bool holdsBool(const Number &value) {
   if (auto intValue = std::get_if<int>(&value)) {
     if (*intValue == 0 || *intValue == 1)
       return true;
@@ -33,15 +33,25 @@ bool holdsBool(const Number &value) {
   return false;
 }
 
-bool holdsFloat(const Number &value) {
-  return std::holds_alternative<float>(value);
+constexpr bool holdsDouble(const Number &value) {
+  return std::holds_alternative<double>(value);
 }
 
-JDME2X_API int getInt(const Number &value);
+constexpr int getInt(const Number& value) {
+  if (const int *intValue = std::get_if<int>(&value))
+    return *intValue;
+  return static_cast<int>(std::get<double>(value));
+}
 
-JDME2X_API bool getBool(const Number &value);
+constexpr bool getBool(const Number &value) {
+  return static_cast<bool>(getInt(value));
+}
 
-JDME2X_API float getFloat(const Number &value);
+constexpr double getDouble(const Number &value) {
+  if (const double *doubleValue = std::get_if<double>(&value))
+    return *doubleValue;
+  return static_cast<double>(std::get<int>(value));
+}
 
 JDME2X_API std::ostream &operator<<(std::ostream &stream,
                                     const Number &instance);

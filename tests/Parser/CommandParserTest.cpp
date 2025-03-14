@@ -27,8 +27,8 @@ BOOST_AUTO_TEST_CASE(parseCommand) {
 
   Command onMoveReportE(Tag(1, TagType::Event),
                         Method("OnMoveReportE")
-                            .with(Property("Time").with(5))
-                            .with(Property("Dis").with(0.34f))
+                            .with(Property("Time").with(Number(5)))
+                            .with(Property("Dis").with(Number(0.34)))
                             .with(Property("X"))
                             .with(Property("Y"))
                             .with(Property("Z")));

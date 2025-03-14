@@ -47,7 +47,7 @@ JDME2X_API std::optional<types::Number> createNumber(std::string_view text) {
     text.remove_prefix(1);
 
   if (text.find_first_of(".eE") != std::string::npos) {
-    float number = 0.0f;
+    float number = 0.0;
     auto [ptr, error] =
         std::from_chars(text.data(), text.data() + text.size(), number);
     if (error != std::errc())

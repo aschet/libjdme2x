@@ -50,16 +50,16 @@ BOOST_AUTO_TEST_CASE(parseErrorReponse) {
 BOOST_AUTO_TEST_CASE(parseNumericDataResponse) {
   ResponseParser parser;
   Response dataResponse(Tag(10, TagType::Command),
-                        NumericalData{0.6f, 0.0f, 0.8f});
+                        NumericalData{Number(0.6), Number(0.0), Number(0.8)});
   BOOST_TEST(dataResponse == parser.parse("00010 # 0.6, 0., 0.8\r\n").second);
 }
 
 BOOST_AUTO_TEST_CASE(parsePropertyListDataResponse) {
   ResponseParser parser;
   Response dataResponse(Tag(60, TagType::Event),
-                        PropertyList{Property("X").with(0.35145f),
-                                     Property("Y").with(0.70290f),
-                                     Property("Z").with(1.05435f)});
+                        PropertyList{Property("X").with(Number(0.35145)),
+                                     Property("Y").with(Number(0.70290)),
+                                     Property("Z").with(Number(1.05435))});
   BOOST_TEST(
       dataResponse ==
       parser.parse("E0060 # X(0.35145), Y(0.70290), Z(1.05435)\r\n").second);
@@ -70,9 +70,9 @@ BOOST_AUTO_TEST_CASE(parseMethodDataResponse) {
   Response dataResponse(Tag(200, TagType::Command),
                         Method("ChangeToolAction")
                             .with(Name("Switch"))
-                            .with(Property("X").with(0.0f))
-                            .with(Property("Y").with(0.0f))
-                            .with(Property("Z").with(-8.0f)));
+                            .with(Property("X").with(0.0))
+                            .with(Property("Y").with(0.0))
+                            .with(Property("Z").with(-8.0)));
   BOOST_TEST(dataResponse ==
              parser
                  .parse("00200 #ChangeToolAction(Switch, X(0.00000), "

@@ -27,7 +27,8 @@ BOOST_AUTO_TEST_CASE(serializeAcknowledgeResponse) {
 }
 
 BOOST_AUTO_TEST_CASE(serializeDataResponse) {
-  Response response(Tag(1, TagType::Command), NumericalData{12, 13});
+  Response response(Tag(1, TagType::Command),
+                    NumericalData{Number(12), Number(13)});
   BOOST_TEST(response.holdsData());
   BOOST_TEST("00001 # 12, 13\r\n" == test::toString(response));
   response.data();

@@ -10,8 +10,8 @@ using namespace jdme2x::types;
 static void buildCommand() {
   Command onMoveReportECommand(Tag(1, TagType::Event),
                                Method("OnMoveReportE")
-                                   .with(Property("Time").with(5))
-                                   .with(Property("Dis").with(0.34f))
+                                   .with(Property("Time").with(Number(5)))
+                                   .with(Property("Dis").with(Number(0.34)))
                                    .with(Property("X"))
                                    .with(Property("Y"))
                                    .with(Property("Z")));
@@ -25,7 +25,8 @@ static void buildResponse() {
   Response doneRespone(Tag(3, TagType::Command), Done());
   std::cout << doneRespone;
 
-  Response dataRespone(Tag(4, TagType::Command), Data(NumericalData{1, 2}));
+  Response dataRespone(Tag(4, TagType::Command),
+                       Data(NumericalData{Number(1), Number(2)}));
   std::cout << dataRespone;
 
   Response errorRespone(Tag(5, TagType::Command),

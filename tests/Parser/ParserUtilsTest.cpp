@@ -22,17 +22,15 @@ using namespace jdme2x::parser;
 static void testInt(int expectedValue, std::string_view text) {
   auto value = createNumber(text);
   BOOST_TEST(value.has_value());
-  BOOST_TEST(!holdsFloat(*value));
   BOOST_TEST(holdsInt(*value));
   BOOST_TEST(expectedValue == getInt(*value));
 }
 
-static void testFloat(float expectedValue, std::string_view text) {
+static void testDouble(double expectedValue, std::string_view text) {
   auto value = createNumber(text);
   BOOST_TEST(value.has_value());
-  BOOST_TEST(!holdsInt(*value));
-  BOOST_TEST(holdsFloat(*value));
-  BOOST_TEST(expectedValue == getFloat(*value));
+  BOOST_TEST(holdsDouble(*value));
+  BOOST_TEST(expectedValue == getDouble(*value));
 }
 
 BOOST_AUTO_TEST_SUITE(ParserUtilsTest)
@@ -49,17 +47,17 @@ BOOST_AUTO_TEST_CASE(parseIntNumber) {
 }
 
 BOOST_AUTO_TEST_CASE(parseFloatNumber) {
-  testFloat(5.05f, "5.05");
-  testFloat(-5.05f, "-5.05");
-  testFloat(-5.05f, "-5.05");
-  testFloat(0.05f, ".05");
-  testFloat(-0.05f, "-.05");
-  testFloat(0.05f, "+.05");
-  testFloat(5e3f, "5e3");
-  testFloat(5e3f, "5E3");
-  testFloat(5e3f, "5E+3");
-  testFloat(5e-3f, "5e-3");
-  testFloat(5e-3f, "5E-3");
+  testDouble(5.05f, "5.05");
+  testDouble(-5.05f, "-5.05");
+  testDouble(-5.05f, "-5.05");
+  testDouble(0.05f, ".05");
+  testDouble(-0.05f, "-.05");
+  testDouble(0.05f, "+.05");
+  testDouble(5e3f, "5e3");
+  testDouble(5e3f, "5E3");
+  testDouble(5e3f, "5E+3");
+  testDouble(5e-3f, "5e-3");
+  testDouble(5e-3f, "5E-3");
 }
 
 BOOST_AUTO_TEST_CASE(parseString) {
@@ -77,8 +75,8 @@ BOOST_AUTO_TEST_CASE(convertToError) {
 }
 
 BOOST_AUTO_TEST_CASE(convertToProperty) {
-  Property property = Property("X").with(-100);
-  Method propertyMethod = Method(property.name).with(-100);
+  Property property = Property("X").with(Number(-100));
+  Method propertyMethod = Method(property.name).with(Number(-100));
   BOOST_TEST(property == *createProperty(propertyMethod));
 }
 

@@ -27,17 +27,17 @@ BOOST_AUTO_TEST_CASE(serializePropertyData) {
 }
 
 BOOST_AUTO_TEST_CASE(serializePropertyList) {
-  PropertyList properties = {Property("Y").with(-0.77f),
-                             Property("X").with(2.01f)};
+  PropertyList properties = {Property("Y").with(Number(-0.77)),
+                             Property("X").with(Number(2.01))};
   BOOST_TEST("Y(-0.77), X(2.01)" == test::toString(properties));
 }
 
 BOOST_AUTO_TEST_CASE(serializeData) {
   Method changeToolAction("ChangeToolAction");
   changeToolAction.with(Name("MoveAuto"))
-      .with(Property("X").with(1))
-      .with(Property("Y").with(2))
-      .with(Property("Z").with(3));
+      .with(Property("X").with(Number(1)))
+      .with(Property("Y").with(Number(2)))
+      .with(Property("Z").with(Number(3)));
   BOOST_TEST("# ChangeToolAction(MoveAuto, X(1), Y(2), Z(3))" ==
              test::toString(Data(changeToolAction)));
 }

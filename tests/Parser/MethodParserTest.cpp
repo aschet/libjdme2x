@@ -26,18 +26,18 @@ BOOST_AUTO_TEST_CASE(parseMethod) {
 
   Method alignPart = Method("AlignPart")
                          .with(Number(0))
-                         .with(-1)
+                         .with(Number(-1))
                          .with(Number(0))
-                         .with(0.6f)
+                         .with(Number(0.6))
                          .with(Number(0))
-                         .with(0.8f)
-                         .with(1);
+                         .with(Number(0.8f))
+                         .with(Number(1));
   BOOST_TEST(alignPart ==
              parser.parse("AlignPart(0, -1, 0, 0.6, 0, 0.8, 1)").second);
 
   Method onMoveReportE = Method("OnMoveReportE")
-                             .with(Property("Time").with(5))
-                             .with(Property("Dis").with(0.34f))
+                             .with(Property("Time").with(Number(5)))
+                             .with(Property("Dis").with(Number(0.34)))
                              .with(Property("X"))
                              .with(Property("Y"))
                              .with(Property("Z"));

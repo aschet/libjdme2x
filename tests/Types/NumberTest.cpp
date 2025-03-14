@@ -21,20 +21,20 @@ BOOST_AUTO_TEST_SUITE(NumberTest)
 BOOST_AUTO_TEST_CASE(serializeNumber) {
   BOOST_TEST("-1" == test::toString(Number(-1)));
   BOOST_TEST("1" == test::toString(Number(1)));
-  BOOST_TEST("1.5" == test::toString(Number(1.5f)));
-  BOOST_TEST("-1.5" == test::toString(Number(-1.5f)));
+  BOOST_TEST("1.5" == test::toString(Number(1.5)));
+  BOOST_TEST("-1.5" == test::toString(Number(-1.5)));
 }
 
 BOOST_AUTO_TEST_CASE(queryNumberType) {
   BOOST_TEST(holdsInt(Number(-1)));
-  BOOST_TEST(holdsFloat(Number(1.5f)));
+  BOOST_TEST(holdsDouble(Number(1.5)));
 }
 
 BOOST_AUTO_TEST_CASE(castNumber) {
   BOOST_TEST(-1 == getInt(Number(-1)));
-  BOOST_TEST(-1.0f == getFloat(Number(-1)));
-  BOOST_TEST(-1 == getInt(Number(-1.5f)));
-  BOOST_TEST(-1.5f == getFloat(Number(-1.5f)));
+  BOOST_TEST(-1.0f == getDouble(Number(-1)));
+  BOOST_TEST(-1 == getInt(Number(-1.5)));
+  BOOST_TEST(-1.5f == getDouble(Number(-1.5)));
   BOOST_TEST(true == getBool(Number(1)));
   BOOST_TEST(false == getBool(Number(0)));
 }

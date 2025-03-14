@@ -21,9 +21,11 @@ BOOST_AUTO_TEST_SUITE(PropertyTest)
 
 BOOST_AUTO_TEST_CASE(serializeProperty) {
   BOOST_TEST("X()" == test::toString(Property("X")));
-  BOOST_TEST("Y(-100)" == test::toString(Property("Y").with(-100)));
-  BOOST_TEST("Test(-100, 0, 100)" ==
-             test::toString(Property("Test").with(-100).with(0).with(100)));
+  BOOST_TEST("Y(-100)" == test::toString(Property("Y").with(Number(-100))));
+  BOOST_TEST("Test(-100, 0, 100)" == test::toString(Property("Test")
+                                                        .with(Number(-100))
+                                                        .with(Number(0))
+                                                        .with(Number(100))));
 }
 
 BOOST_AUTO_TEST_SUITE_END()
