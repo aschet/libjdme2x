@@ -47,17 +47,17 @@ BOOST_AUTO_TEST_CASE(parseIntNumber) {
 }
 
 BOOST_AUTO_TEST_CASE(parseFloatNumber) {
-  testDouble(5.05f, "5.05");
-  testDouble(-5.05f, "-5.05");
-  testDouble(-5.05f, "-5.05");
-  testDouble(0.05f, ".05");
-  testDouble(-0.05f, "-.05");
-  testDouble(0.05f, "+.05");
-  testDouble(5e3f, "5e3");
-  testDouble(5e3f, "5E3");
-  testDouble(5e3f, "5E+3");
-  testDouble(5e-3f, "5e-3");
-  testDouble(5e-3f, "5E-3");
+  testDouble(5.05, "5.05");
+  testDouble(-5.05, "-5.05");
+  testDouble(-5.05, "-5.05");
+  testDouble(0.05, ".05");
+  testDouble(-0.05, "-.05");
+  testDouble(0.05, "+.05");
+  testDouble(5e3, "5e3");
+  testDouble(5e3, "5E3");
+  testDouble(5e3, "5E+3");
+  testDouble(5e-3, "5e-3");
+  testDouble(5e-3, "5E-3");
 }
 
 BOOST_AUTO_TEST_CASE(parseString) {
