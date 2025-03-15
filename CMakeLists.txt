@@ -75,9 +75,8 @@ set(FILES_INCLUDE
 )
 
 set(FILES_SRC
-  "src/Interfaces/Server/EndSession.cpp"
-  "src/Interfaces/Server/StartSession.cpp"
   "src/Interfaces/Server/StopDaemon.cpp"
+  "src/Interfaces/Signature.cpp"
   "src/Parser/CommandParser.cpp"
   "src/Parser/CommandParserStates.cpp"
   "src/Parser/CommandParserStates.h"

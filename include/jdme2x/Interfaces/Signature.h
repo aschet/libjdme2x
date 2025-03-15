@@ -33,12 +33,24 @@ struct JDME2X_API Parameters {
   decode(const types::ArgumentList &args) = 0;
 };
 
+struct JDME2X_API VoidParameters : public Parameters {
+  types::ArgumentList encode() const override;
+
+  std::optional<types::Error> decode(const types::ArgumentList &args) override;
+};
+
 struct JDME2X_API ReturnData {
   virtual ~ReturnData() = default;
 
   virtual DataList encode() const = 0;
 
   virtual void decode(const DataList &data) = 0;
+};
+
+struct JDME2X_API VoidReturnData : public ReturnData {
+  DataList encode() const override;
+
+  void decode(const DataList &data) override;
 };
 
 } // namespace interfaces

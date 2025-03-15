@@ -26,9 +26,5 @@ StopDaemonParameters::decode(const types::ArgumentList &) {
   return std::nullopt;
 }
 
-DataList StopDaemonReturnData::encode() const { return DataList(); }
-
-void StopDaemonReturnData::decode(const DataList &) {}
-
 } // namespace interfaces
 } // namespace jdme2x

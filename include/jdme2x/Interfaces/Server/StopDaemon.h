@@ -28,11 +28,7 @@ struct JDME2X_API StopDaemonParameters : public Parameters {
   types::Tag eventTag;
 };
 
-struct JDME2X_API StopDaemonReturnData : public ReturnData {
-  DataList encode() const override;
-
-  void decode(const DataList &data) override;
-};
+using StopDaemonReturnData = VoidReturnData;
 
 } // namespace interfaces
 } // namespace jdme2x

@@ -11,7 +11,6 @@
 #ifndef JDME2X_INTERFACCES_SERVER_STARTSESSION_H
 #define JDME2X_INTERFACCES_SERVER_STARTSESSION_H
 
-#include "jdme2x/API.h"
 #include "jdme2x/Interfaces/Signature.h"
 
 namespace jdme2x {
@@ -19,17 +18,9 @@ namespace interfaces {
 
 constexpr const char *StartSessionName = "StartSession";
 
-struct JDME2X_API StartSessionParameters : public Parameters {
-  types::ArgumentList encode() const override;
+using StartSessionParameters = VoidParameters;
 
-  std::optional<types::Error> decode(const types::ArgumentList &args) override;
-};
-
-struct JDME2X_API StartSessionReturnData : public ReturnData {
-  DataList encode() const override;
-
-  void decode(const DataList &data) override;
-};
+using StartSessionReturnData = VoidReturnData;
 
 } // namespace interfaces
 } // namespace jdme2x

@@ -18,17 +18,9 @@ namespace interfaces {
 
 constexpr const char *EndSessionName = "EndSession";
 
-struct EndSessionParameters : public Parameters {
-  types::ArgumentList encode() const override;
+using EndSessionParameters = VoidParameters;
 
-  std::optional<types::Error> decode(const types::ArgumentList &args) override;
-};
-
-struct EndSessionReturnData : public ReturnData {
-  DataList encode() const override;
-
-  void decode(const DataList &data) override;
-};
+using EndSessionReturnData = VoidReturnData;
 
 } // namespace interfaces
 } // namespace jdme2x
