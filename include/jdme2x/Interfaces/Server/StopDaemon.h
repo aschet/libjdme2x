@@ -8,24 +8,27 @@
 //
 //===----------------------------------------------------------------------===//
 
-#ifndef JDME2X_INTERFACCES_SERVER_STARTSESSION_H
-#define JDME2X_INTERFACCES_SERVER_STARTSESSION_H
+#ifndef JDME2X_INTERFACCES_SERVER_STOPDAEMON_H
+#define JDME2X_INTERFACCES_SERVER_STOPDAEMON_H
 
 #include "jdme2x/API.h"
 #include "jdme2x/Interfaces/Signature.h"
+#include "jdme2x/Types/Tag.h"
 
 namespace jdme2x {
 namespace interfaces {
 
-constexpr const char *StartSessionName = "StartSession";
+constexpr const char *StopDaemonName = "StopDaemon";
 
-struct JDME2X_API StartSessionParameters : public Parameters {
+struct JDME2X_API StopDaemonParameters : public Parameters {
   types::ArgumentList encode() const override;
 
   std::optional<types::Error> decode(const types::ArgumentList &args) override;
+
+  types::Tag eventTag;
 };
 
-struct JDME2X_API StartSessionReturnData : public ReturnData {
+struct JDME2X_API StopDaemonReturnData : public ReturnData {
   DataList encode() const override;
 
   void decode(const DataList &data) override;

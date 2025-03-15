@@ -8,7 +8,9 @@ target_include_directories(${PROJECT_NAME}
 )
 
 set(FILES_SRC
+  "Interfaces/Server/EndSessionTest.cpp"
   "Interfaces/Server/StartSessionTest.cpp"
+  "Interfaces/Server/StopDaemonTest.cpp"
   "Parser/CommandParserTest.cpp"
   "Parser/LexerTest.cpp"
   "Parser/MethodParserTest.cpp"

@@ -8,24 +8,23 @@
 //
 //===----------------------------------------------------------------------===//
 
-#ifndef JDME2X_INTERFACCES_SERVER_STARTSESSION_H
-#define JDME2X_INTERFACCES_SERVER_STARTSESSION_H
+#ifndef JDME2X_INTERFACCES_SERVER_ENDSESSION_H
+#define JDME2X_INTERFACCES_SERVER_ENDSESSION_H
 
-#include "jdme2x/API.h"
 #include "jdme2x/Interfaces/Signature.h"
 
 namespace jdme2x {
 namespace interfaces {
 
-constexpr const char *StartSessionName = "StartSession";
+constexpr const char *EndSessionName = "EndSession";
 
-struct JDME2X_API StartSessionParameters : public Parameters {
+struct EndSessionParameters : public Parameters {
   types::ArgumentList encode() const override;
 
   std::optional<types::Error> decode(const types::ArgumentList &args) override;
 };
 
-struct JDME2X_API StartSessionReturnData : public ReturnData {
+struct EndSessionReturnData : public ReturnData {
   DataList encode() const override;
 
   void decode(const DataList &data) override;

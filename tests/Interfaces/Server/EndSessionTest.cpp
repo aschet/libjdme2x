@@ -8,21 +8,21 @@
 //
 //===----------------------------------------------------------------------===//
 
-#include "jdme2x/Interfaces/Server/StartSession.h"
+#include "jdme2x/Interfaces/Server/EndSession.h"
 
 #include <boost/test/unit_test.hpp>
 
 using namespace jdme2x::interfaces;
 using namespace jdme2x::types;
 
-BOOST_AUTO_TEST_SUITE(StartSessionTest)
+BOOST_AUTO_TEST_SUITE(EndSessionTest)
 
 BOOST_AUTO_TEST_CASE(encodeParameters) {
-  BOOST_TEST(ArgumentList() == StartSessionParameters().encode());
+  BOOST_TEST(ArgumentList() == EndSessionParameters().encode());
 }
 
 BOOST_AUTO_TEST_CASE(encodeResultData) {
-  BOOST_TEST(DataList() == StartSessionReturnData().encode());
+  BOOST_TEST(DataList() == EndSessionReturnData().encode());
 }
 
 BOOST_AUTO_TEST_SUITE_END()

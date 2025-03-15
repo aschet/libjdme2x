@@ -8,23 +8,23 @@
 //
 //===----------------------------------------------------------------------===//
 
-#include "jdme2x/Interfaces/Server/StartSession.h"
+#include "jdme2x/Interfaces/Server/EndSession.h"
 
 namespace jdme2x {
 namespace interfaces {
 
-types::ArgumentList StartSessionParameters::encode() const {
+types::ArgumentList EndSessionParameters::encode() const {
   return types::ArgumentList();
 }
 
 std::optional<types::Error>
-StartSessionParameters::decode(const types::ArgumentList &) {
+EndSessionParameters::decode(const types::ArgumentList &) {
   return std::nullopt;
 }
 
-DataList StartSessionReturnData::encode() const { return DataList(); }
+DataList EndSessionReturnData::encode() const { return DataList(); }
 
-void StartSessionReturnData::decode(const DataList &) {}
+void EndSessionReturnData::decode(const DataList &) {}
 
 } // namespace interfaces
 } // namespace jdme2x

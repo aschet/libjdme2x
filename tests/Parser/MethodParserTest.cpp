@@ -30,7 +30,7 @@ BOOST_AUTO_TEST_CASE(parseMethod) {
                          .with(Number(0))
                          .with(Number(0.6))
                          .with(Number(0))
-                         .with(Number(0.8f))
+                         .with(Number(0.8))
                          .with(Number(1));
   BOOST_TEST(alignPart ==
              parser.parse("AlignPart(0, -1, 0, 0.6, 0, 0.8, 1)").second);

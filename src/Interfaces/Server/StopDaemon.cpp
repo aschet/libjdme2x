@@ -8,23 +8,27 @@
 //
 //===----------------------------------------------------------------------===//
 
-#include "jdme2x/Interfaces/Server/StartSession.h"
+#include "jdme2x/Interfaces/Server/StopDaemon.h"
+
+#include <sstream>
 
 namespace jdme2x {
 namespace interfaces {
 
-types::ArgumentList StartSessionParameters::encode() const {
-  return types::ArgumentList();
+types::ArgumentList StopDaemonParameters::encode() const {
+  std::stringstream stream;
+  stream << eventTag;
+  return {types::Name(stream.str())};
 }
 
 std::optional<types::Error>
-StartSessionParameters::decode(const types::ArgumentList &) {
+StopDaemonParameters::decode(const types::ArgumentList &) {
   return std::nullopt;
 }
 
-DataList StartSessionReturnData::encode() const { return DataList(); }
+DataList StopDaemonReturnData::encode() const { return DataList(); }
 
-void StartSessionReturnData::decode(const DataList &) {}
+void StopDaemonReturnData::decode(const DataList &) {}
 
 } // namespace interfaces
 } // namespace jdme2x

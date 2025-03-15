@@ -48,7 +48,9 @@ if(BUILD_SHARED_LIBS)
 endif()
 
 set(FILES_INCLUDE
+  "include/jdme2x/Interfaces/Server/EndSession.h"
   "include/jdme2x/Interfaces/Server/StartSession.h"
+  "include/jdme2x/Interfaces/Server/StopDaemon.h"
   "include/jdme2x/Interfaces/Signature.h"
   "include/jdme2x/Parser/CommandParser.h"
   "include/jdme2x/Parser/Lexer.h"
@@ -73,7 +75,9 @@ set(FILES_INCLUDE
 )
 
 set(FILES_SRC
+  "src/Interfaces/Server/EndSession.cpp"
   "src/Interfaces/Server/StartSession.cpp"
+  "src/Interfaces/Server/StopDaemon.cpp"
   "src/Parser/CommandParser.cpp"
   "src/Parser/CommandParserStates.cpp"
   "src/Parser/CommandParserStates.h"
