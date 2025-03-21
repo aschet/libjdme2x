@@ -11,7 +11,6 @@
 #include "jdme2x/Types/Response.h"
 
 namespace jdme2x {
-namespace types {
 
 Response::Response(const Tag &tag, const ResponseValue &value)
     : tag(tag), value(value) {}
@@ -131,5 +130,4 @@ JDME2X_API std::ostream &operator<<(std::ostream &stream,
   return stream;
 }
 
-} // namespace types
 } // namespace jdme2x

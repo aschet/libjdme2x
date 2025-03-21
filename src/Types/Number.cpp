@@ -11,7 +11,6 @@
 #include "jdme2x/Types/Number.h"
 
 namespace jdme2x {
-namespace types {
 
 JDME2X_API std::ostream &operator<<(std::ostream &stream,
                                     const Number &instance) {
@@ -22,5 +21,4 @@ JDME2X_API std::ostream &operator<<(std::ostream &stream,
   return stream;
 }
 
-} // namespace types
 } // namespace jdme2x

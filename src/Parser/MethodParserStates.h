@@ -24,8 +24,8 @@ namespace parser {
 namespace states {
 
 struct MethodParserData {
-  types::Method method;
-  types::Name currentName;
+  Method method;
+  Name currentName;
   PropertyParserContext propertyContext =
       PropertyParserContext(Singleton<PropertyStartState>::instance());
 };

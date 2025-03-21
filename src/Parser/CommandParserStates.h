@@ -24,7 +24,7 @@ namespace parser {
 namespace states {
 
 struct CommandParserData {
-  types::Tag tag;
+  Tag tag;
   MethodParserContext methodContext =
       MethodParserContext(Singleton<MethodStartState>::instance());
 };

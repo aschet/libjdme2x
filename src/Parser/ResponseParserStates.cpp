@@ -41,24 +41,24 @@ bool ResponseTypeState::parseResponseType(ResponseParserContext &context,
     return false;
 
   switch (text[0]) {
-  case types::AcknowledgeID: {
-    context.data.response.value = types::Acknowledge();
+  case AcknowledgeID: {
+    context.data.response.value = Acknowledge();
     context.transitionTo(Singleton<ResponseEndState>::instance());
     return true;
   }
-  case types::DoneID: {
-    context.data.response.value = types::Done();
+  case DoneID: {
+    context.data.response.value = Done();
     context.transitionTo(Singleton<ResponseEndState>::instance());
     return true;
   }
-  case types::ErrorID: {
-    context.data.response.value = types::Error();
+  case ErrorID: {
+    context.data.response.value = Error();
     context.data.methodContext.reset();
     context.transitionTo(Singleton<ResponseErrorState>::instance());
     return true;
   }
-  case types::DataID: {
-    context.data.response.value = types::Data();
+  case DataID: {
+    context.data.response.value = Data();
     context.transitionTo(Singleton<ResponseDataState>::instance());
     return true;
   }
@@ -72,7 +72,7 @@ bool ResponseErrorState::parse(ResponseParserContext &context, TokenID id,
   bool result = context.data.methodContext.parse(id, text);
   if (result && context.data.methodContext.hasCompleteParse()) {
     if (auto error = createError(context.data.methodContext.data.method)) {
-      context.data.response.value = types::ResponseValue(std::move(*error));
+      context.data.response.value = ResponseValue(std::move(*error));
       context.transitionTo(Singleton<ResponseEndState>::instance());
     } else {
       return false;
@@ -87,13 +87,13 @@ bool ResponseErrorState::hasCompleteParse(ResponseParserContext &context) {
 
 bool ResponseDataState::parseNumber(ResponseParserContext &context,
                                     std::string_view text) {
-  context.data.response.value = types::Data(types::NumericalData());
+  context.data.response.value = Data(NumericalData());
   return Singleton<NumericDataState>::instance()->parseNumber(context, text);
 }
 
 bool ResponseDataState::parseString(ResponseParserContext &context,
                                     std::string_view text) {
-  context.data.response.value = types::Data(types::PropertyData());
+  context.data.response.value = Data(PropertyData());
   context.data.response.propertyData().first = *createString(text);
   context.transitionTo(Singleton<PropertyDataSeparatorState>::instance());
   return true;
@@ -157,7 +157,7 @@ bool MethodDataState::hasCompleteParse(ResponseParserContext &context) {
 bool NextPropertyListValueState::endSection(ResponseParserContext &context) {
   if (context.data.response.holdsMethod()) {
     if (auto property = createProperty(context.data.response.method())) {
-      context.data.response.data() = types::PropertyList{std::move(*property)};
+      context.data.response.data() = PropertyList{std::move(*property)};
     } else {
       return false;
     }

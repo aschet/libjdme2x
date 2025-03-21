@@ -16,7 +16,6 @@
 using namespace jdme2x::parser::states;
 
 namespace jdme2x {
-namespace parser {
 
 struct ResponseParser::Private {
   Lexer lexer;
@@ -30,9 +29,9 @@ ResponseParser::ResponseParser(ResponseParser &&) = default;
 
 ResponseParser &ResponseParser::operator=(ResponseParser &&) = default;
 
-std::pair<bool, types::Response> ResponseParser::parse(std::string_view text) {
+std::pair<bool, Response> ResponseParser::parse(std::string_view text) {
   if (text.empty())
-    return std::make_pair(false, types::Response());
+    return std::make_pair(false, Response());
 
   ResponseParserContext context(Singleton<ResponseStartState>::instance());
   impl->lexer.tokenize(text,
@@ -40,8 +39,7 @@ std::pair<bool, types::Response> ResponseParser::parse(std::string_view text) {
                          return context.parse(id, text);
                        });
   return std::make_pair(context.hasCompleteParse(),
-                        types::Response(std::move(context.data.response)));
+                        Response(std::move(context.data.response)));
 }
 
-} // namespace parser
 } // namespace jdme2x

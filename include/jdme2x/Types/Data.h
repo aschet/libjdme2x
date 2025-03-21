@@ -22,7 +22,6 @@
 #include <variant>
 
 namespace jdme2x {
-namespace types {
 
 constexpr char DataID = '#';
 
@@ -41,7 +40,6 @@ JDME2X_API std::ostream &operator<<(std::ostream &stream,
 
 JDME2X_API std::ostream &operator<<(std::ostream &stream, const Data &instance);
 
-} // namespace types
 } // namespace jdme2x
 
 #endif

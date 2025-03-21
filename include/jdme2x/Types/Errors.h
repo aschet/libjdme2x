@@ -14,7 +14,6 @@
 #include "jdme2x/Types/Error.h"
 
 namespace jdme2x {
-namespace types {
 namespace errors {
 
 constexpr ErrorDefinition BufferFull = {
@@ -271,7 +270,6 @@ constexpr ErrorDefinition PortNotAvailable = {
     "Port not available"};
 
 } // namespace errors
-} // namespace types
 } // namespace jdme2x
 
 #endif

@@ -16,8 +16,7 @@
 #include <boost/test/unit_test.hpp>
 #include <string_view>
 
-using namespace jdme2x::types;
-using namespace jdme2x::parser;
+using namespace jdme2x;
 
 static void testInt(int expectedValue, std::string_view text) {
   auto value = createNumber(text);

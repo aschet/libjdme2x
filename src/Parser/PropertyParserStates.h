@@ -19,12 +19,10 @@
 #include <string_view>
 
 namespace jdme2x {
-namespace parser {
-namespace states {
 
-using PropertyParserState = State<types::Property>;
+using PropertyParserState = State<Property>;
 
-using PropertyParserContext = Context<types::Property>;
+using PropertyParserContext = Context<Property>;
 
 struct PropertyStartState : public PropertyParserState {
   bool parseName(PropertyParserContext &context,
@@ -52,8 +50,6 @@ struct PropertyEndState : public PropertyParserState {
   bool hasCompleteParse(PropertyParserContext &context) override;
 };
 
-} // namespace states
-} // namespace parser
 } // namespace jdme2x
 
 #endif

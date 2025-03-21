@@ -16,8 +16,6 @@
 #include <utility>
 
 namespace jdme2x {
-namespace parser {
-namespace states {
 
 bool PropertyStartState::parseName(PropertyParserContext &context,
                                    std::string_view text) {
@@ -37,7 +35,7 @@ bool PropertyValueState::endScope(PropertyParserContext &context) {
 }
 
 bool PropertyValueState::parseNumber(PropertyParserContext &context,
-                                        std::string_view text) {
+                                     std::string_view text) {
   if (auto number = createNumber(text)) {
     context.data.with(std::move(*number));
     context.transitionTo(Singleton<NextPropertyValueState>::instance());
@@ -60,6 +58,4 @@ bool PropertyEndState::hasCompleteParse(PropertyParserContext &) {
   return true;
 }
 
-} // namespace states
-} // namespace parser
 } // namespace jdme2x

@@ -5,7 +5,7 @@
 
 #include <iostream>
 
-using namespace jdme2x::types;
+using namespace jdme2x;
 
 static void buildCommand() {
   Command onMoveReportECommand(Tag(1, TagType::Event),

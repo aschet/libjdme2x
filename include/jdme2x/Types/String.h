@@ -18,7 +18,6 @@
 #include <string_view>
 
 namespace jdme2x {
-namespace types {
 
 struct JDME2X_API String {
   String() = default;
@@ -49,7 +48,6 @@ struct JDME2X_API String {
 JDME2X_API std::ostream &operator<<(std::ostream &stream,
                                     const String &instance);
 
-} // namespace types
 } // namespace jdme2x
 
 #endif

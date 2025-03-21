@@ -4,8 +4,7 @@
 
 #include <iostream>
 
-using namespace jdme2x::parser;
-using namespace jdme2x::types;
+using namespace jdme2x;
 
 static void tokenizeCommand() {
   const char *commandText = "00002 AlignPart(0, -1, 0, 0.6, 0, 0.8, 1)\r\n";

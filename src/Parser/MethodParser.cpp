@@ -18,7 +18,6 @@
 using namespace jdme2x::parser::states;
 
 namespace jdme2x {
-namespace parser {
 
 struct MethodParser::Private {
   Lexer lexer;
@@ -32,9 +31,9 @@ MethodParser::MethodParser(MethodParser &&) = default;
 
 MethodParser &MethodParser::operator=(MethodParser &&) = default;
 
-std::pair<bool, types::Method> MethodParser::parse(std::string_view text) {
+std::pair<bool, Method> MethodParser::parse(std::string_view text) {
   if (text.empty())
-    return std::make_pair(false, types::Method());
+    return std::make_pair(false, Method());
 
   MethodParserContext context(Singleton<MethodStartState>::instance());
   impl->lexer.tokenize(text,
@@ -45,5 +44,4 @@ std::pair<bool, types::Method> MethodParser::parse(std::string_view text) {
                         std::move(context.data.method));
 }
 
-} // namespace parser
 } // namespace jdme2x

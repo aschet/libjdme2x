@@ -12,8 +12,6 @@
 
 namespace jdme2x {
 
-namespace types {
-
 Name::Name(const char *text) : value(text) {}
 
 Name::Name(std::string_view text) : value(text) {}
@@ -35,7 +33,5 @@ JDME2X_API std::ostream &operator<<(std::ostream &stream,
   stream << instance.value;
   return stream;
 }
-
-} // namespace types
 
 } // namespace jdme2x

@@ -24,7 +24,7 @@ namespace parser {
 namespace states {
 
 struct ResponseParserData {
-  types::Response response;
+  Response response;
   MethodParserContext methodContext =
       MethodParserContext(Singleton<MethodStartState>::instance());
 };

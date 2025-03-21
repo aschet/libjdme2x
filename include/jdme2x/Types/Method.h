@@ -17,7 +17,6 @@
 #include <ostream>
 
 namespace jdme2x {
-namespace types {
 
 struct JDME2X_API Method {
   Method() = default;
@@ -58,7 +57,6 @@ struct JDME2X_API Method {
 JDME2X_API std::ostream &operator<<(std::ostream &stream,
                                     const Method &instance);
 
-} // namespace types
 } // namespace jdme2x
 
 #endif

@@ -13,7 +13,6 @@
 #include <iomanip>
 
 namespace jdme2x {
-namespace types {
 
 Error::Error()
     : severity(ErrorSeverity::Undefined),
@@ -82,5 +81,4 @@ JDME2X_API std::ostream &operator<<(std::ostream &stream,
   return stream;
 }
 
-} // namespace types
 } // namespace jdme2x

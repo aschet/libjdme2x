@@ -13,7 +13,6 @@
 #include <utility>
 
 namespace jdme2x {
-namespace types {
 
 Command::Command(const Tag &tag, const Method &method)
     : tag(tag), method(method) {}
@@ -38,5 +37,4 @@ JDME2X_API std::ostream &operator<<(std::ostream &stream,
   return stream;
 }
 
-} // namespace types
 } // namespace jdme2x

@@ -14,7 +14,7 @@
 #include <utility>
 #include <vector>
 
-using namespace jdme2x::parser;
+using namespace jdme2x;
 
 using Tokens = std::vector<std::pair<TokenID, std::string>>;
 

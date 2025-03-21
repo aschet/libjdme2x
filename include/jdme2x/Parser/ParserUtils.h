@@ -23,20 +23,17 @@
 #include <string_view>
 
 namespace jdme2x {
-namespace parser {
 
-JDME2X_API std::optional<types::Tag> createTag(std::string_view text);
+JDME2X_API std::optional<Tag> createTag(std::string_view text);
 
-JDME2X_API std::optional<types::Number> createNumber(std::string_view text);
+JDME2X_API std::optional<Number> createNumber(std::string_view text);
 
-JDME2X_API std::optional<types::String> createString(std::string_view text);
+JDME2X_API std::optional<String> createString(std::string_view text);
 
-JDME2X_API std::optional<types::Error> createError(const types::Method &method);
+JDME2X_API std::optional<Error> createError(const Method &method);
 
-JDME2X_API std::optional<types::Property>
-createProperty(const types::Method &method);
+JDME2X_API std::optional<Property> createProperty(const Method &method);
 
-} // namespace parser
 } // namespace jdme2x
 
 #endif

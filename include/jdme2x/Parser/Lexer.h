@@ -18,7 +18,6 @@
 #include <string_view>
 
 namespace jdme2x {
-namespace parser {
 
 enum class TokenID {
   OpenParen = 1,
@@ -65,7 +64,6 @@ private:
   std::unique_ptr<LexerImpl> impl;
 };
 
-} // namespace parser
 } // namespace jdme2x
 
 #endif

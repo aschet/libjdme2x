@@ -13,17 +13,16 @@
 #include <charconv>
 
 namespace jdme2x {
-namespace parser {
 
-JDME2X_API std::optional<types::Tag> createTag(std::string_view text) {
+JDME2X_API std::optional<Tag> createTag(std::string_view text) {
   constexpr size_t TagLength = 5;
   if (text.length() != TagLength)
     return std::nullopt;
 
-  types::TagType type = types::TagType::Command;
+  TagType type = TagType::Command;
   if (text.front() == 'E') {
     text.remove_prefix(1);
-    type = types::TagType::Event;
+    type = TagType::Event;
   }
 
   unsigned int number = 0;
@@ -32,10 +31,10 @@ JDME2X_API std::optional<types::Tag> createTag(std::string_view text) {
 
   if (error != std::errc())
     return std::nullopt;
-  return types::Tag(number, type);
+  return Tag(number, type);
 }
 
-JDME2X_API std::optional<types::Number> createNumber(std::string_view text) {
+JDME2X_API std::optional<Number> createNumber(std::string_view text) {
   if (text.empty())
     return std::nullopt;
 
@@ -52,18 +51,18 @@ JDME2X_API std::optional<types::Number> createNumber(std::string_view text) {
         std::from_chars(text.data(), text.data() + text.size(), number);
     if (error != std::errc())
       return std::nullopt;
-    return types::Number(number);
+    return Number(number);
   } else {
     int number = 0;
     auto [ptr, error] =
         std::from_chars(text.data(), text.data() + text.size(), number);
     if (error != std::errc())
       return std::nullopt;
-    return types::Number(number);
+    return Number(number);
   }
 }
 
-JDME2X_API std::optional<types::String> createString(std::string_view text) {
+JDME2X_API std::optional<String> createString(std::string_view text) {
   if (text.length() < 2)
     return std::nullopt;
 
@@ -75,34 +74,34 @@ JDME2X_API std::optional<types::String> createString(std::string_view text) {
     return std::nullopt;
   text.remove_suffix(1);
 
-  return types::String(text);
+  return String(text);
 }
 
-JDME2X_API std::optional<types::Error>
-createError(const types::Method &method) {
+JDME2X_API std::optional<Error>
+createError(const Method &method) {
   if (method.args.size() != 4)
     return std::nullopt;
 
-  if (method.name.value != types::ErrorName)
+  if (method.name.value != ErrorName)
     return std::nullopt;
 
-  types::Error error;
+  Error error;
 
   constexpr size_t SeverityIndex = 0;
-  if (auto severity = std::get_if<types::Number>(&method.args[SeverityIndex])) {
+  if (auto severity = std::get_if<Number>(&method.args[SeverityIndex])) {
     const int *intValue = std::get_if<int>(severity);
     if (!intValue)
       return std::nullopt;
 
     switch (*intValue) {
-    case static_cast<int>(types::ErrorSeverity::Info):
-    case static_cast<int>(types::ErrorSeverity::Warning):
-    case static_cast<int>(types::ErrorSeverity::Error):
-    case static_cast<int>(types::ErrorSeverity::CriticalError):
-    case static_cast<int>(types::ErrorSeverity::FatalError):
-      error.severity = static_cast<types::ErrorSeverity>(*intValue);
+    case static_cast<int>(ErrorSeverity::Info):
+    case static_cast<int>(ErrorSeverity::Warning):
+    case static_cast<int>(ErrorSeverity::Error):
+    case static_cast<int>(ErrorSeverity::CriticalError):
+    case static_cast<int>(ErrorSeverity::FatalError):
+      error.severity = static_cast<ErrorSeverity>(*intValue);
       break;
-    case static_cast<int>(types::ErrorSeverity::Undefined):
+    case static_cast<int>(ErrorSeverity::Undefined):
     default:
       return std::nullopt;
     }
@@ -111,11 +110,11 @@ createError(const types::Method &method) {
   }
 
   constexpr size_t NumberIndex = 1;
-  if (auto number = std::get_if<types::Number>(&method.args[NumberIndex])) {
+  if (auto number = std::get_if<Number>(&method.args[NumberIndex])) {
     const int *intValue = std::get_if<int>(number);
     if (!intValue)
       return std::nullopt;
-    if (*intValue < types::MinError || *intValue > types::MaxError)
+    if (*intValue < MinError || *intValue > MaxError)
       return std::nullopt;
     error.number = *intValue;
   } else {
@@ -123,14 +122,14 @@ createError(const types::Method &method) {
   }
 
   constexpr size_t CauseIndex = 2;
-  if (auto cause = std::get_if<types::String>(&method.args[CauseIndex]))
+  if (auto cause = std::get_if<String>(&method.args[CauseIndex]))
     error.cause = *cause;
   else
     return std::nullopt;
 
   constexpr size_t InformationIndex = 3;
   if (auto information =
-          std::get_if<types::String>(&method.args[InformationIndex]))
+          std::get_if<String>(&method.args[InformationIndex]))
     error.information = *information;
   else
     return std::nullopt;
@@ -138,12 +137,12 @@ createError(const types::Method &method) {
   return error;
 }
 
-JDME2X_API std::optional<types::Property>
-createProperty(const types::Method &method) {
-  types::Property property(method.name);
+JDME2X_API std::optional<Property>
+createProperty(const Method &method) {
+  Property property(method.name);
 
   for (auto &arg : method.args) {
-    if (auto number = std::get_if<types::Number>(&arg)) {
+    if (auto number = std::get_if<Number>(&arg)) {
       property.args.emplace_back(*number);
     } else {
       return std::nullopt;
@@ -153,5 +152,4 @@ createProperty(const types::Method &method) {
   return property;
 }
 
-} // namespace parser
 } // namespace jdme2x

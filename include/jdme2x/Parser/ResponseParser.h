@@ -19,7 +19,6 @@
 #include <utility>
 
 namespace jdme2x {
-namespace parser {
 
 class JDME2X_API ResponseParser {
 public:
@@ -35,7 +34,7 @@ public:
 
   ResponseParser &operator=(ResponseParser &&);
 
-  std::pair<bool, types::Response> parse(std::string_view text);
+  std::pair<bool, Response> parse(std::string_view text);
 
 private:
   struct Private;
@@ -43,7 +42,6 @@ private:
   std::unique_ptr<Private> impl;
 };
 
-} // namespace parser
 } // namespace jdme2x
 
 #endif

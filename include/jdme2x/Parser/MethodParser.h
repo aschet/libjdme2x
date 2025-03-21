@@ -19,7 +19,6 @@
 #include <utility>
 
 namespace jdme2x {
-namespace parser {
 
 class JDME2X_API MethodParser {
 public:
@@ -35,15 +34,13 @@ public:
 
   MethodParser &operator=(MethodParser &&);
 
-  std::pair<bool, types::Method> parse(std::string_view text);
+  std::pair<bool, Method> parse(std::string_view text);
 
 private:
   struct Private;
 
   std::unique_ptr<Private> impl;
 };
-
-} // namespace parser
 
 } // namespace jdme2x
 

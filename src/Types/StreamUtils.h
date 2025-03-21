@@ -14,7 +14,6 @@
 #include <ostream>
 
 namespace jdme2x {
-namespace types {
 
 template <typename T>
 std::ostream &writeList(std::ostream &stream, const T &instance) {
@@ -27,7 +26,6 @@ std::ostream &writeList(std::ostream &stream, const T &instance) {
   return stream;
 }
 
-} // namespace types
 } // namespace jdme2x
 
 #endif

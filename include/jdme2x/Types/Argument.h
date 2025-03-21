@@ -23,7 +23,6 @@
 #include <vector>
 
 namespace jdme2x {
-namespace types {
 
 using Argument =
     std::variant<std::monostate, Number, Property, Name, String, Tag>;
@@ -36,7 +35,6 @@ JDME2X_API std::ostream &operator<<(std::ostream &stream,
 JDME2X_API std::ostream &operator<<(std::ostream &stream,
                                     const ArgumentList &instance);
 
-} // namespace types
 } // namespace jdme2x
 
 #endif

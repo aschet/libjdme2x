@@ -11,7 +11,6 @@
 #include "jdme2x/Types/Method.h"
 
 namespace jdme2x {
-namespace types {
 
 Method::Method(const Name &name) : name(name) {}
 
@@ -64,5 +63,4 @@ JDME2X_API std::ostream &operator<<(std::ostream &stream,
   return stream;
 }
 
-} // namespace types
 } // namespace jdme2x

@@ -13,7 +13,6 @@
 #include "StreamUtils.h"
 
 namespace jdme2x {
-namespace types {
 
 Property::Property(const Name &name) : name(name) {}
 
@@ -54,5 +53,4 @@ JDME2X_API std::ostream &operator<<(std::ostream &stream,
   return writeList(stream, instance);
 }
 
-} // namespace types
 } // namespace jdme2x

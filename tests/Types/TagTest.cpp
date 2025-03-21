@@ -15,7 +15,7 @@
 #include <boost/test/unit_test.hpp>
 #include <string>
 
-using namespace jdme2x::types;
+using namespace jdme2x;
 
 BOOST_AUTO_TEST_SUITE(TagTest)
 

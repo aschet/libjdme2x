@@ -48,10 +48,7 @@ if(BUILD_SHARED_LIBS)
 endif()
 
 set(FILES_INCLUDE
-  "include/jdme2x/Interfaces/Server/EndSession.h"
-  "include/jdme2x/Interfaces/Server/StartSession.h"
-  "include/jdme2x/Interfaces/Server/StopDaemon.h"
-  "include/jdme2x/Interfaces/Signature.h"
+  "include/jdme2x/Client/MethodBuilder.h"
   "include/jdme2x/Parser/CommandParser.h"
   "include/jdme2x/Parser/Lexer.h"
   "include/jdme2x/Parser/MethodParser.h"
@@ -72,11 +69,11 @@ set(FILES_INCLUDE
   "include/jdme2x/Types/Property.h"
   "include/jdme2x/Types/Tag.h"
   "include/jdme2x/API.h"
+  "include/jdme2x/MethodNames.h"
 )
 
 set(FILES_SRC
-  "src/Interfaces/Server/StopDaemon.cpp"
-  "src/Interfaces/Signature.cpp"
+  "src/Client/MethodBuilder.cpp"
   "src/Parser/CommandParser.cpp"
   "src/Parser/CommandParserStates.cpp"
   "src/Parser/CommandParserStates.h"

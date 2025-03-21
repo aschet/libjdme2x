@@ -19,7 +19,6 @@
 #include <utility>
 
 namespace jdme2x {
-namespace parser {
 
 class JDME2X_API CommandParser {
 public:
@@ -35,15 +34,13 @@ public:
 
   CommandParser &operator=(CommandParser &&);
 
-  std::pair<bool, types::Command> parse(std::string_view text);
+  std::pair<bool, Command> parse(std::string_view text);
 
 private:
   struct Private;
 
   std::unique_ptr<Private> impl;
 };
-
-} // namespace parser
 
 } // namespace jdme2x
 

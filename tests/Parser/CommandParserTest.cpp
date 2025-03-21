@@ -15,8 +15,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-using namespace jdme2x::types;
-using namespace jdme2x::parser;
+using namespace jdme2x;
 
 BOOST_AUTO_TEST_SUITE(CommandParserTest)
 

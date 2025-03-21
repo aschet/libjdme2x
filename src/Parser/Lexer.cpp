@@ -15,7 +15,6 @@
 namespace lex = boost::spirit::lex;
 
 namespace jdme2x {
-namespace parser {
 
 struct LexerFunctorAdapter {
   typedef bool result_type;
@@ -77,5 +76,4 @@ bool Lexer::tokenize(
   return impl->tokenize(text, tokenHandler);
 }
 
-} // namespace parser
 } // namespace jdme2x

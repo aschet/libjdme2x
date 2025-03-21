@@ -21,7 +21,6 @@
 #include <variant>
 
 namespace jdme2x {
-namespace types {
 
 using ResponseValue =
     std::variant<std::monostate, Acknowledge, Done, Data, Error>;
@@ -100,7 +99,6 @@ JDME2X_API std::ostream &operator<<(std::ostream &stream,
 JDME2X_API std::ostream &operator<<(std::ostream &stream,
                                     const Response &instance);
 
-} // namespace types
 } // namespace jdme2x
 
 #endif

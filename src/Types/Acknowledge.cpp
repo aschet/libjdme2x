@@ -11,7 +11,6 @@
 #include "jdme2x/Types/Acknowledge.h"
 
 namespace jdme2x {
-namespace types {
 
 bool Acknowledge::operator==(const Acknowledge &) const { return true; }
 
@@ -24,5 +23,4 @@ JDME2X_API std::ostream &operator<<(std::ostream &stream, const Acknowledge &) {
   return stream;
 }
 
-} // namespace types
 } // namespace jdme2x

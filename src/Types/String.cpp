@@ -11,7 +11,6 @@
 #include "jdme2x/Types/String.h"
 
 namespace jdme2x {
-namespace types {
 
 String::String(const char *text) : value(text) {}
 
@@ -37,5 +36,4 @@ JDME2X_API std::ostream &operator<<(std::ostream &stream,
   return stream;
 }
 
-} // namespace types
 } // namespace jdme2x

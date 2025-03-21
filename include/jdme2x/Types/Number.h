@@ -17,7 +17,6 @@
 #include <variant>
 
 namespace jdme2x {
-namespace types {
 
 using Number = std::variant<int, double>;
 
@@ -56,7 +55,6 @@ constexpr double getDouble(const Number &value) {
 JDME2X_API std::ostream &operator<<(std::ostream &stream,
                                     const Number &instance);
 
-} // namespace types
 } // namespace jdme2x
 
 #endif

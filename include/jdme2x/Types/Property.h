@@ -20,7 +20,6 @@
 #include <vector>
 
 namespace jdme2x {
-namespace types {
 
 using NumericalData = std::vector<Number>;
 
@@ -60,7 +59,6 @@ JDME2X_API std::ostream &operator<<(std::ostream &stream,
 JDME2X_API std::ostream &operator<<(std::ostream &stream,
                                     const Property &instance);
 
-} // namespace types
 } // namespace jdme2x
 
 #endif

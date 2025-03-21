@@ -17,7 +17,6 @@
 #include <ostream>
 
 namespace jdme2x {
-namespace types {
 
 enum class ErrorNumber {
   Undefined = -1,
@@ -162,7 +161,6 @@ struct JDME2X_API Error {
 JDME2X_API std::ostream &operator<<(std::ostream &stream,
                                     const Error &instance);
 
-} // namespace types
 } // namespace jdme2x
 
 #endif

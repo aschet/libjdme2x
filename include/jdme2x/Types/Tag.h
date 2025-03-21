@@ -16,7 +16,6 @@
 #include <ostream>
 
 namespace jdme2x {
-namespace types {
 
 enum class TagType { Command, Event };
 
@@ -52,7 +51,6 @@ const Tag UnsolicitedEvent = Tag(0, TagType::Event);
 
 JDME2X_API std::ostream &operator<<(std::ostream &stream, const Tag &instance);
 
-} // namespace types
 } // namespace jdme2x
 
 #endif

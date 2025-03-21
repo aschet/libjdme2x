@@ -16,7 +16,6 @@
 #include <ostream>
 
 namespace jdme2x {
-namespace types {
 
 constexpr char DoneID = '%';
 
@@ -40,7 +39,6 @@ struct JDME2X_API Done {
 
 JDME2X_API std::ostream &operator<<(std::ostream &stream, const Done &);
 
-} // namespace types
 } // namespace jdme2x
 
 #endif

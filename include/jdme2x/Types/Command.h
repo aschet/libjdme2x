@@ -19,7 +19,6 @@
 #include <utility>
 
 namespace jdme2x {
-namespace types {
 
 struct JDME2X_API Command {
   Command() = default;
@@ -50,7 +49,6 @@ struct JDME2X_API Command {
 JDME2X_API std::ostream &operator<<(std::ostream &stream,
                                     const Command &instance);
 
-} // namespace types
 } // namespace jdme2x
 
 #endif

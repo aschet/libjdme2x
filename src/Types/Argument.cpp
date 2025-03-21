@@ -13,7 +13,6 @@
 #include "StreamUtils.h"
 
 namespace jdme2x {
-namespace types {
 
 struct ArgumentStreamVisitor {
   ArgumentStreamVisitor(std::ostream &stream) : stream(stream) {}
@@ -44,5 +43,4 @@ JDME2X_API std::ostream &operator<<(std::ostream &stream,
   return writeList(stream, instance);
 }
 
-} // namespace types
 } // namespace jdme2x

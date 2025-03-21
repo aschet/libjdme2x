@@ -13,12 +13,10 @@
 #include <iomanip>
 
 namespace jdme2x {
-namespace types {
 
 Tag::Tag() : number(0), type(TagType::Command) {};
 
-Tag::Tag(unsigned int number, TagType type)
-    : number(number), type(type) {}
+Tag::Tag(unsigned int number, TagType type) : number(number), type(type) {}
 
 bool Tag::operator==(const Tag &other) const {
   return type == other.type && number == other.number;
@@ -42,5 +40,4 @@ JDME2X_API std::ostream &operator<<(std::ostream &stream, const Tag &instance) {
   return stream;
 }
 
-} // namespace types
 } // namespace jdme2x

@@ -18,7 +18,6 @@
 using namespace jdme2x::parser::states;
 
 namespace jdme2x {
-namespace parser {
 
 struct CommandParser::Private {
   Lexer lexer;
@@ -32,9 +31,9 @@ CommandParser::CommandParser(CommandParser &&) = default;
 
 CommandParser &CommandParser::operator=(CommandParser &&) = default;
 
-std::pair<bool, types::Command> CommandParser::parse(std::string_view text) {
+std::pair<bool, Command> CommandParser::parse(std::string_view text) {
   if (text.empty())
-    return std::make_pair(false, types::Command());
+    return std::make_pair(false, Command());
 
   CommandParserContext context(Singleton<CommandStartState>::instance());
   impl->lexer.tokenize(text,
@@ -43,9 +42,8 @@ std::pair<bool, types::Command> CommandParser::parse(std::string_view text) {
                        });
   return std::make_pair(
       context.hasCompleteParse(),
-      types::Command(context.data.tag,
+      Command(context.data.tag,
                      std::move(context.data.methodContext.data.method)));
 }
 
-} // namespace parser
 } // namespace jdme2x
