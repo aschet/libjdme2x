@@ -21,7 +21,6 @@
 
 namespace jdme2x {
 namespace parser {
-namespace states {
 
 struct ResponseParserData {
   Response response;
@@ -106,7 +105,6 @@ struct ResponseEndState : public State<ResponseParserData> {
   bool hasCompleteParse(ResponseParserContext &) override;
 };
 
-} // namespace states
 } // namespace parser
 } // namespace jdme2x
 

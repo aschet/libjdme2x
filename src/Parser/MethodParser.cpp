@@ -15,7 +15,7 @@
 
 #include <utility>
 
-using namespace jdme2x::parser::states;
+using namespace jdme2x::parser;
 
 namespace jdme2x {
 

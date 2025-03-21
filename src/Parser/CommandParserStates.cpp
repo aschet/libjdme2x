@@ -18,7 +18,6 @@
 
 namespace jdme2x {
 namespace parser {
-namespace states {
 
 bool CommandStartState::parseEventTag(CommandParserContext &context,
                                       std::string_view text) {
@@ -49,6 +48,5 @@ bool CommandMethodState::hasCompleteParse(CommandParserContext &context) {
 
 bool CommandEndState::hasCompleteParse(CommandParserContext &) { return true; }
 
-} // namespace states
 } // namespace parser
 } // namespace jdme2x

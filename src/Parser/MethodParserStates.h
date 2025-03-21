@@ -21,7 +21,6 @@
 
 namespace jdme2x {
 namespace parser {
-namespace states {
 
 struct MethodParserData {
   Method method;
@@ -88,7 +87,6 @@ struct MethodEndState : public MethodParserState {
   bool hasCompleteParse(MethodParserContext &context) override;
 };
 
-} // namespace states
 } // namespace parser
 } // namespace jdme2x
 

@@ -16,6 +16,7 @@
 #include <utility>
 
 namespace jdme2x {
+namespace parser {
 
 bool PropertyStartState::parseName(PropertyParserContext &context,
                                    std::string_view text) {
@@ -58,4 +59,5 @@ bool PropertyEndState::hasCompleteParse(PropertyParserContext &) {
   return true;
 }
 
+} // namespace parser
 } // namespace jdme2x

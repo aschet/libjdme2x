@@ -13,7 +13,7 @@
 #include "ResponseParserStates.h"
 #include "jdme2x/Parser/Lexer.h"
 
-using namespace jdme2x::parser::states;
+using namespace jdme2x::parser;
 
 namespace jdme2x {
 

@@ -17,6 +17,7 @@
 #include <string_view>
 
 namespace jdme2x {
+namespace parser {
 
 template <typename T> class Context;
 
@@ -116,6 +117,7 @@ private:
   StateFacade<T> *state;
 };
 
+} // namespace parser
 } // namespace jdme2x
 
 #endif

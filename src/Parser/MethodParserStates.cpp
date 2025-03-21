@@ -18,7 +18,6 @@
 
 namespace jdme2x {
 namespace parser {
-namespace states {
 
 bool MethodStartState::parseName(MethodParserContext &context,
                                  std::string_view text) {
@@ -135,6 +134,5 @@ bool ArgumentListEndState::endScope(MethodParserContext &context) {
 
 bool MethodEndState::hasCompleteParse(MethodParserContext &) { return true; }
 
-} // namespace states
 } // namespace parser
 } // namespace jdme2x

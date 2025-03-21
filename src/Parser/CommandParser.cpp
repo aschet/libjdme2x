@@ -15,7 +15,7 @@
 
 #include <utility>
 
-using namespace jdme2x::parser::states;
+using namespace jdme2x::parser;
 
 namespace jdme2x {
 
@@ -35,7 +35,8 @@ std::pair<bool, Command> CommandParser::parse(std::string_view text) {
   if (text.empty())
     return std::make_pair(false, Command());
 
-  CommandParserContext context(Singleton<CommandStartState>::instance());
+  CommandParserContext context(
+      Singleton<parser::CommandStartState>::instance());
   impl->lexer.tokenize(text,
                        [&context](TokenID id, std::string_view text) -> bool {
                          return context.parse(id, text);
@@ -43,7 +44,7 @@ std::pair<bool, Command> CommandParser::parse(std::string_view text) {
   return std::make_pair(
       context.hasCompleteParse(),
       Command(context.data.tag,
-                     std::move(context.data.methodContext.data.method)));
+              std::move(context.data.methodContext.data.method)));
 }
 
 } // namespace jdme2x

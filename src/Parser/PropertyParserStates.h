@@ -19,6 +19,7 @@
 #include <string_view>
 
 namespace jdme2x {
+namespace parser {
 
 using PropertyParserState = State<Property>;
 
@@ -50,6 +51,7 @@ struct PropertyEndState : public PropertyParserState {
   bool hasCompleteParse(PropertyParserContext &context) override;
 };
 
+} // namespace parser
 } // namespace jdme2x
 
 #endif

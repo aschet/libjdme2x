@@ -21,7 +21,6 @@
 
 namespace jdme2x {
 namespace parser {
-namespace states {
 
 struct CommandParserData {
   Tag tag;
@@ -50,7 +49,6 @@ struct CommandEndState : public State<CommandParserData> {
   bool hasCompleteParse(CommandParserContext &context) override;
 };
 
-} // namespace states
 } // namespace parser
 } // namespace jdme2x
 
