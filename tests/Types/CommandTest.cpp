@@ -25,7 +25,7 @@ BOOST_AUTO_TEST_CASE(serializeCommand) {
   Command getDMEVersionCommand(Tag(1, TagType::Command),
                                Method("GetDMEVersion"));
   BOOST_TEST("00001 GetDMEVersion()\r\n" ==
-             test::toString(getDMEVersionCommand));
+             toString(getDMEVersionCommand));
 }
 
 BOOST_AUTO_TEST_SUITE_END()

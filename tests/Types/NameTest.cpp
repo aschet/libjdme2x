@@ -19,7 +19,7 @@ using namespace jdme2x;
 BOOST_AUTO_TEST_SUITE(NameTest)
 
 BOOST_AUTO_TEST_CASE(serializeName) {
-  BOOST_TEST(test::toString(Name("AbortE")) == "AbortE");
+  BOOST_TEST(toString(Name("AbortE")) == "AbortE");
 }
 
 BOOST_AUTO_TEST_CASE(checkBasicName) {

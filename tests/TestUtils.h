@@ -14,7 +14,7 @@
 #include <sstream>
 #include <string>
 
-namespace test {
+namespace jdme2x {
 
 template <typename T> std::string toString(const T &value) {
   std::ostringstream stream;
@@ -22,6 +22,6 @@ template <typename T> std::string toString(const T &value) {
   return stream.str();
 }
 
-} // namespace test
+} // namespace jdme2x
 
 #endif

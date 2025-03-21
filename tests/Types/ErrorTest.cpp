@@ -22,7 +22,7 @@ BOOST_AUTO_TEST_SUITE(ErrorTest)
 BOOST_AUTO_TEST_CASE(serializeError) {
   BOOST_TEST(
       "! Error(3, 0008, \"Server::someMethod()\", \"Protocol error\")" ==
-      test::toString(Error(errors::ProtocolError, "Server::someMethod()")));
+      toString(Error(errors::ProtocolError, "Server::someMethod()")));
 }
 
 BOOST_AUTO_TEST_SUITE_END()

@@ -21,10 +21,10 @@ BOOST_AUTO_TEST_SUITE(TagTest)
 
 BOOST_AUTO_TEST_CASE(serializeTag) {
   Tag commandTag(1, TagType::Command);
-  BOOST_TEST("00001" == test::toString(commandTag));
+  BOOST_TEST("00001" == toString(commandTag));
 
   Tag EventTag(1, TagType::Event);
-  BOOST_TEST("E0001" == test::toString(EventTag));
+  BOOST_TEST("E0001" == toString(EventTag));
 }
 
 BOOST_AUTO_TEST_CASE(checkUnsolicitedEvent) {

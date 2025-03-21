@@ -19,10 +19,10 @@ using namespace jdme2x;
 BOOST_AUTO_TEST_SUITE(NumberTest)
 
 BOOST_AUTO_TEST_CASE(serializeNumber) {
-  BOOST_TEST("-1" == test::toString(Number(-1)));
-  BOOST_TEST("1" == test::toString(Number(1)));
-  BOOST_TEST("1.5" == test::toString(Number(1.5)));
-  BOOST_TEST("-1.5" == test::toString(Number(-1.5)));
+  BOOST_TEST("-1" == toString(Number(-1)));
+  BOOST_TEST("1" == toString(Number(1)));
+  BOOST_TEST("1.5" == toString(Number(1.5)));
+  BOOST_TEST("-1.5" == toString(Number(-1.5)));
 }
 
 BOOST_AUTO_TEST_CASE(queryNumberType) {

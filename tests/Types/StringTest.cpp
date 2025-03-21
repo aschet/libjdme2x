@@ -19,7 +19,7 @@ using namespace jdme2x;
 BOOST_AUTO_TEST_SUITE(StringTest)
 
 BOOST_AUTO_TEST_CASE(serializeString) {
-  BOOST_TEST("\"1.4\"" == test::toString(String("1.4")));
+  BOOST_TEST("\"1.4\"" == toString(String("1.4")));
 }
 
 BOOST_AUTO_TEST_SUITE_END()

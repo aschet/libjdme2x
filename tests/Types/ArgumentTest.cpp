@@ -22,11 +22,11 @@ using namespace jdme2x;
 BOOST_AUTO_TEST_SUITE(ArgumentTest)
 
 BOOST_AUTO_TEST_CASE(serializArgument) {
-  BOOST_TEST("\"RefTool\"" == test::toString(Argument(String("RefTool"))));
-  BOOST_TEST("PartCsy" == test::toString(Argument(Name("PartCsy"))));
-  BOOST_TEST("1" == test::toString(Argument(Number(1))));
-  BOOST_TEST("E0000" == test::toString(Argument(UnsolicitedEvent)));
-  BOOST_TEST("X()" == test::toString(Property("X")));
+  BOOST_TEST("\"RefTool\"" == toString(Argument(String("RefTool"))));
+  BOOST_TEST("PartCsy" == toString(Argument(Name("PartCsy"))));
+  BOOST_TEST("1" == toString(Argument(Number(1))));
+  BOOST_TEST("E0000" == toString(Argument(UnsolicitedEvent)));
+  BOOST_TEST("X()" == toString(Property("X")));
 }
 
 BOOST_AUTO_TEST_SUITE_END()
