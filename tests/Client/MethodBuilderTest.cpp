@@ -60,4 +60,56 @@ BOOST_AUTO_TEST_CASE(buildEnumNameSpaces) {
   BOOST_TEST(Method("EnumNameSpaces") == MethodBuilder::buildEnumNameSpaces());
 }
 
+BOOST_AUTO_TEST_CASE(buildSetProp) {
+  Property property = Property("Tool.PtMeasPar.Accel").with(10);
+  BOOST_TEST(Method("SetProp").with(property) ==
+             MethodBuilder::buildSetProp({property}));
+}
+
+BOOST_AUTO_TEST_CASE(buildGetProp) {
+  Name name("Tool.PtMeasPar.Accel");
+  BOOST_TEST(Method("GetProp").with(Property(name)) ==
+             MethodBuilder::buildGetProp({name}));
+}
+
+BOOST_AUTO_TEST_CASE(buildEnumProp) {
+  Name name("Tool.PtMeasPar");
+  BOOST_TEST(Method("EnumProp").with(Property(name)) ==
+             MethodBuilder::buildEnumProp(name));
+}
+
+BOOST_AUTO_TEST_CASE(buildEnumAllProp) {
+  Name name("Tool.PtMeasPar");
+  BOOST_TEST(Method("EnumAllProp").with(Property(name)) ==
+             MethodBuilder::buildEnumAllProp(name));
+}
+
+BOOST_AUTO_TEST_CASE(buildGetDMEVersion) {
+  BOOST_TEST(Method("GetDMEVersion") == MethodBuilder::buildGetDMEVersion());
+}
+
+BOOST_AUTO_TEST_CASE(buildGetSupportedCommands) {
+  BOOST_TEST(Method("GetSupportedCommands") ==
+             MethodBuilder::buildGetSupportedCommands());
+}
+
+BOOST_AUTO_TEST_CASE(buildGetSupportedArguments) {
+  BOOST_TEST(Method("GetSupportedArguments") ==
+             MethodBuilder::buildGetSupportedArguments());
+}
+
+BOOST_AUTO_TEST_CASE(buildGetMachineClass) {
+  BOOST_TEST(Method("GetMachineClass") ==
+             MethodBuilder::buildGetMachineClass());
+}
+
+BOOST_AUTO_TEST_CASE(buildHome) {
+  BOOST_TEST(Method("Home") == MethodBuilder::buildHome());
+}
+
+BOOST_AUTO_TEST_CASE(buildIsHomed) {
+  BOOST_TEST(Method("IsHomed") == MethodBuilder::buildIsHomed());
+}
+
+
 BOOST_AUTO_TEST_SUITE_END()

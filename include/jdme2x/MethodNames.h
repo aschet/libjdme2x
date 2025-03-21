@@ -13,6 +13,8 @@
 
 namespace jdme2x {
 
+// Server
+
 constexpr const char *StartSessionName = "StartSession";
 
 constexpr const char *EndSessionName = "EndSession";
@@ -32,6 +34,30 @@ constexpr const char *GetXtdErrStatusName = "GetXtdErrStatus";
 constexpr const char *ClearAllErrorsName = "ClearAllErrors";
 
 constexpr const char *EnumNameSpacesName = "EnumNameSpaces";
+
+constexpr const char *SetPropName = "SetProp";
+
+constexpr const char *GetPropName = "GetProp";
+
+constexpr const char *EnumPropName = "EnumProp";
+
+constexpr const char *EnumAllPropName = "EnumAllProp";
+
+// DME
+
+constexpr const char *GetDMEVersionName = "GetDMEVersion";
+
+constexpr const char *GetSupportedCommandsName = "GetSupportedCommands";
+
+constexpr const char *GetSupportedArgumentsName = "GetSupportedArguments";
+
+constexpr const char *GetMachineClassName = "GetMachineClass";
+
+constexpr const char *HomeName = "Home";
+
+constexpr const char *IsHomedName = "IsHomed";
+
+// CartCMM
 
 } // namespace jdme2x
 

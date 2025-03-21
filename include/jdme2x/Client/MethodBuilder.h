@@ -13,7 +13,11 @@
 
 #include "jdme2x/API.h"
 #include "jdme2x/Types/Method.h"
+#include "jdme2x/Types/Name.h"
+#include "jdme2x/Types/Property.h"
 #include "jdme2x/Types/Tag.h"
+
+#include <vector>
 
 namespace jdme2x {
 
@@ -37,6 +41,26 @@ struct JDME2X_API MethodBuilder {
   static Method buildClearAllErrors();
 
   static Method buildEnumNameSpaces();
+
+  static Method buildSetProp(const std::vector<Property> &properties);
+
+  static Method buildGetProp(const std::vector<Name> &properties);
+
+  static Method buildEnumProp(const Name &reference);
+
+  static Method buildEnumAllProp(const Name &reference);
+
+  static Method buildGetDMEVersion();
+
+  static Method buildGetSupportedCommands();
+
+  static Method buildGetSupportedArguments();
+
+  static Method buildGetMachineClass();
+
+  static Method buildHome();
+
+  static Method buildIsHomed();
 };
 
 } // namespace jdme2x

@@ -53,4 +53,46 @@ Method MethodBuilder::buildEnumNameSpaces() {
   return Method(EnumNameSpacesName);
 }
 
+Method MethodBuilder::buildSetProp(const std::vector<Property> &properties) {
+  Method method(SetPropName);
+  for (const auto &property : properties) {
+    method.with(property);
+  }
+  return method;
+}
+
+Method MethodBuilder::buildGetProp(const std::vector<Name> &properties) {
+  Method method(GetPropName);
+  for (const auto &propertyName : properties) {
+    method.with(Property(propertyName));
+  }
+  return method;
+}
+
+Method MethodBuilder::buildEnumProp(const Name &reference) {
+  return Method(EnumPropName).with(Property(reference));
+}
+
+Method MethodBuilder::buildEnumAllProp(const Name &reference) {
+  return Method(EnumAllPropName).with(Property(reference));
+}
+
+Method MethodBuilder::buildGetDMEVersion() { return Method(GetDMEVersionName); }
+
+Method MethodBuilder::buildGetSupportedCommands() {
+  return Method(GetSupportedCommandsName);
+}
+
+Method MethodBuilder::buildGetSupportedArguments() {
+  return Method(GetSupportedArgumentsName);
+}
+
+Method MethodBuilder::buildGetMachineClass() {
+  return Method(GetMachineClassName);
+}
+
+Method MethodBuilder::buildHome() { return Method(HomeName); }
+
+Method MethodBuilder::buildIsHomed() { return Method(IsHomedName); }
+
 } // namespace jdme2x
