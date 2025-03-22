@@ -115,10 +115,10 @@ BOOST_AUTO_TEST_CASE(buildIsHomed) {
 }
 
 BOOST_AUTO_TEST_CASE(clientTest) {
-  BasicClient client("127.0.0.1");
-  client.send(MethodBuilder::buildStartSession());
-  client.send(MethodBuilder::buildIsHomed());
-  client.send(MethodBuilder::buildEndSession());
+  BasicClient client("localhost");
+  client.send(Tag(1, TagType::Command), MethodBuilder::buildStartSession());
+  client.send(Tag(2, TagType::Command), MethodBuilder::buildIsHomed());
+  client.send(Tag(3, TagType::Command), MethodBuilder::buildEndSession());
   std::this_thread::sleep_for(std::chrono::seconds(5));
 }
 

@@ -12,9 +12,12 @@
 #define JDME2X_CLIENT_BASICCLIENT_H
 
 #include "jdme2x/API.h"
+#include "jdme2x/Types/Command.h"
 #include "jdme2x/Types/Method.h"
+#include "jdme2x/Types/Response.h"
 #include "jdme2x/Types/Tag.h"
 
+#include <functional>
 #include <memory>
 #include <string_view>
 
@@ -22,7 +25,26 @@ namespace jdme2x {
 
 constexpr unsigned int DefaultPort = 1294;
 
-struct JDME2X_API BasicClient {
+using ResponseHandler = std::function<void(Response &&)>;
+
+class JDME2X_API AbstractBasicClient {
+public:
+  virtual ~AbstractBasicClient() = default;
+
+  void send(const Command &command);
+
+  virtual void send(const Tag &tag, const Method &method) = 0;
+
+  void setResponseHandler(ResponseHandler handler);
+
+protected:
+  void notifyResponseHandler(Response &&response);
+
+private:
+  ResponseHandler responseHandler;
+};
+
+class JDME2X_API BasicClient : public AbstractBasicClient {
 public:
   BasicClient(const std::string_view &host, unsigned int port = DefaultPort);
 
@@ -36,7 +58,7 @@ public:
 
   BasicClient &operator=(BasicClient &&);
 
-  void send(const Method &method);
+  void send(const Tag &tag, const Method &method) override;
 
 private:
   struct Private;

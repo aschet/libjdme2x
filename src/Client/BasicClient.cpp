@@ -10,6 +10,7 @@
 
 #include "jdme2x/Client/BasicClient.h"
 
+#include "jdme2x/Parser/ResponseParser.h"
 #include "jdme2x/Types/Command.h"
 
 #include <boost/asio.hpp>
@@ -18,6 +19,19 @@
 #include <thread>
 
 namespace jdme2x {
+
+void AbstractBasicClient::send(const Command &command) {
+  send(command.tag, command.method);
+}
+
+void AbstractBasicClient::setResponseHandler(ResponseHandler handler) {
+  responseHandler = handler;
+}
+
+void AbstractBasicClient::notifyResponseHandler(Response &&response) {
+  if (responseHandler)
+    responseHandler(std::move(response));
+}
 
 //  void handleConnectionLost(const boost::system::error_code &ec) {
 //  if (ec == boost::asio::error::eof ||
@@ -33,7 +47,8 @@ namespace jdme2x {
 
 struct BasicClient::Private
     : public std::enable_shared_from_this<BasicClient::Private> {
-  Private() : socket(context), resolver(context) {}
+  Private(ResponseHandler responseHandler)
+      : socket(context), resolver(context) {}
 
   ~Private() {
     context.stop();
@@ -56,7 +71,7 @@ struct BasicClient::Private
         [self = shared_from_this(),
          messageRef = messageRef](boost::system::error_code ec, std::size_t) {
           if (ec) {
-            std::cerr << "Error sending message: " << ec.message() << std::endl;
+            // TODO: report error
           }
         });
   }
@@ -66,32 +81,38 @@ struct BasicClient::Private
         socket, buffer, "\n",
         [self = shared_from_this()](boost::system::error_code ec, std::size_t) {
           if (ec) {
-            std::cerr << "Error reading: " << ec.message() << std::endl;
+            // TODO: report error
             return;
           }
 
           std::istream stream(&self->buffer);
-          std::string message;
-          std::getline(stream, message);
-          message.pop_back();
-          std::cout << message;
+          std::string line;
+          std::getline(stream, line);
+          if (!line.empty()) {
+            line.pop_back();
+            auto [ok, response] = self->parser.parse(line);
+            std::cout << response;
+            if (self->responseHandler)
+              self->responseHandler(std::move(response));
+          }
 
-          // self->callback_(
-          //     message); // Notify callback about the received message
-
-          self->startRead(); // Continue reading asynchronously
+          self->startRead();
         });
   }
 
+  ResponseHandler responseHandler;
   boost::asio::io_context context;
   boost::asio::ip::tcp::socket socket;
   boost::asio::ip::tcp::resolver resolver;
   boost::asio::streambuf buffer;
   std::unique_ptr<std::thread> contextRunner;
+  ResponseParser parser;
 };
 
 BasicClient::BasicClient(const std::string_view &host, unsigned int port)
-    : impl(std::make_shared<BasicClient::Private>()) {
+    : impl(std::make_shared<BasicClient::Private>([this](Response &&response) {
+        notifyResponseHandler(std::move(response));
+      })) {
   impl->connect(host, port);
 }
 
@@ -101,15 +122,7 @@ BasicClient::BasicClient(BasicClient &&) = default;
 
 BasicClient &BasicClient::operator=(BasicClient &&) = default;
 
-void BasicClient::send(const Method &method) {
-  static int counter = 0;
-  ++counter;
-  Tag tag;
-  if (method.isPrioritized())
-    tag = Tag(counter, TagType::Event);
-  else
-    tag = Tag(counter, TagType::Command);
-
+void BasicClient::send(const Tag &tag, const Method &method) {
   impl->send(Command::toString(tag, method));
 }
 
