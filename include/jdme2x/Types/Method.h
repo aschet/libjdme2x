@@ -13,6 +13,7 @@
 
 #include "jdme2x/API.h"
 #include "jdme2x/Types/Argument.h"
+#include "jdme2x/Types/Tag.h"
 
 #include <ostream>
 
@@ -40,6 +41,8 @@ struct JDME2X_API Method {
   bool operator<(const Method &other) const;
 
   bool isPrioritized() const;
+
+  TagType getTagType() const;
 
   Method &with(const Argument &arg);
 

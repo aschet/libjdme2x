@@ -19,6 +19,18 @@
 
 namespace jdme2x {
 
+//  void handleConnectionLost(const boost::system::error_code &ec) {
+//  if (ec == boost::asio::error::eof ||
+//      ec == boost::asio::error::connection_reset ||
+//      ec == boost::asio::error::connection_aborted) {
+//    std::cerr << "Connection lost: " << ec.message() << std::endl;
+//    context.stop();
+//    if (contextRunner) {
+//      contextRunner->join();
+//    }
+//  }
+//}
+
 struct BasicClient::Private
     : public std::enable_shared_from_this<BasicClient::Private> {
   Private() : socket(context), resolver(context) {}
@@ -51,7 +63,7 @@ struct BasicClient::Private
 
   void startRead() {
     boost::asio::async_read_until(
-        socket, buffer, "\r\n",
+        socket, buffer, "\n",
         [self = shared_from_this()](boost::system::error_code ec, std::size_t) {
           if (ec) {
             std::cerr << "Error reading: " << ec.message() << std::endl;
@@ -61,6 +73,7 @@ struct BasicClient::Private
           std::istream stream(&self->buffer);
           std::string message;
           std::getline(stream, message);
+          message.pop_back();
           std::cout << message;
 
           // self->callback_(

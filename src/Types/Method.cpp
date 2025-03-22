@@ -34,6 +34,13 @@ bool Method::isPrioritized() const {
   return false;
 }
 
+TagType Method::getTagType() const {
+  if (isPrioritized())
+    return TagType::Event;
+  else
+    return TagType::Command;
+}
+
 Method &Method::with(const Argument &arg) {
   args.emplace_back(arg);
   xml.clear();

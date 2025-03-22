@@ -19,6 +19,16 @@ using namespace jdme2x;
 
 BOOST_AUTO_TEST_SUITE(MethodTest)
 
+BOOST_AUTO_TEST_CASE(queryTagType) {
+  Method homeMethod("Home");
+  BOOST_TEST(!homeMethod.isPrioritized());
+  BOOST_TEST((TagType::Command == homeMethod.getTagType()));
+
+  Method abortEMethod("AbortE");
+  BOOST_TEST(abortEMethod.isPrioritized());
+  BOOST_TEST((TagType::Event == abortEMethod.getTagType()));
+}
+
 BOOST_AUTO_TEST_CASE(serializeMethod) {
   Method getDMEVersionMethod("GetDMEVersion");
   std::string result = toString(getDMEVersionMethod);
@@ -26,21 +36,20 @@ BOOST_AUTO_TEST_CASE(serializeMethod) {
 
   Method alignPartMethod("AlignPart");
   result = toString(alignPartMethod.with(Number(0))
-                              .with(Number(-1))
-                              .with(Number(0))
-                              .with(Number(0.6))
-                              .with(Number(0.0))
-                              .with(Number(0.8))
-                              .with(Number(1.0)));
+                        .with(Number(-1))
+                        .with(Number(0))
+                        .with(Number(0.6))
+                        .with(Number(0.0))
+                        .with(Number(0.8))
+                        .with(Number(1.0)));
   BOOST_TEST("AlignPart(0, -1, 0, 0.6, 0, 0.8, 1)" == result);
 
   Method onMoveReportEMethod("OnMoveReportE");
-  result = toString(
-      onMoveReportEMethod.with(Property("Time").with(Number(5)))
-          .with(Property("Dis").with(Number(0.34)))
-          .with(Property("X"))
-          .with(Property("Y"))
-          .with(Property("Z")));
+  result = toString(onMoveReportEMethod.with(Property("Time").with(Number(5)))
+                        .with(Property("Dis").with(Number(0.34)))
+                        .with(Property("X"))
+                        .with(Property("Y"))
+                        .with(Property("Z")));
   BOOST_TEST("OnMoveReportE(Time(5), Dis(0.34), X(), Y(), Z())" == result);
 
   Method changeToolMethod("ChangeTool");
