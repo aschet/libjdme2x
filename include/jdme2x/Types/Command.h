@@ -16,6 +16,7 @@
 #include "jdme2x/Types/Tag.h"
 
 #include <ostream>
+#include <string>
 #include <utility>
 
 namespace jdme2x {
@@ -40,6 +41,8 @@ struct JDME2X_API Command {
   bool operator!=(const Command &other) const;
 
   bool operator<(const Command &other) const;
+
+  static std::string toString(const Tag &tag, const Method &method);
 
   Tag tag;
 

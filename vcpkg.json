@@ -1,5 +1,6 @@
 {
   "dependencies": [
+    "boost-asio",
     "boost-spirit",
     "boost-test"
   ]

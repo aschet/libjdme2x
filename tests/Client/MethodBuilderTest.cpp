@@ -11,7 +11,10 @@
 #include "jdme2x/Client/MethodBuilder.h"
 #include "jdme2x/MethodNames.h"
 
+#include "jdme2x/Client/BasicClient.h"
+
 #include <boost/test/unit_test.hpp>
+#include <thread>
 
 using namespace jdme2x;
 
@@ -110,6 +113,15 @@ BOOST_AUTO_TEST_CASE(buildHome) {
 BOOST_AUTO_TEST_CASE(buildIsHomed) {
   BOOST_TEST(Method("IsHomed") == MethodBuilder::buildIsHomed());
 }
+
+BOOST_AUTO_TEST_CASE(clientTest) {
+  BasicClient client("127.0.0.1");
+  client.send(MethodBuilder::buildStartSession());
+  client.send(MethodBuilder::buildIsHomed());
+  client.send(MethodBuilder::buildEndSession());
+  std::this_thread::sleep_for(std::chrono::seconds(5));
+}
+
 
 
 BOOST_AUTO_TEST_SUITE_END()

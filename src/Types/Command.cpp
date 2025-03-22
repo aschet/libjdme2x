@@ -10,7 +10,7 @@
 
 #include "jdme2x/Types/Command.h"
 
-#include <utility>
+#include <sstream>
 
 namespace jdme2x {
 
@@ -31,9 +31,20 @@ bool Command::operator!=(const Command &other) const {
 
 bool Command::operator<(const Command &other) const { return tag < other.tag; }
 
+static void writeCommand(std::ostream &stream, const Tag &tag,
+                         const Method &method) {
+  stream << tag << ' ' << method << "\r\n";
+}
+
+std::string Command::toString(const Tag &tag, const Method &method) {
+  std::ostringstream stream;
+  writeCommand(stream, tag, method);
+  return stream.str();
+}
+
 JDME2X_API std::ostream &operator<<(std::ostream &stream,
                                     const Command &instance) {
-  stream << instance.tag << ' ' << instance.method << "\r\n";
+  writeCommand(stream, instance.tag, instance.method);
   return stream;
 }
 

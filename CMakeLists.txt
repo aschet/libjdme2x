@@ -22,7 +22,7 @@ else()
   add_compile_options(-Wall -Wextra)
 endif()
 
-find_package(Boost 1.70.0 CONFIG REQUIRED COMPONENTS headers unit_test_framework)
+find_package(Boost 1.70.0 CONFIG REQUIRED COMPONENTS headers asio unit_test_framework)
 
 add_library(${PROJECT_NAME})
 add_library(${PROJECT_NAME}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
@@ -47,7 +47,12 @@ if(BUILD_SHARED_LIBS)
   )
 endif()
 
+if(WIN32)
+  target_compile_definitions(${PROJECT_NAME} PRIVATE _WIN32_WINNT=0x0601)
+endif()
+
 set(FILES_INCLUDE
+  "include/jdme2x/Client/BasicClient.h"
   "include/jdme2x/Client/MethodBuilder.h"
   "include/jdme2x/Parser/CommandParser.h"
   "include/jdme2x/Parser/Lexer.h"
@@ -69,10 +74,12 @@ set(FILES_INCLUDE
   "include/jdme2x/Types/Property.h"
   "include/jdme2x/Types/Tag.h"
   "include/jdme2x/API.h"
+  "include/jdme2x/CoordSystem.h"
   "include/jdme2x/MethodNames.h"
 )
 
 set(FILES_SRC
+  "src/Client/BasicClient.cpp"
   "src/Client/MethodBuilder.cpp"
   "src/Parser/CommandParser.cpp"
   "src/Parser/CommandParserStates.cpp"
@@ -114,6 +121,7 @@ source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${FILES_INCLUDE} ${FILES_SRC
 target_link_libraries(${PROJECT_NAME}
   PRIVATE
     Boost::headers
+    Boost::asio
 )
 
 include(CTest)

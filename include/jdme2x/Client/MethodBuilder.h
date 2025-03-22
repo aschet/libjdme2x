@@ -22,6 +22,7 @@
 namespace jdme2x {
 
 struct JDME2X_API MethodBuilder {
+  // Server
   static Method buildStartSession();
 
   static Method buildEndSession();
@@ -50,6 +51,7 @@ struct JDME2X_API MethodBuilder {
 
   static Method buildEnumAllProp(const Name &reference);
 
+  // DME
   static Method buildGetDMEVersion();
 
   static Method buildGetSupportedCommands();
@@ -61,6 +63,9 @@ struct JDME2X_API MethodBuilder {
   static Method buildHome();
 
   static Method buildIsHomed();
+
+  // CartCMM
+
 };
 
 } // namespace jdme2x

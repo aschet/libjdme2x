@@ -39,6 +39,8 @@ struct JDME2X_API Method {
 
   bool operator<(const Method &other) const;
 
+  bool isPrioritized() const;
+
   Method &with(const Argument &arg);
 
   Method &with(Argument &&arg);

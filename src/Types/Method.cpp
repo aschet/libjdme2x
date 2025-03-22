@@ -28,6 +28,12 @@ bool Method::operator!=(const Method &other) const {
 
 bool Method::operator<(const Method &other) const { return name < other.name; }
 
+bool Method::isPrioritized() const {
+  if (name.value.length() > 0 && name.value.back() == 'E')
+    return true;
+  return false;
+}
+
 Method &Method::with(const Argument &arg) {
   args.emplace_back(arg);
   xml.clear();

@@ -12,9 +12,7 @@
 #define JDME2X_METHODNAMES_H
 
 namespace jdme2x {
-
 // Server
-
 constexpr const char *StartSessionName = "StartSession";
 
 constexpr const char *EndSessionName = "EndSession";
