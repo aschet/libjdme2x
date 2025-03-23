@@ -66,6 +66,25 @@ struct JDME2X_API MethodBuilder {
 
   // CartCMM
 
+  // CenterPart
+  static Method buildCenterPart(double px, double py, double pz, double limit);
+
+  static Method buildTiltPart(double dx, double dy, double dz, double limit);
+
+  static Method buildTiltCenterPart(double px1, double py1, double pz1,
+                                    double px2, double py2, double pz2,
+                                    double limit);
+
+  // Mover
+  static Method buildEnableUser();
+
+  static Method buildDisableUser();
+
+  static Method buildIsUserEnabled();
+
+  static Method buildEnumerateMoverAxes();
+
+  static Method buildUpdateScaleTemperatures();
 };
 
 } // namespace jdme2x

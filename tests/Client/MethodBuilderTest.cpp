@@ -116,6 +116,58 @@ BOOST_AUTO_TEST_CASE(buildIsHomed) {
   BOOST_TEST(Method("IsHomed") == MethodBuilder::buildIsHomed());
 }
 
+BOOST_AUTO_TEST_CASE(buildCenterPart) {
+  BOOST_TEST(Method("CenterPart")
+                 .with(Number(0.0))
+                 .with(Number(1.0))
+                 .with(Number(2.0))
+                 .with(Number(3.0)) ==
+             MethodBuilder::buildCenterPart(0.0, 1.0, 2.0, 3.0));
+}
+
+BOOST_AUTO_TEST_CASE(buildTiltPart) {
+  BOOST_TEST(Method("TiltPart")
+                 .with(Number(0.0))
+                 .with(Number(1.0))
+                 .with(Number(2.0))
+                 .with(Number(3.0)) ==
+             MethodBuilder::buildTiltPart(0.0, 1.0, 2.0, 3.0));
+}
+
+BOOST_AUTO_TEST_CASE(buildTiltCenterPart) {
+  BOOST_TEST(Method("TiltCenterPart")
+                 .with(Number(0.0))
+                 .with(Number(1.0))
+                 .with(Number(2.0))
+                 .with(Number(3.0))
+                 .with(Number(4.0))
+                 .with(Number(5.0))
+                 .with(Number(6.0)) == MethodBuilder::buildTiltCenterPart(
+                                           0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0));
+}
+
+BOOST_AUTO_TEST_CASE(buildEnableUser) {
+  BOOST_TEST(Method("EnableUser") == MethodBuilder::buildEnableUser());
+}
+
+BOOST_AUTO_TEST_CASE(buildDisableUser) {
+  BOOST_TEST(Method("DisableUser") == MethodBuilder::buildDisableUser());
+}
+
+BOOST_AUTO_TEST_CASE(buildIsUserEnabled) {
+  BOOST_TEST(Method("IsUserEnabled") == MethodBuilder::buildIsUserEnabled());
+}
+
+BOOST_AUTO_TEST_CASE(buildEnumerateMoverAxes) {
+  BOOST_TEST(Method("EnumerateMoverAxes") ==
+             MethodBuilder::buildEnumerateMoverAxes());
+}
+
+BOOST_AUTO_TEST_CASE(buildUpdateScaleTemperatures) {
+  BOOST_TEST(Method("UpdateScaleTemperatures") ==
+             MethodBuilder::buildUpdateScaleTemperatures());
+}
+
 BOOST_AUTO_TEST_CASE(clientTest) {
   BasicClient client("localhost");
   client.send(Tag(1, TagType::Command), MethodBuilder::buildStartSession());

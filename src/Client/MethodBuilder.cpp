@@ -95,4 +95,49 @@ Method MethodBuilder::buildHome() { return Method(HomeName); }
 
 Method MethodBuilder::buildIsHomed() { return Method(IsHomedName); }
 
+Method MethodBuilder::buildCenterPart(double px, double py, double pz,
+                                      double limit) {
+  return Method(CenterPartName)
+      .with(Number(px))
+      .with(Number(py))
+      .with(Number(pz))
+      .with(Number(limit));
+}
+
+Method MethodBuilder::buildTiltPart(double dx, double dy, double dz,
+                                    double limit) {
+  return Method(TiltPartName)
+      .with(Number(dx))
+      .with(Number(dy))
+      .with(Number(dz))
+      .with(Number(limit));
+}
+
+Method MethodBuilder::buildTiltCenterPart(double px1, double py1, double pz1,
+                                          double px2, double py2, double pz2,
+                                          double limit) {
+  return Method(TiltCenterPartName)
+      .with(Number(px1))
+      .with(Number(py1))
+      .with(Number(pz1))
+      .with(Number(px2))
+      .with(Number(py2))
+      .with(Number(pz2))
+      .with(Number(limit));
+}
+
+Method MethodBuilder::buildEnableUser() { return Method(EnableUserName); }
+
+Method MethodBuilder::buildDisableUser() { return Method(DisableUserName); }
+
+Method MethodBuilder::buildIsUserEnabled() { return Method(IsUserEnabledName); }
+
+Method MethodBuilder::buildEnumerateMoverAxes() {
+  return Method(EnumerateMoverAxesName);
+}
+
+Method MethodBuilder::buildUpdateScaleTemperatures() {
+  return Method(UpdateScaleTemperaturesName);
+}
+
 } // namespace jdme2x
