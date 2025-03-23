@@ -119,10 +119,10 @@ PropertyList &Response::propertyList() {
   return std::get<PropertyList>(data());
 }
 
-struct ResponseValueVisitor {
+struct ResponseValueStreamVisitor {
   std::ostream &stream;
 
-  ResponseValueVisitor(std::ostream &stream) : stream(stream) {}
+  ResponseValueStreamVisitor(std::ostream &stream) : stream(stream) {}
 
   void operator()(const Acknowledge &value) const { stream << value; }
 
@@ -135,7 +135,7 @@ struct ResponseValueVisitor {
 
 JDME2X_API std::ostream &operator<<(std::ostream &stream,
                                     const ResponseValue &instance) {
-  std::visit(ResponseValueVisitor(stream), instance);
+  std::visit(ResponseValueStreamVisitor(stream), instance);
   return stream;
 }
 
