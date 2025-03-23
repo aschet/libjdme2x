@@ -34,11 +34,18 @@ bool Response::operator<(const Response &other) const {
   return tag < other.tag;
 }
 
-std::string Response::toString() const {
+static void writeResponse(std::ostream &stream, const Tag &tag,
+                          const ResponseValue &value) {
+  stream << tag << ' ' << value << "\r\n";
+}
+
+std::string Response::toString(const Tag &tag, const ResponseValue &value) {
   std::ostringstream stream;
-  stream << *this;
+  writeResponse(stream, tag, value);
   return stream.str();
 }
+
+std::string Response::toString() const { return toString(tag, value); }
 
 bool Response::holdsAcknowledge() const {
   return std::holds_alternative<Acknowledge>(value);
@@ -134,7 +141,7 @@ JDME2X_API std::ostream &operator<<(std::ostream &stream,
 
 JDME2X_API std::ostream &operator<<(std::ostream &stream,
                                     const Response &instance) {
-  stream << instance.tag << ' ' << instance.value << "\r\n";
+  writeResponse(stream, instance.tag, instance.value);
   return stream;
 }
 

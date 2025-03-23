@@ -29,7 +29,7 @@ class JDME2X_API AbstractBasicClient {
 public:
   virtual ~AbstractBasicClient() = default;
 
-  void send(const Command &command);
+  void sendCommand(const Command &command);
 
   virtual void send(const Tag &tag, const Method &method) = 0;
 

@@ -127,9 +127,10 @@ BOOST_AUTO_TEST_CASE(clientTest) {
 BOOST_AUTO_TEST_CASE(serverTest) {
   BasicServer server;
   server.setCommandHandler([&server](Command &&command) {
-    server.send(Response(command.tag, Acknowledge()));
-    server.send(Response(command.tag, Error(errors::BufferFull, "serverTest")));
-    server.send(Response(command.tag, Done()));
+    server.sendResponse(Response(command.tag, Acknowledge()));
+    server.sendResponse(
+        Response(command.tag, Error(errors::BufferFull, "serverTest")));
+    server.sendResponse(Response(command.tag, Done()));
   });
   server.start();
 }

@@ -29,9 +29,11 @@ class JDME2X_API AbstractBasicServer {
 public:
   virtual ~AbstractBasicServer() = default;
 
-  void sendUnsolicitedEvent(ResponseValue &&response);
+  void sendUnsolicitedEvent(const ResponseValue &response);
 
-  virtual void send(const Response &response) = 0;
+  void sendResponse(const Response &response);
+
+  virtual void send(const Tag &tag, const ResponseValue &value) = 0;
 
   void setCommandHandler(CommandHandler handler);
 
@@ -56,7 +58,7 @@ public:
 
   BasicServer &operator=(BasicServer &&);
 
-  void send(const Response &response) override;
+  void send(const Tag &tag, const ResponseValue &value) override;
 
   void start(unsigned short port = DefaultPort);
 

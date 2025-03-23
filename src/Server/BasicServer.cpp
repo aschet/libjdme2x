@@ -19,8 +19,12 @@
 
 namespace jdme2x {
 
-void AbstractBasicServer::sendUnsolicitedEvent(ResponseValue &&response) {
-  send(Response(UnsolicitedEvent, std::move(response)));
+void AbstractBasicServer::sendUnsolicitedEvent(const ResponseValue &response) {
+  send(UnsolicitedEvent, response);
+}
+
+void AbstractBasicServer::sendResponse(const Response &response) {
+  send(response.tag, response.value);
 }
 
 void AbstractBasicServer::setCommandHandler(CommandHandler handler) {
@@ -35,8 +39,7 @@ void AbstractBasicServer::notifyCommandHandler(Command &&command) {
 struct BasicServer::Private
     : public std::enable_shared_from_this<BasicServer::Private> {
   Private(CommandHandler commandHandler)
-      : commandHandler(commandHandler), acceptor(context), socket(context) {
-  }
+      : commandHandler(commandHandler), acceptor(context), socket(context) {}
 
   ~Private() {}
 
@@ -78,7 +81,7 @@ struct BasicServer::Private
 
   void startRead() {
     if (!socket.is_open()) {
-      acceptConnection(); // Restart accepting if socket is closed
+      acceptConnection();
       return;
     }
 
@@ -86,7 +89,6 @@ struct BasicServer::Private
         socket, buffer, "\n",
         [self = shared_from_this()](boost::system::error_code ec, std::size_t) {
           if (ec) {
-            // Connection lost, restart accepting
             self->acceptConnection();
             return;
           }
@@ -125,8 +127,8 @@ BasicServer::BasicServer(BasicServer &&) = default;
 
 BasicServer &BasicServer::operator=(BasicServer &&) = default;
 
-void BasicServer::send(const Response &response) {
-  impl->send(response.toString());
+void BasicServer::send(const Tag &tag, const ResponseValue &value) {
+  impl->send(Response::toString(tag, value));
 }
 
 void BasicServer::start(unsigned short port) { impl->start(port); }

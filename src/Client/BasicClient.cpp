@@ -20,7 +20,7 @@
 
 namespace jdme2x {
 
-void AbstractBasicClient::send(const Command &command) {
+void AbstractBasicClient::sendCommand(const Command &command) {
   send(command.tag, command.method);
 }
 
