@@ -48,7 +48,7 @@ void AbstractBasicClient::notifyResponseHandler(Response &&response) {
 struct BasicClient::Private
     : public std::enable_shared_from_this<BasicClient::Private> {
   Private(ResponseHandler responseHandler)
-      : socket(context), resolver(context) {}
+      : responseHandler(responseHandler), socket(context), resolver(context) {}
 
   ~Private() {
     context.stop();
