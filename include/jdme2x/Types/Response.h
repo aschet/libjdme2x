@@ -48,6 +48,8 @@ struct JDME2X_API Response {
 
   bool operator<(const Response &other) const;
 
+  std::string toString() const;
+
   bool holdsAcknowledge() const;
 
   bool holdsDone() const;

@@ -42,6 +42,8 @@ std::string Command::toString(const Tag &tag, const Method &method) {
   return stream.str();
 }
 
+std::string Command::toString() const { return toString(tag, method); }
+
 JDME2X_API std::ostream &operator<<(std::ostream &stream,
                                     const Command &instance) {
   writeCommand(stream, instance.tag, instance.method);

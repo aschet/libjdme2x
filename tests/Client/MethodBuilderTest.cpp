@@ -12,6 +12,8 @@
 #include "jdme2x/MethodNames.h"
 
 #include "jdme2x/Client/BasicClient.h"
+#include "jdme2x/Server/BasicServer.h"
+#include "jdme2x/Types/Errors.h"
 
 #include <boost/test/unit_test.hpp>
 #include <thread>
@@ -122,6 +124,14 @@ BOOST_AUTO_TEST_CASE(clientTest) {
   std::this_thread::sleep_for(std::chrono::seconds(5));
 }
 
-
+BOOST_AUTO_TEST_CASE(serverTest) {
+  BasicServer server;
+  server.setCommandHandler([&server](Command &&command) {
+    server.send(Response(command.tag, Acknowledge()));
+    server.send(Response(command.tag, Error(errors::BufferFull, "serverTest")));
+    server.send(Response(command.tag, Done()));
+  });
+  server.start();
+}
 
 BOOST_AUTO_TEST_SUITE_END()

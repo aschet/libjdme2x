@@ -10,6 +10,8 @@
 
 #include "jdme2x/Types/Response.h"
 
+#include <sstream>
+
 namespace jdme2x {
 
 Response::Response(const Tag &tag, const ResponseValue &value)
@@ -30,6 +32,12 @@ bool Response::operator!=(const Response &other) const {
 
 bool Response::operator<(const Response &other) const {
   return tag < other.tag;
+}
+
+std::string Response::toString() const {
+  std::ostringstream stream;
+  stream << *this;
+  return stream.str();
 }
 
 bool Response::holdsAcknowledge() const {
@@ -104,10 +112,10 @@ PropertyList &Response::propertyList() {
   return std::get<PropertyList>(data());
 }
 
-struct ResponsePlayloadVisitor {
+struct ResponseValueVisitor {
   std::ostream &stream;
 
-  ResponsePlayloadVisitor(std::ostream &stream) : stream(stream) {}
+  ResponseValueVisitor(std::ostream &stream) : stream(stream) {}
 
   void operator()(const Acknowledge &value) const { stream << value; }
 
@@ -120,7 +128,7 @@ struct ResponsePlayloadVisitor {
 
 JDME2X_API std::ostream &operator<<(std::ostream &stream,
                                     const ResponseValue &instance) {
-  std::visit(ResponsePlayloadVisitor(stream), instance);
+  std::visit(ResponseValueVisitor(stream), instance);
   return stream;
 }
 

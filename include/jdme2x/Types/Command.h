@@ -44,6 +44,8 @@ struct JDME2X_API Command {
 
   static std::string toString(const Tag &tag, const Method &method);
 
+  std::string toString() const;
+
   Tag tag;
 
   Method method;

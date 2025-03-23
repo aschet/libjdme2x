@@ -12,6 +12,7 @@
 #define JDME2X_CLIENT_BASICCLIENT_H
 
 #include "jdme2x/API.h"
+#include "jdme2x/Port.h"
 #include "jdme2x/Types/Command.h"
 #include "jdme2x/Types/Method.h"
 #include "jdme2x/Types/Response.h"
@@ -19,11 +20,8 @@
 
 #include <functional>
 #include <memory>
-#include <string_view>
 
 namespace jdme2x {
-
-constexpr unsigned int DefaultPort = 1294;
 
 using ResponseHandler = std::function<void(Response &&)>;
 
@@ -46,7 +44,7 @@ private:
 
 class JDME2X_API BasicClient : public AbstractBasicClient {
 public:
-  BasicClient(const std::string_view &host, unsigned int port = DefaultPort);
+  BasicClient(const std::string_view &host, unsigned short port = DefaultPort);
 
   ~BasicClient();
 

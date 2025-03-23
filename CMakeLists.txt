@@ -59,6 +59,7 @@ set(FILES_INCLUDE
   "include/jdme2x/Parser/MethodParser.h"
   "include/jdme2x/Parser/ParserUtils.h"
   "include/jdme2x/Parser/ResponseParser.h"
+  "include/jdme2x/Server/BasicServer.h"
   "include/jdme2x/Types/Acknowledge.h"
   "include/jdme2x/Types/Argument.h"
   "include/jdme2x/Types/Command.h"
@@ -76,6 +77,7 @@ set(FILES_INCLUDE
   "include/jdme2x/API.h"
   "include/jdme2x/CoordSystem.h"
   "include/jdme2x/MethodNames.h"
+  "include/jdme2x/Port.h"
 )
 
 set(FILES_SRC
@@ -95,6 +97,7 @@ set(FILES_SRC
   "src/Parser/ResponseParser.cpp"
   "src/Parser/ResponseParserStates.cpp"
   "src/Parser/ResponseParserStates.h"
+  "src/Server/BasicServer.cpp"
   "src/Types/Acknowledge.cpp"
   "src/Types/Argument.cpp"
   "src/Types/Command.cpp"

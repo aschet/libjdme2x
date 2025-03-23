@@ -57,7 +57,7 @@ struct BasicClient::Private
     }
   }
 
-  void connect(const std::string_view &host, unsigned int port) {
+  void connect(const std::string_view &host, unsigned short port) {
     auto endpoints = resolver.resolve(host, std::to_string(port));
     boost::asio::connect(socket, endpoints);
     startRead();
@@ -109,7 +109,7 @@ struct BasicClient::Private
   ResponseParser parser;
 };
 
-BasicClient::BasicClient(const std::string_view &host, unsigned int port)
+BasicClient::BasicClient(const std::string_view &host, unsigned short port)
     : impl(std::make_shared<BasicClient::Private>([this](Response &&response) {
         notifyResponseHandler(std::move(response));
       })) {
