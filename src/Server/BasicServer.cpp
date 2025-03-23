@@ -16,11 +16,26 @@
 #include <iostream>
 #include <string>
 #include <thread>
+#include <type_traits>
 
 namespace jdme2x {
 
 void AbstractBasicServer::sendUnsolicitedEvent(const ResponseValue &response) {
   send(UnsolicitedEvent, response);
+}
+
+void AbstractBasicServer::sendAcknowledge(const Tag &tag) {
+  send(tag, Acknowledge());
+}
+
+void AbstractBasicServer::sendDone(const Tag &tag) { send(tag, Done()); }
+
+void AbstractBasicServer::sendData(const Tag &tag, Data &&data) {
+  send(tag, std::move(data));
+}
+
+void AbstractBasicServer::sendError(const Tag &tag, Error &&error) {
+  send(tag, std::move(error));
 }
 
 void AbstractBasicServer::sendResponse(const Response &response) {

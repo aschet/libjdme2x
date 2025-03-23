@@ -17,6 +17,7 @@
 #include <iostream>
 #include <string>
 #include <thread>
+#include <type_traits>
 
 namespace jdme2x {
 

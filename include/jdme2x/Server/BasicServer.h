@@ -31,6 +31,14 @@ public:
 
   void sendUnsolicitedEvent(const ResponseValue &response);
 
+  void sendAcknowledge(const Tag& tag);
+
+  void sendDone(const Tag& tag);
+
+  void sendData(const Tag &tag, Data &&data);
+
+  void sendError(const Tag& tag, Error &&error);
+
   void sendResponse(const Response &response);
 
   virtual void send(const Tag &tag, const ResponseValue &value) = 0;
