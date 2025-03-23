@@ -27,7 +27,17 @@ using ResponseHandler = std::function<void(Response &&)>;
 
 class JDME2X_API AbstractBasicClient {
 public:
+  AbstractBasicClient() = default;
+
   virtual ~AbstractBasicClient() = default;
+
+  AbstractBasicClient(const AbstractBasicClient &) = default;
+
+  AbstractBasicClient(AbstractBasicClient &&) = default;
+
+  AbstractBasicClient &operator=(const AbstractBasicClient &) = default;
+
+  AbstractBasicClient &operator=(AbstractBasicClient &&) = default;
 
   void sendCommand(const Command &command);
 

@@ -27,17 +27,27 @@ using CommandHandler = std::function<void(Command &&)>;
 
 class JDME2X_API AbstractBasicServer {
 public:
+  AbstractBasicServer() = default;
+
   virtual ~AbstractBasicServer() = default;
+
+  AbstractBasicServer(const AbstractBasicServer &) = default;
+
+  AbstractBasicServer(AbstractBasicServer &&) = default;
+
+  AbstractBasicServer &operator=(const AbstractBasicServer &) = default;
+
+  AbstractBasicServer &operator=(AbstractBasicServer &&) = default;
 
   void sendUnsolicitedEvent(const ResponseValue &response);
 
-  void sendAcknowledge(const Tag& tag);
+  void sendAcknowledge(const Tag &tag);
 
-  void sendDone(const Tag& tag);
+  void sendDone(const Tag &tag);
 
   void sendData(const Tag &tag, Data &&data);
 
-  void sendError(const Tag& tag, Error &&error);
+  void sendError(const Tag &tag, Error &&error);
 
   void sendResponse(const Response &response);
 
