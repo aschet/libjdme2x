@@ -10,20 +10,12 @@
 
 #include "jdme2x/CoordSystem.h"
 
+#include "jdme2x/CoordSystemNames.h"
+
 #include <array>
 #include <stdexcept>
 
 namespace jdme2x {
-
-constexpr const char *MachineCsyName = "MachineCsy";
-constexpr const char *MultipleArmCsyName = "MultipleArmCsy";
-constexpr const char *MoveableMachineCsyName = "MoveableMachineCsy";
-constexpr const char *RotaryTableFixCsyName = "RotaryTableFixCsy";
-constexpr const char *RotaryTableVarCsyName = "RotaryTableVarCsy";
-constexpr const char *PartCsyName = "PartCsy";
-constexpr const char *JogDisplayCsyName = "JogDisplayCsy";
-constexpr const char *JogMoveCsyName = "JogMoveCsy";
-constexpr const char *SensorCsyName = "SensorCsy";
 
 constexpr std::array<std::pair<std::string_view, CoordSystem>, 9>
     CoordSystemMap{{{MachineCsyName, CoordSystem::MachineCsy},
