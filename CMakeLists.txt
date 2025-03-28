@@ -112,6 +112,7 @@ set(FILES_SRC
   "src/Types/Response.cpp"
   "src/Types/String.cpp"
   "src/Types/Tag.cpp"
+  "src/CoordSystem.cpp"
 )
 
 target_sources(${PROJECT_NAME}

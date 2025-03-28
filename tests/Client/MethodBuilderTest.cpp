@@ -116,6 +116,86 @@ BOOST_AUTO_TEST_CASE(buildIsHomed) {
   BOOST_TEST(Method("IsHomed") == MethodBuilder::buildIsHomed());
 }
 
+BOOST_AUTO_TEST_CASE(buildSetCoordSystem) {
+  BOOST_TEST(Method("SetCoordSystem").with(String("MachineCsy")) ==
+             MethodBuilder::buildSetCoordSystem(CoordSystem::MachineCsy));
+}
+
+BOOST_AUTO_TEST_CASE(buildGetCoordSystem) {
+  BOOST_TEST(Method("GetCoordSystem") == MethodBuilder::buildGetCoordSystem());
+}
+
+BOOST_AUTO_TEST_CASE(buildSetCsyTransformation) {
+  BOOST_TEST(Method("SetCsyTransformation")
+                 .with(String("SensorCsy"))
+                 .with(Number(0.0))
+                 .with(Number(1.0))
+                 .with(Number(2.0))
+                 .with(Number(3.0))
+                 .with(Number(4.0))
+                 .with(Number(5.0)) ==
+             MethodBuilder::buildSetCsyTransformation(
+                 CoordSystem::SensorCsy, 0.0, 1.0, 2.0, 3.0, 4.0, 5.0));
+}
+
+BOOST_AUTO_TEST_CASE(buildSaveNamedCsyTransformation) {
+  BOOST_TEST(Method("SaveNamedCsyTransformation")
+                 .with(String("Custom"))
+                 .with(Number(0.0))
+                 .with(Number(1.0))
+                 .with(Number(2.0))
+                 .with(Number(3.0))
+                 .with(Number(4.0))
+                 .with(Number(5.0)) ==
+             MethodBuilder::buildSaveNamedCsyTransformation(
+                 String("Custom"), 0.0, 1.0, 2.0, 3.0, 4.0, 5.0));
+}
+
+BOOST_AUTO_TEST_CASE(buildGetNamedCsyTransformation) {
+  BOOST_TEST(Method("GetNamedCsyTransformation").with(String("Custom")) ==
+             MethodBuilder::buildGetNamedCsyTransformation(String("Custom")));
+}
+
+BOOST_AUTO_TEST_CASE(buildGetCsyTransformation) {
+  BOOST_TEST(Method("GetCsyTransformation").with(String("SensorCsy")) ==
+             MethodBuilder::buildGetCsyTransformation(CoordSystem::SensorCsy));
+}
+
+BOOST_AUTO_TEST_CASE(buildSaveActiveCoordSystem) {
+  BOOST_TEST(Method("SaveActiveCoordSystem").with(String("Custom")) ==
+             MethodBuilder::buildSaveActiveCoordSystem(String("Custom")));
+}
+
+BOOST_AUTO_TEST_CASE(buildLoadCoordSystem) {
+  BOOST_TEST(Method("LoadCoordSystem").with(String("Custom")) ==
+             MethodBuilder::buildLoadCoordSystem(String("Custom")));
+}
+
+BOOST_AUTO_TEST_CASE(buildDeleteCoordSystem) {
+  BOOST_TEST(Method("DeleteCoordSystem").with(String("Custom")) ==
+             MethodBuilder::buildDeleteCoordSystem(String("Custom")));
+}
+
+BOOST_AUTO_TEST_CASE(buildEnumCoordSystems) {
+  BOOST_TEST(Method("EnumCoordSystems") ==
+             MethodBuilder::buildEnumCoordSystems());
+}
+
+BOOST_AUTO_TEST_CASE(buildGetTemperatureSensors) {
+  BOOST_TEST(Method("GetTemperatureSensors") ==
+             MethodBuilder::buildGetTemperatureSensors());
+}
+
+BOOST_AUTO_TEST_CASE(buildReadTemperatureSensor) {
+  BOOST_TEST(Method("ReadTemperatureSensor").with(String("Axis0")) ==
+             MethodBuilder::buildReadTemperatureSensor(String("Axis0")));
+}
+
+BOOST_AUTO_TEST_CASE(buildReadAllTemperatures) {
+  BOOST_TEST(Method("ReadAllTemperatures") ==
+             MethodBuilder::buildReadAllTemperatures());
+}
+
 BOOST_AUTO_TEST_CASE(buildCenterPart) {
   BOOST_TEST(Method("CenterPart")
                  .with(Number(0.0))

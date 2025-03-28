@@ -57,33 +57,33 @@ constexpr const char *IsHomedName = "IsHomed";
 
 // CartCMM
 
-constexpr const char *SetCoordSystemName = "SetCoordSystem"; // TODO#
+constexpr const char *SetCoordSystemName = "SetCoordSystem";
 
-constexpr const char *GetCoordSystemName = "GetCoordSystem"; // TODO
+constexpr const char *GetCoordSystemName = "GetCoordSystem";
 
-constexpr const char *SetCsyTransformationName = "SetCsyTransformation"; // TODO
+constexpr const char *SetCsyTransformationName = "SetCsyTransformation";
 
 constexpr const char *SaveNamedCsyTransformationName =
-    "SaveNamedCsyTransformation"; // TODO
+    "SaveNamedCsyTransformation";
 
 constexpr const char *GetNamedCsyTransformationName =
-    "GetNamedCsyTransformation"; // TODO 
+    "GetNamedCsyTransformation";
 
-constexpr const char *GetCsyTransformationName = "GetCsyTransformation"; // TODO
+constexpr const char *GetCsyTransformationName = "GetCsyTransformation";
 
-constexpr const char *SaveActiveCoordSystemName = "SaveActiveCoordSystem"; // TODO
+constexpr const char *SaveActiveCoordSystemName = "SaveActiveCoordSystem";
 
-constexpr const char *LoadCoordSystemName = "LoadCoordSystem"; // TODO
+constexpr const char *LoadCoordSystemName = "LoadCoordSystem";
 
-constexpr const char *DeleteCoordSystemName = "DeleteCoordSystem"; // TODO
+constexpr const char *DeleteCoordSystemName = "DeleteCoordSystem";
 
-constexpr const char *EnumCoordSystemsName = "EnumCoordSystems"; // TODO
+constexpr const char *EnumCoordSystemsName = "EnumCoordSystems";
 
-constexpr const char *GetTemperatureSensorsName = "GetTemperatureSensors"; // TODO
+constexpr const char *GetTemperatureSensorsName = "GetTemperatureSensors";
 
-constexpr const char *ReadTemperatureSensorName = "ReadTemperatureSensor"; // TODO
+constexpr const char *ReadTemperatureSensorName = "ReadTemperatureSensor";
 
-constexpr const char *ReadAllTemperaturesName = "ReadAllTemperatures"; // TODO
+constexpr const char *ReadAllTemperaturesName = "ReadAllTemperatures";
 
 // FormTester
 
@@ -168,9 +168,11 @@ constexpr const char *ScanUnknownHintName = "ScanUnknownHint"; // TODO
 
 constexpr const char *ScanUnknownDensityName = "ScanUnknownDensity"; // TODO
 
-constexpr const char *ScanInPlaneEndIsSphereName = "ScanInPlaneEndIsSphere"; // TODO
+constexpr const char *ScanInPlaneEndIsSphereName =
+    "ScanInPlaneEndIsSphere"; // TODO
 
-constexpr const char *ScanInPlaneEndIsPlaneName = "ScanInPlaneEndIsPlane"; // TODO
+constexpr const char *ScanInPlaneEndIsPlaneName =
+    "ScanInPlaneEndIsPlane"; // TODO
 
 constexpr const char *ScanInPlaneEndIsCylName = "ScanInPlaneEndIsCyl"; // TODO
 
@@ -182,9 +184,8 @@ constexpr const char *ScanInCylEndIsPlaneName = "ScanInCylEndIsPlane"; // TODO
 
 constexpr const char *PtMeasSelfCenterName = "PtMeasSelfCenter"; // TODO
 
-constexpr const char *PtMeasSelfCenterLockedName = "PtMeasSelfCenterLocked"; // TODO
-
-
+constexpr const char *PtMeasSelfCenterLockedName =
+    "PtMeasSelfCenterLocked"; // TODO
 
 } // namespace jdme2x
 

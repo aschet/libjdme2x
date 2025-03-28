@@ -12,6 +12,7 @@
 #define JDME2X_CLIENT_METHODBUILDER_H
 
 #include "jdme2x/API.h"
+#include "jdme2x/CoordSystem.h"
 #include "jdme2x/Types/Method.h"
 #include "jdme2x/Types/Name.h"
 #include "jdme2x/Types/Property.h"
@@ -65,6 +66,36 @@ struct JDME2X_API MethodBuilder {
   static Method buildIsHomed();
 
   // CartCMM
+  static Method buildSetCoordSystem(CoordSystem csy);
+
+  static Method buildGetCoordSystem();
+
+  static Method buildSetCsyTransformation(CoordSystem csy, double x0, double y0,
+                                          double z0, double theta, double psi,
+                                          double phi);
+
+  static Method buildSaveNamedCsyTransformation(const String &name, double x0,
+                                                double y0, double z0,
+                                                double theta, double psi,
+                                                double phi);
+
+  static Method buildGetNamedCsyTransformation(const String& name);
+
+  static Method buildGetCsyTransformation(CoordSystem csy);
+
+  static Method buildSaveActiveCoordSystem(const String& name);
+
+  static Method buildLoadCoordSystem(const String &name);
+
+  static Method buildDeleteCoordSystem(const String &name);
+
+  static Method buildEnumCoordSystems();
+
+  static Method buildGetTemperatureSensors();
+
+  static Method buildReadTemperatureSensor(const String &name);
+
+  static Method buildReadAllTemperatures();
 
   // CenterPart
   static Method buildCenterPart(double px, double py, double pz, double limit);

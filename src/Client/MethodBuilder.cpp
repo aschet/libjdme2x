@@ -95,6 +95,84 @@ Method MethodBuilder::buildHome() { return Method(HomeName); }
 
 Method MethodBuilder::buildIsHomed() { return Method(IsHomedName); }
 
+Method MethodBuilder::buildSetCoordSystem(CoordSystem csy) {
+  if (isSelectable(csy))
+    return Method(SetCoordSystemName).with(String(toString(csy)));
+  throw std::invalid_argument("csy not valid for SetCoordSystem");
+}
+
+Method MethodBuilder::buildGetCoordSystem() {
+  return Method(GetCoordSystemName);
+}
+
+Method MethodBuilder::buildSetCsyTransformation(CoordSystem csy, double x0,
+                                                double y0, double z0,
+                                                double theta, double psi,
+                                                double phi) {
+  if (isDefineable(csy))
+    return Method(SetCsyTransformationName)
+        .with(String(toString(csy)))
+        .with(Number(x0))
+        .with(Number(y0))
+        .with(Number(z0))
+        .with(Number(theta))
+        .with(Number(psi))
+        .with(Number(phi));
+  throw std::invalid_argument("csy not valid for SetCsyTransformation");
+}
+
+Method MethodBuilder::buildSaveNamedCsyTransformation(const String &name,
+                                                      double x0, double y0,
+                                                      double z0, double theta,
+                                                      double psi, double phi) {
+  return Method(SaveNamedCsyTransformationName)
+      .with(name)
+      .with(Number(x0))
+      .with(Number(y0))
+      .with(Number(z0))
+      .with(Number(theta))
+      .with(Number(psi))
+      .with(Number(phi));
+}
+
+Method MethodBuilder::buildGetNamedCsyTransformation(const String& name) {
+  return Method(GetNamedCsyTransformationName).with(name);
+}
+
+Method MethodBuilder::buildGetCsyTransformation(CoordSystem csy) {
+  if (isDefineable(csy))
+    return Method(GetCsyTransformationName).with(String(toString(csy)));
+  throw std::invalid_argument("csy not valid for GetCsyTransformationName");
+}
+
+Method MethodBuilder::buildSaveActiveCoordSystem(const String& name) {
+  return Method(SaveActiveCoordSystemName).with(name);
+}
+
+Method MethodBuilder::buildLoadCoordSystem(const String& name) {
+  return Method(LoadCoordSystemName).with(name);
+}
+
+Method MethodBuilder::buildDeleteCoordSystem(const String &name) {
+  return Method(DeleteCoordSystemName).with(name);
+}
+
+Method MethodBuilder::buildEnumCoordSystems() {
+  return Method(EnumCoordSystemsName);
+}
+
+Method MethodBuilder::buildGetTemperatureSensors() {
+  return Method(GetTemperatureSensorsName);
+}
+
+Method MethodBuilder::buildReadTemperatureSensor(const String &name) {
+  return Method(ReadTemperatureSensorName).with(name);
+}
+
+Method MethodBuilder::buildReadAllTemperatures() {
+  return Method(ReadAllTemperaturesName);
+}
+
 Method MethodBuilder::buildCenterPart(double px, double py, double pz,
                                       double limit) {
   return Method(CenterPartName)
