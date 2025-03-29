@@ -75,10 +75,12 @@ set(FILES_INCLUDE
   "include/jdme2x/Types/Property.h"
   "include/jdme2x/Types/Tag.h"
   "include/jdme2x/API.h"
+  "include/jdme2x/AxisNames.h"
   "include/jdme2x/CoordSystem.h"
   "include/jdme2x/CoordSystemNames.h"
   "include/jdme2x/MethodNames.h"
   "include/jdme2x/Port.h"
+  "include/jdme2x/PositionNames.h"
 )
 
 set(FILES_SRC

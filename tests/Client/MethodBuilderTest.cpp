@@ -226,6 +226,18 @@ BOOST_AUTO_TEST_CASE(buildTiltCenterPart) {
                                            0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0));
 }
 
+BOOST_AUTO_TEST_CASE(buildLockAxis) {
+  BOOST_TEST(Method("LockAxis").with(Property("X")).with(Property("R")) ==
+             MethodBuilder::buildLockAxis(true, false, false, true, false,
+                                          false, false));
+}
+
+BOOST_AUTO_TEST_CASE(buildLockPosition) {
+  BOOST_TEST(
+      Method("LockPosition").with(Property("RFR")).with(Property("PFR")) ==
+      MethodBuilder::buildLockPosition(false, false, false, true, true));
+}
+
 BOOST_AUTO_TEST_CASE(buildEnableUser) {
   BOOST_TEST(Method("EnableUser") == MethodBuilder::buildEnableUser());
 }

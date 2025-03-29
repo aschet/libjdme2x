@@ -93,9 +93,9 @@ constexpr const char *TiltPartName = "TiltPart";
 
 constexpr const char *TiltCenterPartName = "TiltCenterPart";
 
-constexpr const char *LockAxisName = "LockAxis"; // TODO
+constexpr const char *LockAxisName = "LockAxis";
 
-constexpr const char *LockPositionName = "LockPosition"; // TODO
+constexpr const char *LockPositionName = "LockPosition";
 
 // Mover
 

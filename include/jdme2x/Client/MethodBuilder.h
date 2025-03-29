@@ -106,6 +106,12 @@ struct JDME2X_API MethodBuilder {
                                     double px2, double py2, double pz2,
                                     double limit);
 
+  static Method buildLockAxis(bool x, bool y, bool z, bool r, bool a, bool b,
+                              bool c);
+
+  static Method buildLockPosition(bool xfr, bool yfr, bool zfr, bool rfr,
+                                  bool pfr);
+
   // Mover
   static Method buildEnableUser();
 
