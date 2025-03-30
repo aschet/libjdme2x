@@ -74,6 +74,14 @@ Method ServerMethodBuilder::buildGetProp(const std::vector<Name> &properties) {
   return method;
 }
 
+Method ServerMethodBuilder::buildGetPropE(const std::vector<Name> &properties) {
+  Method method(GetPropEName);
+  for (const auto &propertyName : properties) {
+    method.with(Property(propertyName));
+  }
+  return method;
+}
+
 Method ServerMethodBuilder::buildEnumProp(const Name &reference) {
   return Method(EnumPropName).with(Property(reference));
 }

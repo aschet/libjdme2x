@@ -77,6 +77,12 @@ BOOST_AUTO_TEST_CASE(buildGetProp) {
              ServerMethodBuilder::buildGetProp({name}));
 }
 
+BOOST_AUTO_TEST_CASE(buildGetPropE) {
+  Name name("Tool.PtMeasPar.Accel");
+  BOOST_TEST(Method("GetPropE").with(Property(name)) ==
+             ServerMethodBuilder::buildGetPropE({name}));
+}
+
 BOOST_AUTO_TEST_CASE(buildEnumProp) {
   Name name("Tool.PtMeasPar");
   BOOST_TEST(Method("EnumProp").with(Property(name)) ==

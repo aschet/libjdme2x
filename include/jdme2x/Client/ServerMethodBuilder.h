@@ -48,7 +48,11 @@ struct JDME2X_API ServerMethodBuilder {
 
   static Method buildGetProp(const std::vector<Name> &properties);
 
+  static Method buildGetPropE(const std::vector<Name> &properties);
+
   static Method buildEnumProp(const Name &reference);
+
+  static Method buildEnumPropE(const Name &reference);
 
   static Method buildEnumAllProp(const Name &reference);
 };

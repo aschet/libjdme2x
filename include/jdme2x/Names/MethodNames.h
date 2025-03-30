@@ -37,6 +37,8 @@ constexpr const char *SetPropName = "SetProp";
 
 constexpr const char *GetPropName = "GetProp";
 
+constexpr const char *GetPropEName = "GetPropE";
+
 constexpr const char *EnumPropName = "EnumProp";
 
 constexpr const char *EnumAllPropName = "EnumAllProp";
