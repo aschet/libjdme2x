@@ -12,6 +12,7 @@
 
 #include "jdme2x/Names/CoordSystemNames.h"
 
+#include <algorithm>
 #include <array>
 #include <stdexcept>
 
