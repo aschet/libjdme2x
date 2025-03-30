@@ -10,7 +10,7 @@
 
 #include "jdme2x/CoordSystem.h"
 
-#include "jdme2x/CoordSystemNames.h"
+#include "jdme2x/Names/CoordSystemNames.h"
 
 #include <array>
 #include <stdexcept>

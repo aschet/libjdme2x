@@ -8,7 +8,11 @@ target_include_directories(${PROJECT_NAME}
 )
 
 set(FILES_SRC
-  "Client/MethodBuilderTest.cpp"
+  "Client/CartCMMMethodBuilderTest.cpp"
+  "Client/DMEMethodBuilderTest.cpp"
+  "Client/FormTesterMethodBuilderTest.cpp"
+  "Client/MoverMethodBuilderTest.cpp"
+  "Client/ServerMethodBuilderTest.cpp"
   "Parser/CommandParserTest.cpp"
   "Parser/LexerTest.cpp"
   "Parser/MethodParserTest.cpp"
